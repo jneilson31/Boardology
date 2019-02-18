@@ -2,10 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { HeaderPrimaryComponent } from './header/header-primary/header-primary.component';
+import { JumbotronComponent } from './jumbotron/jumbotron.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderPrimaryComponent,
+    JumbotronComponent
   ],
   imports: [
     BrowserModule
