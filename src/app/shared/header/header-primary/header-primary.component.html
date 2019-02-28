@@ -7,24 +7,24 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <div class="dropdown-divider"></div>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <div class="dropdown-divider"></div>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Games</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/games">Games</a>
       </li>
       <div class="dropdown-divider"></div>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Reviews</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="reviews">Reviews</a>
         <div class="dropdown-divider"></div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link"routerLink="about-us">About</a>
         <div class="dropdown-divider"></div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Contact</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="contact-us">Contact</a>
       </li>
     </ul>
   </div>
