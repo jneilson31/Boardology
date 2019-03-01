@@ -1,0 +1,44 @@
+@import "src/styles";
+
+#filterText {
+    text-decoration: underline;
+}
+
+.card-body {
+    padding: 0.50rem;
+}
+
+.card-header {
+    background: #43C6AC;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #191654, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border: none;
+    color: $color-white;
+    opacity: 0.8;
+}
+
+.card-footer {
+    background-color: $color-dark-gray;
+    color: $color-white;
+    line-height: 16px;
+    padding: 0.5rem 1.25rem;
+    p {
+        margin: 0;
+        font-size: 12px;
+    }
+    
+}
+
+.game-description {
+    font-size: 12px;
+}
+
+.price {
+    font-size: 16px;
+}
+
+.product-aff-link {
+    color: $color-board-aqua;
+    font-size: 12px;
+    text-decoration: underline;
+}
