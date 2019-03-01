@@ -18,18 +18,27 @@
 }
 
 .card-footer {
+    background-color: $color-dark-gray;
+    color: $color-white;
+    line-height: 16px;
     padding: 0.5rem 1.25rem;
     p {
         margin: 0;
         font-size: 12px;
     }
+    
 }
 
 .game-description {
     font-size: 12px;
 }
 
+.price {
+    font-size: 16px;
+}
+
 .product-aff-link {
+    color: $color-board-aqua;
     font-size: 12px;
     text-decoration: underline;
 }
