@@ -5,10 +5,12 @@ import { ProductListComponent } from './product/product-list/product-list.compon
 import { ReviewsComponent } from './reviews/reviews.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { ProductDetailComponent } from './product/product-detail/product-detail.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'games', component: ProductListComponent },
+    { path: 'games/gameid', component: ProductDetailComponent },
     { path: 'reviews', component: ReviewsComponent },
     { path: 'about-us', component: AboutComponent },
     { path: 'contact-us', component: ContactComponent },
