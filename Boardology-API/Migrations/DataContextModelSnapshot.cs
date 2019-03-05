@@ -31,8 +31,6 @@ namespace Boardology.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GameId");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Comments");
@@ -46,6 +44,8 @@ namespace Boardology.API.Migrations
 
                     b.HasKey("DownVoterId", "GameId");
 
+                    b.HasIndex("GameId");
+
                     b.ToTable("Downvotes");
                 });
 
@@ -54,13 +54,21 @@ namespace Boardology.API.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("AgeSuggestion");
+
                     b.Property<string>("Description");
 
                     b.Property<int>("Downvotes");
 
                     b.Property<string>("Name");
 
+                    b.Property<string>("NumPlayers");
+
+                    b.Property<int>("NumReviews");
+
                     b.Property<string>("PhotoUrl");
+
+                    b.Property<string>("TimeToPlay");
 
                     b.Property<int>("Upvotes");
 
@@ -78,6 +86,8 @@ namespace Boardology.API.Migrations
                     b.Property<int>("GameId");
 
                     b.HasKey("UpVoterId", "GameId");
+
+                    b.HasIndex("GameId");
 
                     b.ToTable("Upvotes");
                 });
@@ -104,11 +114,6 @@ namespace Boardology.API.Migrations
 
             modelBuilder.Entity("Boardology.API.Models.Comment", b =>
                 {
-                    b.HasOne("Boardology.API.Models.Game")
-                        .WithMany("Comments")
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("Boardology.API.Models.User")
                         .WithMany("Comments")
                         .HasForeignKey("UserId")
@@ -117,23 +122,23 @@ namespace Boardology.API.Migrations
 
             modelBuilder.Entity("Boardology.API.Models.Downvote", b =>
                 {
-                    b.HasOne("Boardology.API.Models.Game", "Game")
-                        .WithMany("Downvoters")
-                        .HasForeignKey("DownVoterId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.HasOne("Boardology.API.Models.User", "DownVoter")
                         .WithMany()
                         .HasForeignKey("DownVoterId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Boardology.API.Models.Game", "Game")
+                        .WithMany()
+                        .HasForeignKey("GameId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Boardology.API.Models.Upvote", b =>
                 {
                     b.HasOne("Boardology.API.Models.Game", "Game")
-                        .WithMany("Upvoters")
-                        .HasForeignKey("UpVoterId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .WithMany()
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Boardology.API.Models.User", "UpVoter")
                         .WithMany()
