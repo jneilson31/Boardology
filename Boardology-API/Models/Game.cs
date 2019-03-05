@@ -12,6 +12,10 @@ namespace Boardology.API.Models
         public string Description { get; set; }
         public int Upvotes { get; set; }
         public int Downvotes { get; set; }
+        public int NumReviews { get; set; }
+        public string NumPlayers { get; set; }
+        public string TimeToPlay { get; set; }
+        public string AgeSuggestion { get; set; }
         public int YearCreated { get; set; }
         public string PhotoUrl { get; set; }
     }
