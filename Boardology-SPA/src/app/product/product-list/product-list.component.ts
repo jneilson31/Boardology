@@ -9,18 +9,18 @@ import { Product } from '../product.model';
 })
 export class ProductListComponent implements OnInit {
 
-  games: Product[];
+  products: Product[];
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.getGames();
+    this.getProducts();
   }
 
-  getGames() {
+  getProducts() {
     this.http.get<Product[]>("http://localhost:5000/api/games")
-    .subscribe(games => {
-      this.games = games;
+    .subscribe(products => {
+      this.products = products;
     });
 
   }
