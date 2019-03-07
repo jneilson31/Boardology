@@ -1,8 +1,15 @@
 <div class="search-box p-3">
-  <div class="input-group ">
-    <input type="text" class="form-control" placeholder="Search for item..." aria-label="Search" aria-describedby="basic-addon2">
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="Search for item..." aria-label="Search" aria-describedby="basic-addon2" [formControl]="queryField">
     <div class="input-group-append">
       <span class="input-group-text btn-primary" id="basic-addon2">Search</span>
     </div>
   </div>
+</div>
+
+<div *ngFor="let game of games">
+<div class="text-center p-2" routerLinkActive="active">
+  <a>{{game.name}}</a>
+  <img src="{{game.photoUrl}}" height="42" width="42">
+</div>
 </div>
