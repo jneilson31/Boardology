@@ -9,15 +9,20 @@ import { Product } from '../product.model';
 })
 export class ProductListComponent implements OnInit {
 
-  games: Product[] = [];
+  products: Product[];
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    this.getProducts();
+  }
+
+  getProducts() {
     this.http.get<Product[]>('http://localhost:5000/api/games')
-    .subscribe(results => {
-      this.games = results;
+    .subscribe(products => {
+      this.products = products;
     });
+
   }
 
 }

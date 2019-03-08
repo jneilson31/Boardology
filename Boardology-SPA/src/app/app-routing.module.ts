@@ -10,7 +10,7 @@ import { ProductDetailComponent } from './product/product-detail/product-detail.
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'games', component: ProductListComponent },
-    { path: 'games/gameid', component: ProductDetailComponent },
+    { path: 'games/:gameid', component: ProductDetailComponent },
     { path: 'reviews', component: ReviewsComponent },
     { path: 'about-us', component: AboutComponent },
     { path: 'contact-us', component: ContactComponent },
