@@ -13,8 +13,9 @@ import { Product } from '../../product/product.model';
 })
 export class SearchComponent implements OnInit {
 
-  games: Product[] = [];
+  products: Product[] = [];
   queryField: FormControl = new FormControl();
+  hasResults = false;
   constructor(private searchService: SearchService) { }
 
   ngOnInit() {
@@ -23,8 +24,10 @@ export class SearchComponent implements OnInit {
     .distinctUntilChanged()
     .switchMap((query) => this.searchService.search(query))
     .subscribe(results => {
-        this.games = results;
+        this.products = results;
+        if (this.products.length > 0) {
+          this.hasResults = true;
+        }
       });
   }
-
 }

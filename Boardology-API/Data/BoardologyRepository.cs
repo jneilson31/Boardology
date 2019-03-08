@@ -105,16 +105,23 @@ namespace Boardology.API.Data
 
         }
 
-        public async Task<IQueryable<Game>> GetSearchResults(string searchString)
+        public async Task<IList<Game>> GetSearchResults(string searchString)
         {
-            var games = from g in _context.Games
-                        select g;
+            List<Game> games = new List<Game>();
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                games = games.Where(s => s.Name.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0);
-               
+                 games = await (from g in _context.Games
+                                   where g.Name.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0
+                                   select g).ToListAsync();
             }
+                
+
+            //if (!String.IsNullOrEmpty(searchString))
+            //{
+            //    games = games.FindAll(s => s.Name.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0);
+               
+            //}
 
             return games;
         }

@@ -21,6 +21,6 @@ namespace Boardology.API.Data
         Task<Game> IncreaseDownvotes(int gameId);
         Task<Comment> GetComment(int commentId);
         Task<IList> GetComments(int gameId);
-        Task<IQueryable<Game>> GetSearchResults(string game);
+        Task<IList<Game>> GetSearchResults(string game);
     }
 }
