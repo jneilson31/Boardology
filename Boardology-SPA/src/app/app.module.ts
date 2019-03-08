@@ -17,6 +17,7 @@ import { RouterModule } from '@angular/router';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { ContactComponent } from './contact/contact.component';
     HttpClientModule,
     RouterModule,
     AppRoutingModule,
+    AngularFontAwesomeModule
 
   ],
   providers: [],
