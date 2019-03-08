@@ -19,6 +19,7 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { SearchService } from './shared/search/search.service';
 import {ReactiveFormsModule} from '@angular/forms';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     RouterModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFontAwesomeModule
   ],
   providers: [SearchService],
   bootstrap: [AppComponent]
