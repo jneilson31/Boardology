@@ -104,5 +104,26 @@ namespace Boardology.API.Data
             return commentList;
 
         }
+
+        public async Task<IList<Game>> GetSearchResults(string searchString)
+        {
+            List<Game> games = new List<Game>();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                 games = await (from g in _context.Games
+                                   where g.Name.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0
+                                   select g).ToListAsync();
+            }
+                
+
+            //if (!String.IsNullOrEmpty(searchString))
+            //{
+            //    games = games.FindAll(s => s.Name.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0);
+               
+            //}
+
+            return games;
+        }
     }
 }

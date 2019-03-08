@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Boardology.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190305191956_gameModel")]
-    partial class gameModel
+    [Migration("20190307011312_databaseadd")]
+    partial class databaseadd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

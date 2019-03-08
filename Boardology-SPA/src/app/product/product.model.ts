@@ -1,6 +1,6 @@
 export class Product {
     public id: number;
-    public name: string
+    public name: string;
     public description: string;
     public upvotes: number;
     public downvotes: number;

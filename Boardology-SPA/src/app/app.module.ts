@@ -17,6 +17,8 @@ import { RouterModule } from '@angular/router';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { SearchService } from './shared/search/search.service';
+import {ReactiveFormsModule} from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 
@@ -41,10 +43,11 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     HttpClientModule,
     RouterModule,
     AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
     AngularFontAwesomeModule
-
   ],
-  providers: [],
+  providers: [SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

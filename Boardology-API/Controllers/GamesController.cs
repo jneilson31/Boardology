@@ -60,5 +60,13 @@ namespace Boardology.API.Controllers
             return BadRequest("Failed to delete game");
         }
 
+        [HttpGet("search")]
+        public async Task<IActionResult> GetSearchResults([FromQuery] string search)
+        {
+            var games = await _repo.GetSearchResults(search);
+
+            return Ok(games);
+        }
+
     }
 }

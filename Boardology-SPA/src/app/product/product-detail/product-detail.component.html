@@ -1,7 +1,7 @@
 <div class="container">
-  <h1 class="text-center my-3">Title of Game</h1>
+  <h1 class="text-center my-3">{{product?.name}}</h1>
   <div class="d-flex justify-content-center">
-    <img class="img-fluid" src="https://picsum.photos/300?random" alt="">
+    <img class="img-fluid" src="{{product?.photoUrl}}}" alt="{{product?.name}}">
   </div>
   <h3 class="my-3">Product Details</h3>
   <table class="table table-sm table-bordered text-center">
@@ -14,9 +14,9 @@
     </thead>
     <tbody>
       <tr>
-        <td>2-5</td>
-        <td>8+</td>
-        <td>1.5 hrs</td>
+        <td>{{product?.numPlayers}}</td>
+        <td>{{product?.ageSuggestion}}+</td>
+        <td>{{product?.timeToPlay}} min</td>
       </tr>
     </tbody>
   </table>

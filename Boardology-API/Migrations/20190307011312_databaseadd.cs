@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Boardology.API.Migrations
 {
-    public partial class gameModel : Migration
+    public partial class databaseadd : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
