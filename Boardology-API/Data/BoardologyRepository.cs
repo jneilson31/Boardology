@@ -104,5 +104,19 @@ namespace Boardology.API.Data
             return commentList;
 
         }
+
+        public async Task<IQueryable<Game>> GetSearchResults(string searchString)
+        {
+            var games = from g in _context.Games
+                        select g;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                games = games.Where(s => s.Name.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0);
+               
+            }
+
+            return games;
+        }
     }
 }
