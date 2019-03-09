@@ -56,14 +56,14 @@ namespace Boardology.API.Controllers
 
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpPost("{userId}/{gameId}")]
         public async Task<IActionResult> AddComment(int userId, int gameId, Comment comment)
         {
-            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-            {
-                return Unauthorized();
-            }
+            //if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            //{
+            //    return Unauthorized();
+            //}
 
             if (await _repo.GetGame(gameId) == null)
             {

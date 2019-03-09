@@ -24,34 +24,22 @@
     <button class="btn btn-primary mr-2 w-50">Add to Wishlist</button>
     <button class="btn btn-primary w-50">Add to Collection</button>
   </div>
-  <h3>Reviews</h3>
-  <div class="card mb-4">
+  <h3>Reviews<span class="leave-review pull-right mt-3" (click)="toggleComment()" >Leave a review</span></h3>
+
+  <div class="form-group" *ngIf="shouldShow">
+    <textarea class="form-control" placeholder="Leave a review..." [formControl]="review"> </textarea>
+    <button type="button" class ="btn btn-primary w-50" (click)="submitReview()">Submit</button>
+    </div>
+    
+  
+      <p *ngIf="comments.length === 0"><i>No reviews yet. Be the first to leave a review!</i></p>
+  <div class="card mb-4" *ngFor="let comment of comments">
     <div class="card-body">
-      <h5 class="card-title">Wyatt Johnson</h5>
-      <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis corrupti eaque consequatur reiciendis quibusdam nostrum ipsam enim architecto magnam mollitia.</p>
+      <h5 class="card-title">{{ comment.username }}</h5>
+      <p class="card-text">{{ comment.content }}</p>
     </div>
     <div class="card-footer text-muted">
-      2 days ago
+      {{ comment.created | timeAgo }}
     </div>
   </div>
-  <div class="card mb-4">
-    <div class="card-body">
-      <h5 class="card-title">Wyatt Johnson</h5>
-      <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis corrupti eaque consequatur
-        reiciendis quibusdam nostrum ipsam enim architecto magnam mollitia.</p>
-    </div>
-    <div class="card-footer text-muted">
-      2 days ago
-    </div>
-  </div>
-  <div class="card mb-4">
-    <div class="card-body">
-      <h5 class="card-title">Wyatt Johnson</h5>
-      <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis corrupti eaque consequatur
-        reiciendis quibusdam nostrum ipsam enim architecto magnam mollitia.</p>
-    </div>
-    <div class="card-footer text-muted">
-      2 days ago
-    </div>
-  </div>
-</div>
+  
