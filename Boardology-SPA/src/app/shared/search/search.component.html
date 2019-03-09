@@ -10,7 +10,7 @@
 <!-- <div *ngFor="let game of games">
   
 </div> -->
-<p *ngIf="!hasResults" class="text-center pt-3"><i>No results found</i></p>
+<p *ngIf="queryField.value && !products.length" class="text-center pt-3"><i>No results found</i></p>
 <ul *ngIf="products.length > 0" class="list-group">
   <li *ngFor="let product of products" class="list-group-item py-1 text-center" [routerLink]="['/games/', product.id]"><span class="game-text">{{ product.name }}</span><span class="game-image"><img src="{{ product.photoUrl }}" alt="{{ product.name }}" height="50px" width="50px"></span></li>
 </ul>

@@ -90,6 +90,7 @@ namespace Boardology.API.Data
                  join users in _context.Users
                  on comments.UserId equals users.Id
                  where comments.GameId == gameId
+                 orderby comments.Created descending
                  select new
                  {
                      comments.Id,

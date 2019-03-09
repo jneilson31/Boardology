@@ -56,7 +56,7 @@ namespace Boardology.API.Controllers
 
         }
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [HttpPost("{userId}/{gameId}")]
         public async Task<IActionResult> AddComment(int userId, int gameId, Comment comment)
         {
@@ -89,14 +89,14 @@ namespace Boardology.API.Controllers
         }
 
 
-        [Authorize]
+        //[Authorize]
         [HttpDelete("user/{userId}/comment/{commentId}")]
         public async Task<IActionResult> DeleteComment(int userId, int commentId)
         {
-            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-            {
-                return Unauthorized();
-            }
+            //if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            //{
+            //    return Unauthorized();
+            //}
 
             var comment = await _repo.GetComment(commentId);
 

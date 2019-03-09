@@ -1,7 +1,7 @@
 <div class="container">
   <h1 class="text-center my-3">{{product?.name}}</h1>
   <div class="d-flex justify-content-center">
-    <img class="img-fluid" src="{{product?.photoUrl}}}" alt="{{product?.name}}">
+     <img *ngIf="product" class="img-fluid" src="{{product?.photoUrl}}}" alt="{{product?.name}}"> <!--We don't need the ngif, it's to get rid of a console error. Once we have rouse resolvers we can remove that and the safe operators (?) -->
   </div>
   <h3 class="my-3">Product Details</h3>
   <table class="table table-sm table-bordered text-center">
@@ -27,15 +27,15 @@
   <h3>Reviews<span class="leave-review pull-right mt-3" (click)="toggleComment()" >Leave a review</span></h3>
 
   <div class="form-group" *ngIf="shouldShow">
-    <textarea class="form-control" placeholder="Leave a review..." [formControl]="review"> </textarea>
-    <button type="button" class ="btn btn-primary w-50" (click)="submitReview()">Submit</button>
-    </div>
+    <textarea class="form-control" placeholder="Leave a review..." [formControl]="review" #textArea> </textarea>
+    <button type="submit" class ="btn btn-primary w-50 mt-2" (click)="submitReview(productId)">Submit</button>
+  </div>
     
   
       <p *ngIf="comments.length === 0"><i>No reviews yet. Be the first to leave a review!</i></p>
   <div class="card mb-4" *ngFor="let comment of comments">
     <div class="card-body">
-      <h5 class="card-title">{{ comment.username }}</h5>
+       <h5 class="card-title">{{ comment.username }}<span class="delete pull-right mt-1" (click)="deleteComment(comment.id)">Delete</span></h5> <!--Need an ngif on the delete if you're the owner of the comment when we implmenet authentication -->
       <p class="card-text">{{ comment.content }}</p>
     </div>
     <div class="card-footer text-muted">

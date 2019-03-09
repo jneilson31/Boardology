@@ -8,7 +8,7 @@ import { Product } from '../../_models/product.model';
 })
 export class ProductItemComponent implements OnInit {
 
-  @Input() product: Product
+  @Input() product: Product;
 
   constructor() { }
 
@@ -16,14 +16,8 @@ export class ProductItemComponent implements OnInit {
   }
 
   getShortenedDescription(description: string): string {
-  //   if(description.length > 100) {
-  //     return description.substring(0,100) + "...";
 
-  //   } 
-  //   return description;
-  // }
-
-  return description.length > 100 ? description.substring(0,100) + "..." : description;
+  return description.length > 100 ? description.substring(0, 100) + '...' : description;
 
 }
 }

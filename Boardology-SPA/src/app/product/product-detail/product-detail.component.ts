@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../../_models/product.model';
@@ -6,9 +6,9 @@ import { Comment } from '../../_models/comment.model';
 import { FormControl } from '@angular/forms';
 
 @Component({
-  selector: "app-product-detail",
-  templateUrl: "./product-detail.component.html",
-  styleUrls: ["./product-detail.component.scss"]
+  selector: 'app-product-detail',
+  templateUrl: './product-detail.component.html',
+  styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit {
   productId: number;
@@ -16,6 +16,7 @@ export class ProductDetailComponent implements OnInit {
   comments: Comment[] = [];
   review: FormControl = new FormControl();
   shouldShow = false;
+  @ViewChild('textArea') textArea: ElementRef;
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {}
 
@@ -25,45 +26,63 @@ export class ProductDetailComponent implements OnInit {
     this.getComments();
   }
 
-  getProduct(): Product {
+  getProduct(): void {
     this.http
       .get<Product>(`http://localhost:5000/api/games/${this.productId}`)
       .subscribe(product => {
         this.product = product;
       });
-    return this.product;
   }
 
-  getComments(): Comment[] {
+  getComments(): void {
     this.http
       .get<Comment[]>(
         `http://localhost:5000/api/comments/game/${this.productId}`
       )
       .subscribe(comments => {
         this.comments = comments;
-        console.log(this.comments);
       });
-    return this.comments;
   }
 
   toggleComment(): void {
     this.shouldShow = !this.shouldShow;
+    if (this.shouldShow) {
+      setTimeout(() => { // this will make the execution after the above boolean has changed
+        this.textArea.nativeElement.focus();
+      }, 0);
+    }
   }
 
-  submitReview(): void {
+  submitReview(productId: number): void {
     if (this.review.value) {
-      this.http.post('http://localhost:5000/api/comments/1/2', {
-        'content': this.review.value
-      })
-        .subscribe(result => {
-          console.log('did it');
-          this.shouldShow = false;
-          this.getComments();
-        }, error => {
-          console.log(error);
-        });
+      this.http
+        .post(`http://localhost:5000/api/comments/1/${productId}`, {
+          content: this.review.value
+        })
+        .subscribe(
+          result => {
+            this.shouldShow = false;
+            this.getComments();
+          },
+          error => {
+            console.log(error);
+          }
+        );
     } else {
       console.log('error');
     }
+  }
+
+  deleteComment(commentId: number) {
+    this.http
+      .delete(`http://localhost:5000/api/comments/user/1/comment/${commentId}`)
+      .subscribe(
+        response => {
+          this.getComments();
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 }
