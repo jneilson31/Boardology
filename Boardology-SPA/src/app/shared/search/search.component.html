@@ -1,6 +1,7 @@
 <div class="search-box p-3">
   <div class="input-group">
-    <input type="text" class="form-control" placeholder="Search for item..." aria-label="Search" aria-describedby="basic-addon2" [formControl]="queryField" >
+    <input type="text" class="form-control" placeholder="Search for item..." aria-label="Search"
+      aria-describedby="basic-addon2" [formControl]="queryField">
     <div class="input-group-append">
       <span class="input-group-text btn-primary" id="basic-addon2"><i class="fa fa-search"></i></span>
     </div>
@@ -10,7 +11,18 @@
 <!-- <div *ngFor="let game of games">
   
 </div> -->
-<p *ngIf="!hasResults" class="text-center pt-3"><i>No results found</i></p>
+<p *ngIf="!hasResults" class="pt-3"><i>No results found</i></p>
 <ul *ngIf="products.length > 0" class="list-group">
-  <li *ngFor="let product of products" class="list-group-item py-1 text-center" [routerLink]="['/games/', product.id]"><span class="game-text">{{ product.name }}</span><span class="game-image"><img src="{{ product.photoUrl }}" alt="{{ product.name }}" height="50px" width="50px"></span></li>
+  <li *ngFor="let product of products" class="list-group-item py-1" [routerLink]="['/games/', product.id]">
+    <div class="row">
+      <div class="col-3">
+        <span class="game-image"><img class="" src="{{ product.photoUrl }}" alt="{{ product.name }}">
+        </span>
+      </div>
+      <div class="col-9">
+        <span class="game-text">{{ product.name }}
+        </span>
+      </div>
+    </div>
+  </li>
 </ul>
