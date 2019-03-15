@@ -26,7 +26,7 @@ namespace Boardology.API.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("game/{gameId}")]
+        [HttpGet("game/{gameId}/comments")]
         public async Task<IActionResult> GetComments(int gameId)
         {
 

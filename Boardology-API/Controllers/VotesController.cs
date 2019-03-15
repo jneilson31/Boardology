@@ -25,14 +25,14 @@ namespace Boardology.API.Controllers
             _mapper = mapper;
         }
 
-        [Authorize]
-        [HttpPost("upvote/{userId}/{gameId}")]
+        // [Authorize]
+        [HttpPost("{userId}/{gameId}/upvote")]
         public async Task<IActionResult> UpvoteGame(int userId, int gameId)
         {
-            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-            {
-                return Unauthorized();
-            }
+            // if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            // {
+            //     return Unauthorized();
+            // }
             var upvote = await _repo.GetUpvote(userId, gameId);
 
             if (upvote != null)
@@ -64,14 +64,14 @@ namespace Boardology.API.Controllers
             return BadRequest("Failed to upvote game");
         }
 
-        [Authorize]
-        [HttpPost("downvote/{userId}/{gameId}")]
+        // [Authorize]
+        [HttpPost("{userId}/{gameId}/downvote")]
         public async Task<IActionResult> DownvoteGame(int userId, int gameId)
         {
-            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-            {
-                return Unauthorized();
-            }
+            // if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            // {
+            //     return Unauthorized();
+            // }
             var downvote = await _repo.GetDownvote(userId, gameId);
 
             if (downvote != null)

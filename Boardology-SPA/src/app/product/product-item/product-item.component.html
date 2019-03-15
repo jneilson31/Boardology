@@ -7,16 +7,17 @@
                 </div>
                 <div class="col-8 p-1 product-name"> {{ product.name }}
                     <p class="game-description"><em> {{ getShortenedDescription(product.description) }}</em></p>
-                    <a class="product-aff-link" href="#">Link to affiliate item</a>
                     <!-- <button class="btn btn-primary btn-sm">Click to purchase game</button> -->
                 </div>
             </div>
         </div>
+    </div>
+</div>
         <div class="card-footer">
             <div class="row">
-                <div class="col d-flex justify-content-start">
-                    <i class="fa fa-thumbs-up"></i> {{ product.upvotes }} <span>|</span> <i
-                        class="fa fa-thumbs-down"></i>
+                <div class="col d-flex justify-content-start test">
+                    <div (click)="upvoteGame(product.id)"><i class="fa fa-thumbs-up" ></i> {{ product.upvotes }} </div> <span>|</span> <i
+                        class="fa fa-thumbs-down" (click)="downvoteGame(product.id)"></i>
                     {{ product.downvotes }}
                 </div>
                 <div class="col d-flex justify-content-end">
@@ -24,4 +25,4 @@
                 </div>
             </div>
         </div>
-    </div>
+    

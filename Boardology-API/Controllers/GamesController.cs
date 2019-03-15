@@ -32,7 +32,7 @@ namespace Boardology.API.Controllers
             return Ok(games);
         }
 
-        [HttpGet("{gameId}")]
+        [HttpGet("{gameId}/game")]
         public async Task<IActionResult> GetGame(int gameId)
         {
             var gameFromRepo = await _repo.GetGame(gameId);
@@ -40,7 +40,7 @@ namespace Boardology.API.Controllers
             return Ok(gameFromRepo);
         }
 
-        [HttpDelete("{gameId}")]
+        [HttpDelete("{gameId}/delete")]
         [Authorize]
         public async Task<IActionResult> DeleteGame(int gameId)
         {

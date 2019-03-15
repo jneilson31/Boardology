@@ -28,7 +28,7 @@ export class ProductDetailComponent implements OnInit {
 
   getProduct(): void {
     this.http
-      .get<Product>(`http://localhost:5000/api/games/${this.productId}`)
+      .get<Product>(`http://localhost:5000/api/games/${this.productId}/game`)
       .subscribe(product => {
         this.product = product;
       });
@@ -37,7 +37,7 @@ export class ProductDetailComponent implements OnInit {
   getComments(): void {
     this.http
       .get<Comment[]>(
-        `http://localhost:5000/api/comments/game/${this.productId}`
+        `http://localhost:5000/api/comments/game/${this.productId}/comments`
       )
       .subscribe(comments => {
         this.comments = comments;
@@ -60,7 +60,7 @@ export class ProductDetailComponent implements OnInit {
           content: this.review.value
         })
         .subscribe(
-          result => {
+          (comment: Comment) => {
             this.shouldShow = false;
             this.getComments();
           },
@@ -75,7 +75,7 @@ export class ProductDetailComponent implements OnInit {
 
   deleteComment(commentId: number) {
     this.http
-      .delete(`http://localhost:5000/api/comments/user/1/comment/${commentId}`)
+      .delete(`http://localhost:5000/api/comments/user/1/comment/${commentId}/delete`)
       .subscribe(
         response => {
           this.getComments();
