@@ -90,7 +90,7 @@ namespace Boardology.API.Controllers
 
 
         //[Authorize]
-        [HttpDelete("user/{userId}/comment/{commentId}")]
+        [HttpDelete("user/{userId}/comment/{commentId}/delete")]
         public async Task<IActionResult> DeleteComment(int userId, int commentId)
         {
             //if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))

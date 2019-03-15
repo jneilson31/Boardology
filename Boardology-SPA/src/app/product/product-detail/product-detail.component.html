@@ -24,6 +24,10 @@
     <button class="btn btn-primary mr-2 w-50">Add to Wishlist</button>
     <button class="btn btn-primary w-50">Add to Collection</button>
   </div>
+  
+<hr>
+<p>{{ product.description }}</p>
+
   <h3>Reviews<span class="leave-review pull-right mt-3" (click)="toggleComment()" >Leave a review</span></h3>
 
   <div class="form-group" *ngIf="shouldShow">
