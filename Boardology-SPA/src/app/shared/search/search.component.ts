@@ -4,7 +4,8 @@ import { FormControl } from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
-import { Product } from '../../product/product.model';
+import { Product } from '../../_models/product.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -15,7 +16,7 @@ export class SearchComponent implements OnInit {
 
   products: Product[] = [];
   queryField: FormControl = new FormControl();
-  hasResults = false;
+  hasResults = true;
   constructor(private searchService: SearchService) { }
 
   ngOnInit() {
@@ -25,9 +26,7 @@ export class SearchComponent implements OnInit {
     .switchMap((query) => this.searchService.search(query))
     .subscribe(results => {
         this.products = results;
-        if (this.products.length > 0) {
-          this.hasResults = true;
-        }
+        this.hasResults = this.products.length ? true : false;
       });
   }
 }

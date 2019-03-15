@@ -20,6 +20,7 @@ import { ContactComponent } from './contact/contact.component';
 import { SearchService } from './shared/search/search.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { TimeAgoPipe } from 'time-ago-pipe';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     HomeComponent,
     ReviewsComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    TimeAgoPipe
   ],
   imports: [
     BrowserModule,

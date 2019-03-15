@@ -11,7 +11,7 @@
 <!-- <div *ngFor="let game of games">
   
 </div> -->
-<p *ngIf="!hasResults" class="pt-3"><i>No results found</i></p>
+<p *ngIf="queryField.value && !products.length" class="text-center pt-3"><i>No results found</i></p>
 <ul *ngIf="products.length > 0" class="list-group">
   <li *ngFor="let product of products" class="list-group-item py-1" [routerLink]="['/games/', product.id]">
     <div class="row">

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Product } from '../product.model';
+import { Product } from '../../_models/product.model';
 
 @Component({
   selector: 'app-product-list',
