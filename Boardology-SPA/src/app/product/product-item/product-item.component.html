@@ -16,9 +16,9 @@
         <div class="card-footer">
             <div class="row">
                 <div class="col d-flex justify-content-start test">
-                    <div (click)="upvoteGame(product.id)"><i class="fa fa-thumbs-up" ></i> {{ product.upvotes }} </div> <span>|</span> <i
-                        class="fa fa-thumbs-down" (click)="downvoteGame(product.id)"></i>
-                    {{ product.downvotes }}
+                    <div (click)="upvoteGame(product.id)"><i class="fa fa-thumbs-up" ></i> {{ product.upvotes }} </div>
+                     <span>|</span> 
+                    <div  (click)="downvoteGame(product.id)"><i class="fa fa-thumbs-down"></i> {{ product.downvotes }}</div> 
                 </div>
                 <div class="col d-flex justify-content-end">
                     <p>Price - $32.99</p>
