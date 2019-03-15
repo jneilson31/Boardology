@@ -1,28 +1,25 @@
-<div routerLinkActive="active">
-    <div class="shadow card mb-4" [routerLink]="['/games/', product.id]">
-        <div class="card-body">
-            <div class="row no-gutters">
-                <div class="col-4 align-self-center p-2">
-                    <img class="img-fluid d-flex" src="{{  product.photoUrl }}" alt=" {{ product.name }}">
-                </div>
-                <div class="col-8 p-1 product-name"> {{ product.name }}
-                    <p class="game-description"><em> {{ getShortenedDescription(product.description) }}</em></p>
-                    <!-- <button class="btn btn-primary btn-sm">Click to purchase game</button> -->
-                </div>
+<div class="shadow card mb-4">
+    <div class="card-body" routerLinkActive="active" [routerLink]="['/games/', product.id]">
+        <div class="row no-gutters">
+            <div class="col-4 align-self-center p-2">
+                <img class="img-fluid d-flex" src="{{  product.photoUrl }}" alt=" {{ product.name }}">
+            </div>
+            <div class="col-8 p-1 product-name"> {{ product.name }}
+                <p class="game-description"><em> {{ getShortenedDescription(product.description) }}</em></p>
+                <!-- <button class="btn btn-primary btn-sm">Click to purchase game</button> -->
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="row">
+            <div class="col d-flex justify-content-start test">
+                <div (click)="upvoteGame(product.id)"><i class="fa fa-thumbs-up"></i> {{ product.upvotes }} </div>
+                <span>|</span> <i class="fa fa-thumbs-down" (click)="downvoteGame(product.id)"></i>
+                {{ product.downvotes }}
+            </div>
+            <div class="col d-flex justify-content-end">
+                <p>Price - $32.99</p>
             </div>
         </div>
     </div>
 </div>
-        <div class="card-footer">
-            <div class="row">
-                <div class="col d-flex justify-content-start test">
-                    <div (click)="upvoteGame(product.id)"><i class="fa fa-thumbs-up" ></i> {{ product.upvotes }} </div> <span>|</span> <i
-                        class="fa fa-thumbs-down" (click)="downvoteGame(product.id)"></i>
-                    {{ product.downvotes }}
-                </div>
-                <div class="col d-flex justify-content-end">
-                    <p>Price - $32.99</p>
-                </div>
-            </div>
-        </div>
-    
