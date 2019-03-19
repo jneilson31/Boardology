@@ -1,7 +1,9 @@
 @import "src/styles";
 
 .search-box {
-    border-bottom: 1px solid $color-dark-gray;
+    background-color: $color-dark-gray;
+    padding-bottom: 16px;
+    
 }
 
 .game-text {
