@@ -60,6 +60,11 @@ namespace Boardology.API.Controllers
         [HttpPost("{userId}/{gameId}")]
         public async Task<IActionResult> AddComment(int userId, int gameId, Comment comment)
         {
+
+            if (comment == null)
+            {
+                throw new Exception("No comment");
+            }
             //if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
             //{
             //    return Unauthorized();

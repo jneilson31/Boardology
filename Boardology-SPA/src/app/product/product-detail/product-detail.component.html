@@ -26,13 +26,13 @@
   </div>
   
 <hr>
-<p>{{ product.description }}</p>
+<p>{{ product?.description }}</p>
 
   <h3>Reviews<span class="leave-review pull-right mt-3" (click)="toggleComment()" >Leave a review</span></h3>
 
   <div class="form-group" *ngIf="shouldShow">
     <textarea class="form-control" placeholder="Leave a review..." [formControl]="review" #textArea> </textarea>
-    <button type="submit" class ="btn btn-primary w-50 mt-2" (click)="submitReview(productId)">Submit</button>
+    <button type="submit" class ="btn btn-primary w-100 mt-2" (click)="submitReview(productId)">Submit</button>
   </div>
     
       <p class="text-center mt-3" *ngIf="comments.length === 0"><i>No reviews yet. Be the first to leave a review!</i></p>

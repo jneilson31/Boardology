@@ -5,7 +5,6 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 import { Product } from '../../_models/product.model';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -16,7 +15,7 @@ export class SearchComponent implements OnInit {
 
   products: Product[] = [];
   queryField: FormControl = new FormControl();
-  hasResults = true;
+  hasNoSearchResults = true;
   constructor(private searchService: SearchService) { }
 
   ngOnInit() {
@@ -26,7 +25,10 @@ export class SearchComponent implements OnInit {
     .switchMap((query) => this.searchService.search(query))
     .subscribe(results => {
         this.products = results;
-        this.hasResults = this.products.length ? true : false;
-      });
+        this.hasNoSearchResults = this.products.length ? false : true;
+        if (this.queryField.value === "") {
+          this.hasNoSearchResults = true;
+        }
+      })
   }
 }

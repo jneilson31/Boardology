@@ -63,6 +63,7 @@ export class ProductDetailComponent implements OnInit {
           (comment: Comment) => {
             this.shouldShow = false;
             this.getComments();
+            this.review.reset();
           },
           error => {
             console.log(error);
