@@ -12,10 +12,12 @@ export class ProductItemComponent implements OnInit {
   @Input() product: Product;
   hasUpvoted = false;
   hasDownvoted = false;
+  isTrending: boolean;
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    this.isTrending = this.isProductTrending();
   }
 
     getShortenedDescription(description: string): string {
@@ -40,6 +42,10 @@ export class ProductItemComponent implements OnInit {
       }, error => {
         console.log(error);
       });
+    }
+
+    isProductTrending(): boolean {
+      return this.isTrending = this.product.upvotes > this.product.downvotes * 2 ? true : false;
     }
 
 

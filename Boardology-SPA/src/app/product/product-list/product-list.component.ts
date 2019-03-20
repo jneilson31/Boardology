@@ -10,6 +10,7 @@ import { Product } from '../../_models/product.model';
 export class ProductListComponent implements OnInit {
 
   products: Product[];
+  max = 20;
 
   constructor(private http: HttpClient) { }
 
@@ -23,6 +24,14 @@ export class ProductListComponent implements OnInit {
       this.products = products;
     });
 
+  }
+
+  viewMore(): void {
+    this.max = this.max + 20;
+  }
+
+  scrollToTop(): void {
+    window.scroll(0,0);
   }
 
 }

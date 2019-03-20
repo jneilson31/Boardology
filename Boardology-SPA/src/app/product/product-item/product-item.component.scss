@@ -63,3 +63,20 @@ i {
     color: $color-board-aqua;
     margin-right: 4px;
 }
+
+.trending {
+    background-color: $color-board-aqua;
+    color:white;
+    padding: 1px 4px;
+    position:relative;
+    float:right;
+    font-size:0.7em;
+    bottom:12px;
+    left:24px;
+}
+
+.numReviews {
+font-size:0.7em;
+color: black;
+font-weight:400;
+}
