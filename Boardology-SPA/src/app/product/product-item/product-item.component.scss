@@ -54,29 +54,82 @@
     }
 }
 
-span {
-    margin-right: 12px;
-    margin-left: 12px;
-}
+// span {
+//     margin-right: 12px;
+//     margin-left: 12px;
+// }
 
 i {
     color: $color-board-aqua;
     margin-right: 4px;
 }
 
-.trending {
-    background-color: $color-board-aqua;
-    color:white;
-    padding: 1px 4px;
-    position:relative;
-    float:right;
-    font-size:0.7em;
-    bottom:12px;
-    left:24px;
-}
+// .trending {
+//     background-color: $color-board-aqua;
+//     color:white;
+//     padding: 1px 4px;
+//     position:relative;
+//     float:right;
+//     font-size:0.7em;
+//     bottom:12px;
+//     left:24px;
+// }
 
 .numReviews {
 font-size:0.7em;
 color: black;
 font-weight:400;
+}
+
+.box {
+    width: 200px; height: 300px;
+    position: relative;
+    border: 1px solid #BBB;
+    background: #EEE;
+  }
+
+.ribbon {
+    position: absolute;
+    right: -5px; top: -5px;
+    z-index: 1;
+    overflow: hidden;
+    width: 100px; height: 200px;
+    text-align: right;
+}
+
+.ribbon span {
+    font-size: 12px;
+    color: #FFF;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 20px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    width: 100px;
+    display: block;
+    background: #79A70A;
+    background: linear-gradient(#96C93D 0%, #00b09b 100%);
+    box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+    position: absolute;
+    top: 19px; right: -21px;
+}
+
+.ribbon span::before {
+    content: "";
+    position: absolute; left: 0px; top: 100%;
+    z-index: -1;
+    border-left: 3px solid #00b09b;
+    border-right: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid #00b09b;
+}
+
+.ribbon span::after {
+    content: "";
+    position: absolute; right: 0px; top: 100%;
+    z-index: -1;
+    border-left: 3px solid transparent;
+    border-right: 3px solid #00b09b;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid #00b09b;
 }
