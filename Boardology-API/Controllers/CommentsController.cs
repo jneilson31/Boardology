@@ -41,15 +41,14 @@ namespace Boardology.API.Controllers
 
         }
 
-        [HttpGet("comment/{commentId}")]
+        [HttpGet("{commentId}/comment")]
         public async Task<IActionResult> GetComment(int commentId)
         {
 
-            if (await _repo.GetGame(commentId) == null)
-            {
-                return NotFound();
-            }
-
+            // if (await _repo.GetGame(commentId) == null)
+            // {
+            //     return NotFound();
+            // }
             var comment = await _repo.GetComment(commentId);
 
             return Ok(comment);

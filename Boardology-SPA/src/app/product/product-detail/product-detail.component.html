@@ -36,7 +36,7 @@
   </div>
     
       <p class="text-center mt-3" *ngIf="comments.length === 0"><i>No reviews yet. Be the first to leave a review!</i></p>
-  <div class="card mb-4" *ngFor="let comment of comments">
+  <div class="card mb-4" *ngFor="let comment of comments" [routerLink]="['/reviews/', comment.id]">
     <div class="card-body">
        <h5 class="card-title">{{ comment.username }}<span class="delete pull-right mt-1" (click)="deleteComment(comment.id)">Delete</span></h5> <!--Need an ngif on the delete if you're the owner of the comment when we implmenet authentication -->
       <p class="card-text">{{ comment.content }}</p>

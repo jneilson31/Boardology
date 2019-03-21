@@ -76,9 +76,23 @@ namespace Boardology.API.Data
             return game;
         }
 
-        public async Task<Comment> GetComment(int commentId)
+        public async Task<IList> GetComment(int commentId)
         {
-            var comment = await _context.Comments.SingleOrDefaultAsync(u => u.Id == commentId);
+            // var comment = await _context.Comments.SingleOrDefaultAsync(u => u.Id == commentId);
+            var comment = await 
+            (from comments in _context.Comments
+            join users in _context.Users
+                 on comments.UserId equals users.Id
+                 where comments.Id == commentId
+                 select new
+                 {
+                     comments.Id,
+                     comments.GameId,
+                     comments.Content,
+                     comments.Created,
+                     comments.UserId,
+                     users.Username
+                 }).ToListAsync();
             return comment;
         }
 
