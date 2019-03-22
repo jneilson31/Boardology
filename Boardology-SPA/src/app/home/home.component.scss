@@ -1,0 +1,16 @@
+@import "src/styles";
+
+.home-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-header {
+    background-color: $color-dark-gray;
+}
+
+.btn-link {
+    color: $color-white;
+    text-decoration: none;
+}
