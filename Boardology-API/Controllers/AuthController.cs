@@ -36,7 +36,7 @@ namespace Boardology.API.Controllers
 
             if (await _repo.UsernameExists(userForRegisterDto.Username))
             {
-                return BadRequest("Username already exists");   
+                return BadRequest("Username already exists");
             }
 
             if (await _repo.EmailExists(userForRegisterDto.Email))
