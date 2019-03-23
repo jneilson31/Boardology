@@ -29,6 +29,10 @@ import { LoginFormComponent } from './login-form/login-form.component';
 
 import { CategoryComponent } from './shared/category/category.component';
 import { HomeIntroContentComponent } from './home/home-intro-content/home-intro-content.component';
+import { ProductService } from './_services/product.service';
+import { ProductListResolver } from './_resolvers/product-list-resolver';
+import { ProductDetailResolver } from './_resolvers/product-detail-resolver';
+import { ProductDetailCommentsResolver } from './_resolvers/product-detail-comments-resolver';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
@@ -73,7 +77,11 @@ export function tokenGetter() {
       FormsModule
    ],
    providers: [
-      SearchService
+      SearchService,
+      ProductService,
+      ProductListResolver,
+      ProductDetailResolver,
+      ProductDetailCommentsResolver
    ],
    bootstrap: [
       AppComponent
