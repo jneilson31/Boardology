@@ -22,6 +22,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { CategoryComponent } from './shared/category/category.component';
+import { HomeIntroContentComponent } from './home/home-intro-content/home-intro-content.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { CategoryComponent } from './shared/category/category.component';
     AboutComponent,
     ContactComponent,
     TimeAgoPipe,
-    CategoryComponent
+    CategoryComponent,
+    HomeIntroContentComponent
   ],
   imports: [
     BrowserModule,
