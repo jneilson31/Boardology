@@ -1,13 +1,18 @@
 <div class="shadow card mb-4">
+    <div class="card-header">
+        {{ product.name }}
+    </div>
     <div class="card-body" routerLinkActive="active" [routerLink]="['/games/', product.id]">
         <div class="row no-gutters"><div class="ribbon" *ngIf="isTrending"><span>Trending</span></div>
             <div class="col-4 align-self-center p-2">
                 <img class="img-fluid d-flex" src="{{  product.photoUrl }}" alt=" {{ product.name }}">
             </div>
-            <div class="col-8 p-1 product-name"> {{ product.name }} <span ><i class="numReviews">({{product.numReviews}})</i></span>
+            <div class="col-8 p-1">
                 <p class="game-description"><em> {{ getShortenedDescription(product.description) }}</em></p>
                 <!-- <button class="btn btn-primary btn-sm">Click to purchase game</button> -->
+                <span ><i class="numReviews">({{product.numReviews}})</i></span>
             </div>
+            
         </div>
     </div>
     <div class="card-footer">
