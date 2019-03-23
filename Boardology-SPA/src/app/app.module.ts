@@ -21,6 +21,7 @@ import { SearchService } from './shared/search/search.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { CategoryComponent } from './shared/category/category.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { TimeAgoPipe } from 'time-ago-pipe';
     ReviewsComponent,
     AboutComponent,
     ContactComponent,
-    TimeAgoPipe
+    TimeAgoPipe,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,

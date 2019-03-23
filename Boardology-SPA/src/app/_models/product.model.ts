@@ -10,4 +10,5 @@ export interface Product {
   ageSuggestion: string;
   yearCreated: number;
   photoUrl: string;
+  category: string;
 }
