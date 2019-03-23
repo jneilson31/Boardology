@@ -1,19 +1,23 @@
 @import "src/styles";
 
+
 .footer {
     align-items: center;
-    background: $color-dark-gray;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, $color-board-aqua, $color-board-light-green);  /* Chrome 10-25, Safari 5.1-6 */
+    background: $color-dark-gray;  /* fallback for old browsers */
     background: linear-gradient(to right, $color-board-aqua, $color-board-light-green); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    bottom: 0;
     color: $color-dark-gray;
     display: flex;
     font-weight: 500;
-    height: 45px;
+    height: 2.5rem;
+    justify-content: flex-end;
+    padding: 1.00rem;
+    position: absolute;
     width: 100%;
 }
 
 p {
     font-size: 14px;
     margin: 0;
-    text-align: right;
 }
