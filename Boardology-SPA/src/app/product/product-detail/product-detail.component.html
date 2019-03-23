@@ -38,7 +38,7 @@
       <p class="text-center mt-3" *ngIf="comments.length === 0"><i>No reviews yet. Be the first to leave a review!</i></p>
   <div class="card mb-4" *ngFor="let comment of comments">
     <div class="card-body">
-       <h5 class="card-title">{{ comment.username }}<span *ngIf="comment.userId == authService.decodedToken.nameid" class="delete pull-right mt-1" (click)="deleteComment(comment.id)">Delete</span></h5> <!--Need an ngif on the delete if you're the owner of the comment when we implmenet authentication -->
+       <h5 class="card-title">{{ comment.username }}<span *ngIf="comment.userId == authService.decodedToken.nameid" class="delete pull-right mt-1" (click)="deleteComment(comment.id)">Delete</span></h5>
       <p class="card-text">{{ comment.content }}</p>
     </div>
     <div class="card-footer text-muted">
