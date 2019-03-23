@@ -18,5 +18,6 @@ namespace Boardology.API.Models
         public string AgeSuggestion { get; set; }
         public int YearCreated { get; set; }
         public string PhotoUrl { get; set; }
+        public string Category { get; set; }
     }
 }
