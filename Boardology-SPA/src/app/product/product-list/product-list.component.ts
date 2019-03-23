@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../../_models/product.model';
 import { environment } from '../../../environments/environment';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -14,18 +15,12 @@ export class ProductListComponent implements OnInit {
   max = 20;
   baseUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getProducts();
-  }
-
-  getProducts() {
-    this.http.get<Product[]>(`${this.baseUrl}games`)
-    .subscribe(products => {
-      this.products = products;
+    this.route.data.subscribe(data => {
+      this.products = data['products'];
     });
-
   }
 
   viewMore(): void {

@@ -1,7 +1,7 @@
 <div class="container">
-  <h1 class="text-center my-3">{{product?.name}}</h1>
+  <h1 class="text-center my-3">{{product.name}}</h1>
   <div class="d-flex justify-content-center">
-     <img *ngIf="product" class="img-fluid" src="{{product?.photoUrl}}}" alt="{{product?.name}}"> <!--We don't need the ngif, it's to get rid of a console error. Once we have rouse resolvers we can remove that and the safe operators (?) -->
+     <img *ngIf="product" class="img-fluid" src="{{product.photoUrl}}}" alt="{{product.name}}"> <!--We don't need the ngif, it's to get rid of a console error. Once we have rouse resolvers we can remove that and the safe operators () -->
   </div>
   <h3 class="my-3">Product Details</h3>
   <table class="table table-sm table-bordered text-center">
@@ -14,9 +14,9 @@
     </thead>
     <tbody>
       <tr>
-        <td>{{product?.numPlayers}}</td>
-        <td>{{product?.ageSuggestion}}+</td>
-        <td>{{product?.timeToPlay}} min</td>
+        <td>{{product.numPlayers}}</td>
+        <td>{{product.ageSuggestion}}+</td>
+        <td>{{product.timeToPlay}} min</td>
       </tr>
     </tbody>
   </table>
@@ -26,7 +26,7 @@
   </div>
   
 <hr>
-<p>{{ product?.description }}</p>
+<p>{{ product.description }}</p>
 
   <h3>Reviews<span class="leave-review pull-right mt-3" (click)="toggleComment()" >Leave a review</span></h3>
 

@@ -8,7 +8,7 @@ import { environment } from '../../../environments/environment';
 @Injectable()
 export class SearchService {
     baseUrl = environment.apiUrl;
-    url = `${this.baseUrl}/games/search?search=`;
+    url = `${this.baseUrl}games/search?search=`;
 
     constructor(private http: HttpClient) { }
 

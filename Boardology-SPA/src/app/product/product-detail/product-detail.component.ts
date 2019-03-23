@@ -5,6 +5,7 @@ import { Product } from '../../_models/product.model';
 import { Comment } from '../../_models/comment.model';
 import { FormControl } from '@angular/forms';
 import { environment } from '../../../environments/environment';
+import { AuthService } from '../../_services/auth.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -20,27 +21,18 @@ export class ProductDetailComponent implements OnInit {
   baseUrl = environment.apiUrl;
   @ViewChild('textArea') textArea: ElementRef;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
+  constructor(private route: ActivatedRoute, private http: HttpClient, private authService: AuthService) {}
 
   ngOnInit() {
-    this.productId = this.route.snapshot.params.gameid;
-    this.getProduct();
-    this.getComments();
-  }
-
-  getProduct(): void {
-    this.http
-      .get<Product>(`${this.baseUrl}/games/${this.productId}/game`)
-      .subscribe(product => {
-        this.product = product;
-      });
+    this.route.data.subscribe(data => {
+      this.product = data['product'];
+      this.comments = data['comments'];
+    });
   }
 
   getComments(): void {
     this.http
-      .get<Comment[]>(
-        `${this.baseUrl}/comments/game/${this.productId}/comments`
-      )
+      .get<Comment[]>(`${this.baseUrl}comments/game/${this.product.id}/comments`)
       .subscribe(comments => {
         this.comments = comments;
       });
@@ -49,7 +41,8 @@ export class ProductDetailComponent implements OnInit {
   toggleComment(): void {
     this.shouldShow = !this.shouldShow;
     if (this.shouldShow) {
-      setTimeout(() => { // this will make the execution after the above boolean has changed
+      setTimeout(() => {
+        // this will make the execution after the above boolean has changed
         this.textArea.nativeElement.focus();
       }, 0);
     }
@@ -58,7 +51,7 @@ export class ProductDetailComponent implements OnInit {
   submitReview(productId: number): void {
     if (this.review.value) {
       this.http
-        .post(`${this.baseUrl}}/comments/1/${productId}`, {
+        .post(`${this.baseUrl}}/comments/${this.authService.decodedToken.nameid}/${productId}`, {
           content: this.review.value
         })
         .subscribe(
@@ -78,7 +71,7 @@ export class ProductDetailComponent implements OnInit {
 
   deleteComment(commentId: number) {
     this.http
-      .delete(`${this.baseUrl}/comments/user/1/comment/${commentId}/delete`)
+      .delete(`${this.baseUrl}comments/user/${this.authService.decodedToken.nameid}/comment/${commentId}/delete`)
       .subscribe(
         response => {
           this.getComments();
