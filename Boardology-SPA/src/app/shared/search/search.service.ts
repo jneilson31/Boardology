@@ -3,10 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { Product } from '../../_models/product.model';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class SearchService {
-    url = 'http://localhost:5000/api/games/search?search=';
+    baseUrl = environment.apiUrl;
+    url = `${this.baseUrl}/games/search?search=`;
 
     constructor(private http: HttpClient) { }
 
