@@ -26,7 +26,7 @@ export class SearchComponent implements OnInit {
     .subscribe(results => {
         this.products = results;
         this.hasNoSearchResults = this.products.length ? false : true;
-        if (this.queryField.value === "") {
+        if (this.queryField.value === '') {
           this.hasNoSearchResults = true;
         }
       })
