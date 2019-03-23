@@ -21,7 +21,7 @@ export class ProductDetailComponent implements OnInit {
   baseUrl = environment.apiUrl;
   @ViewChild('textArea') textArea: ElementRef;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, private authService: AuthService) {}
+  constructor(private route: ActivatedRoute, private http: HttpClient, public authService: AuthService) {}
 
   ngOnInit() {
     this.route.data.subscribe(data => {
