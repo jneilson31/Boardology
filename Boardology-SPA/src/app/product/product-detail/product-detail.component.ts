@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Product } from '../../_models/product.model';
 import { Comment } from '../../_models/comment.model';
 import { FormControl } from '@angular/forms';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-product-detail',
@@ -16,6 +17,7 @@ export class ProductDetailComponent implements OnInit {
   comments: Comment[] = [];
   review: FormControl = new FormControl();
   shouldShow = false;
+  baseUrl = environment.apiUrl;
   @ViewChild('textArea') textArea: ElementRef;
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {}
@@ -28,7 +30,7 @@ export class ProductDetailComponent implements OnInit {
 
   getProduct(): void {
     this.http
-      .get<Product>(`http://localhost:5000/api/games/${this.productId}/game`)
+      .get<Product>(`${this.baseUrl}/games/${this.productId}/game`)
       .subscribe(product => {
         this.product = product;
       });
@@ -37,7 +39,7 @@ export class ProductDetailComponent implements OnInit {
   getComments(): void {
     this.http
       .get<Comment[]>(
-        `http://localhost:5000/api/comments/game/${this.productId}/comments`
+        `${this.baseUrl}/comments/game/${this.productId}/comments`
       )
       .subscribe(comments => {
         this.comments = comments;
@@ -56,7 +58,7 @@ export class ProductDetailComponent implements OnInit {
   submitReview(productId: number): void {
     if (this.review.value) {
       this.http
-        .post(`http://localhost:5000/api/comments/1/${productId}`, {
+        .post(`${this.baseUrl}}/comments/1/${productId}`, {
           content: this.review.value
         })
         .subscribe(
@@ -76,7 +78,7 @@ export class ProductDetailComponent implements OnInit {
 
   deleteComment(commentId: number) {
     this.http
-      .delete(`http://localhost:5000/api/comments/user/1/comment/${commentId}/delete`)
+      .delete(`${this.baseUrl}/comments/user/1/comment/${commentId}/delete`)
       .subscribe(
         response => {
           this.getComments();

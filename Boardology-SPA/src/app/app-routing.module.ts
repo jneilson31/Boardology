@@ -6,6 +6,8 @@ import { ReviewsComponent } from './reviews/reviews.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -14,6 +16,8 @@ const appRoutes: Routes = [
     { path: 'reviews', component: ReviewsComponent },
     { path: 'about-us', component: AboutComponent },
     { path: 'contact-us', component: ContactComponent },
+    { path: 'register', component: RegisterComponent},
+    { path: 'login', component: LoginFormComponent}
 
 ];
 

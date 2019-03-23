@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,11 +22,20 @@ import { SearchService } from './shared/search/search.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { TimeAgoPipe } from 'time-ago-pipe';
+
+import { RegisterComponent } from './register/register.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { LoginFormComponent } from './login-form/login-form.component';
+
 import { CategoryComponent } from './shared/category/category.component';
 import { HomeIntroContentComponent } from './home/home-intro-content/home-intro-content.component';
 
+export function tokenGetter() {
+    return localStorage.getItem('token');
+}
 
 @NgModule({
+<<<<<<< HEAD
   declarations: [
     AppComponent,
     HeaderPrimaryComponent,
@@ -42,7 +52,7 @@ import { HomeIntroContentComponent } from './home/home-intro-content/home-intro-
     ContactComponent,
     TimeAgoPipe,
     CategoryComponent,
-    HomeIntroContentComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -55,5 +65,50 @@ import { HomeIntroContentComponent } from './home/home-intro-content/home-intro-
   ],
   providers: [SearchService],
   bootstrap: [AppComponent]
+=======
+   declarations: [
+      AppComponent,
+      HeaderPrimaryComponent,
+      JumbotronComponent,
+      FooterComponent,
+      SearchComponent,
+      ProductListComponent,
+      ProductItemComponent,
+      ProductDetailComponent,
+      LoginComponent,
+      HomeComponent,
+      ReviewsComponent,
+      AboutComponent,
+      ContactComponent,
+      TimeAgoPipe,
+      RegisterComponent,
+      LoginFormComponent,
+      CategoryComponent,
+      HomeIntroContentComponent
+   ],
+   imports: [
+      BrowserModule,
+      HttpClientModule,
+      RouterModule,
+      AppRoutingModule,
+      HttpClientModule,
+      ReactiveFormsModule,
+      AngularFontAwesomeModule,
+      JwtModule.forRoot({
+          config: {
+              tokenGetter: tokenGetter,
+              whitelistedDomains: ['localhost:5000'],
+              blacklistedRoutes: ['localhost:5000/api/auth']
+          }
+      }),
+      FormsModule
+   ],
+   providers: [
+      SearchService
+   ],
+   bootstrap: [
+      AppComponent
+   ]
+>>>>>>> origin/master
 })
 export class AppModule { }
