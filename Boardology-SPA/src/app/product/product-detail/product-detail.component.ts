@@ -51,7 +51,7 @@ export class ProductDetailComponent implements OnInit {
   submitReview(productId: number): void {
     if (this.review.value) {
       this.http
-        .post(`${this.baseUrl}}/comments/${this.authService.decodedToken.nameid}/${productId}`, {
+        .post(`${this.baseUrl}comments/${this.authService.decodedToken.nameid}/${this.product.id}/comment`, {
           content: this.review.value
         })
         .subscribe(

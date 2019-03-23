@@ -57,7 +57,7 @@ namespace Boardology.API.Controllers
         }
 
         [Authorize]
-        [HttpPost("{userId}/{gameId}")]
+        [HttpPost("{userId}/{gameId}/comment")]
         public async Task<IActionResult> AddComment(int userId, int gameId, Comment comment)
         {
 
