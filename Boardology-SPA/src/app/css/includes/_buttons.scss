@@ -5,10 +5,19 @@
     background-color: $color-board-aqua;
     border: none;
     color: $color-white;
+    width: 100%;
 }
 
 .btn-outline-primary {
     background: transparent;
     border: 1px solid $color-board-aqua;
     color: $color-board-aqua;
+    width: 100%;
+}
+
+.btn-white {
+    background: transparent;
+    border: 1px solid $color-white;
+    color: $color-white;
+    width: 100%;
 }

@@ -1,0 +1,43 @@
+@import "src/styles";
+
+.arrow-lead {
+    display: flex;
+    justify-content: center;
+    margin: -20px;
+}
+
+.circle {
+    align-items: center;
+    background: $color-white;
+    border-radius: 50%;
+    border: 1px solid $color-dark-gray;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    width: 40px;
+}
+
+form {
+    margin-bottom: 24px;
+}
+
+.login-box {
+    height: 300px;
+    background: #00b09b;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #96c93d, #00b09b);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #96c93d, #00b09b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: $color-white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.new-user-wrapper {
+    text-align: center;
+}
+
+p {
+    margin: 32px auto 16px;
+}
+
