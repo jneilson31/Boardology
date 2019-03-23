@@ -1,9 +1,8 @@
-<app-search></app-search>
 <!-- <p id="filterText" class="pt-2 px-3 text-right">Filter</p> -->
+<app-search></app-search>
 <div class="container">
     <h1>Games</h1>
-    <app-product-item *ngFor="let product of products | slice:0:[max]"
-        [product]="product"></app-product-item>
-        <div *ngIf="[max] < products?.length -1" class="text-center" (click)="viewMore()">View more</div>
-        <div *ngIf="[max] >= products?.length -1" class="text-center" (click)="scrollToTop()">Back to top</div>
+    <app-product-item *ngFor="let product of products | slice:0:[max]" [product]="product"></app-product-item>
+    <div *ngIf="[max] < products?.length -1" class="text-center" (click)="viewMore()">View more</div>
+    <div *ngIf="[max] >= products?.length -1" class="text-center" (click)="scrollToTop()">Back to top</div>
 </div>

@@ -28,12 +28,44 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { LoginFormComponent } from './login-form/login-form.component';
 
 import { CategoryComponent } from './shared/category/category.component';
+import { HomeIntroContentComponent } from './home/home-intro-content/home-intro-content.component';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
 }
 
 @NgModule({
+<<<<<<< HEAD
+  declarations: [
+    AppComponent,
+    HeaderPrimaryComponent,
+    JumbotronComponent,
+    FooterComponent,
+    SearchComponent,
+    ProductListComponent,
+    ProductItemComponent,
+    ProductDetailComponent,
+    LoginComponent,
+    HomeComponent,
+    ReviewsComponent,
+    AboutComponent,
+    ContactComponent,
+    TimeAgoPipe,
+    CategoryComponent,
+    
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    RouterModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    AngularFontAwesomeModule
+  ],
+  providers: [SearchService],
+  bootstrap: [AppComponent]
+=======
    declarations: [
       AppComponent,
       HeaderPrimaryComponent,
@@ -51,7 +83,8 @@ export function tokenGetter() {
       TimeAgoPipe,
       RegisterComponent,
       LoginFormComponent,
-    CategoryComponent
+      CategoryComponent,
+      HomeIntroContentComponent
    ],
    imports: [
       BrowserModule,
@@ -76,5 +109,6 @@ export function tokenGetter() {
    bootstrap: [
       AppComponent
    ]
+>>>>>>> origin/master
 })
 export class AppModule { }
