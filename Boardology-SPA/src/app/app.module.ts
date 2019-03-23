@@ -35,37 +35,6 @@ export function tokenGetter() {
 }
 
 @NgModule({
-<<<<<<< HEAD
-  declarations: [
-    AppComponent,
-    HeaderPrimaryComponent,
-    JumbotronComponent,
-    FooterComponent,
-    SearchComponent,
-    ProductListComponent,
-    ProductItemComponent,
-    ProductDetailComponent,
-    LoginComponent,
-    HomeComponent,
-    ReviewsComponent,
-    AboutComponent,
-    ContactComponent,
-    TimeAgoPipe,
-    CategoryComponent,
-    
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    RouterModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    AngularFontAwesomeModule
-  ],
-  providers: [SearchService],
-  bootstrap: [AppComponent]
-=======
    declarations: [
       AppComponent,
       HeaderPrimaryComponent,
@@ -109,6 +78,5 @@ export function tokenGetter() {
    bootstrap: [
       AppComponent
    ]
->>>>>>> origin/master
 })
 export class AppModule { }

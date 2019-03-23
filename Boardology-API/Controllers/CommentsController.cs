@@ -56,7 +56,7 @@ namespace Boardology.API.Controllers
 
         }
 
-        //[AllowAnonymous]
+        [Authorize]
         [HttpPost("{userId}/{gameId}")]
         public async Task<IActionResult> AddComment(int userId, int gameId, Comment comment)
         {
@@ -65,10 +65,10 @@ namespace Boardology.API.Controllers
             {
                 throw new Exception("No comment");
             }
-            //if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-            //{
-            //    return Unauthorized();
-            //}
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+               return Unauthorized();
+            }
 
             if (await _repo.GetGame(gameId) == null)
             {
@@ -94,14 +94,14 @@ namespace Boardology.API.Controllers
         }
 
 
-        //[Authorize]
+        [Authorize]
         [HttpDelete("user/{userId}/comment/{commentId}/delete")]
         public async Task<IActionResult> DeleteComment(int userId, int commentId)
         {
-            //if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-            //{
-            //    return Unauthorized();
-            //}
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+               return Unauthorized();
+            }
 
             var comment = await _repo.GetComment(commentId);
 

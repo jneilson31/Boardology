@@ -40,25 +40,25 @@ namespace Boardology.API.Controllers
             return Ok(gameFromRepo);
         }
 
-        [HttpDelete("{gameId}/delete")]
-        [Authorize]
-        public async Task<IActionResult> DeleteGame(int gameId)
-        {
-            var gameFromRepo = await _repo.GetGame(gameId);
-            if (await _repo.GetGame(gameId) == null)
-            {
-                return NotFound();
-            }
+        //[HttpDelete("{gameId}/delete")]
+        //[Authorize]
+        //public async Task<IActionResult> DeleteGame(int gameId)
+        //{
+        //    var gameFromRepo = await _repo.GetGame(gameId);
+        //    if (await _repo.GetGame(gameId) == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _repo.Delete(gameFromRepo);
+        //    _repo.Delete(gameFromRepo);
 
-            if (await _repo.SaveAll())
-            {
-                return Ok();
-            }
+        //    if (await _repo.SaveAll())
+        //    {
+        //        return Ok();
+        //    }
 
-            return BadRequest("Failed to delete game");
-        }
+        //    return BadRequest("Failed to delete game");
+        //}
 
         [HttpGet("search")]
         public async Task<IActionResult> GetSearchResults([FromQuery] string search)
