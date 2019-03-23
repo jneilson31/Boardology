@@ -21,7 +21,7 @@ export class ProductListComponent implements OnInit {
   }
 
   getProducts() {
-    this.http.get<Product[]>(`${this.baseUrl}/games`)
+    this.http.get<Product[]>(`${this.baseUrl}games`)
     .subscribe(products => {
       this.products = products;
     });

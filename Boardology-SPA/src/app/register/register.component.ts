@@ -11,7 +11,6 @@ import { Location } from '@angular/common';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  @Output() cancelRegister = new EventEmitter();
   user: UserForRegister;
   registerForm: FormGroup;
 
@@ -43,7 +42,7 @@ export class RegisterComponent implements OnInit {
       this.authService.register(this.user).subscribe(() => {
         console.log('success');
       }, error => {
-        console.log(error.error);
+        console.log(error);
       }, () => {
         this.authService.login(this.user).subscribe(() => {
           this.router.navigate(['/']);

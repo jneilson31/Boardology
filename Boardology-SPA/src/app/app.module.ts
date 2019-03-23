@@ -22,20 +22,18 @@ import { SearchService } from './shared/search/search.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { TimeAgoPipe } from 'time-ago-pipe';
-<<<<<<< HEAD
+
 import { RegisterComponent } from './register/register.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { LoginFormComponent } from './login-form/login-form.component';
-=======
+
 import { CategoryComponent } from './shared/category/category.component';
->>>>>>> origin/master
 
 export function tokenGetter() {
     return localStorage.getItem('token');
 }
 
 @NgModule({
-<<<<<<< HEAD
    declarations: [
       AppComponent,
       HeaderPrimaryComponent,
@@ -52,7 +50,8 @@ export function tokenGetter() {
       ContactComponent,
       TimeAgoPipe,
       RegisterComponent,
-      LoginFormComponent
+      LoginFormComponent,
+    CategoryComponent
    ],
    imports: [
       BrowserModule,
@@ -77,35 +76,5 @@ export function tokenGetter() {
    bootstrap: [
       AppComponent
    ]
-=======
-  declarations: [
-    AppComponent,
-    HeaderPrimaryComponent,
-    JumbotronComponent,
-    FooterComponent,
-    SearchComponent,
-    ProductListComponent,
-    ProductItemComponent,
-    ProductDetailComponent,
-    LoginComponent,
-    HomeComponent,
-    ReviewsComponent,
-    AboutComponent,
-    ContactComponent,
-    TimeAgoPipe,
-    CategoryComponent
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    RouterModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    AngularFontAwesomeModule
-  ],
-  providers: [SearchService],
-  bootstrap: [AppComponent]
->>>>>>> origin/master
 })
 export class AppModule { }
