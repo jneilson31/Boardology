@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../../_models/product.model';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-product-list',
@@ -11,6 +12,7 @@ export class ProductListComponent implements OnInit {
 
   products: Product[];
   max = 20;
+  baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
@@ -19,7 +21,7 @@ export class ProductListComponent implements OnInit {
   }
 
   getProducts() {
-    this.http.get<Product[]>('http://localhost:5000/api/games')
+    this.http.get<Product[]>(`${this.baseUrl}/games`)
     .subscribe(products => {
       this.products = products;
     });
@@ -31,7 +33,7 @@ export class ProductListComponent implements OnInit {
   }
 
   scrollToTop(): void {
-    window.scroll(0,0);
+    window.scroll(0, 0);
   }
 
 }

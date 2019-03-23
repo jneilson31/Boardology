@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from '../../_models/product.model';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-product-item',
@@ -13,6 +14,7 @@ export class ProductItemComponent implements OnInit {
   hasUpvoted = false;
   hasDownvoted = false;
   isTrending: boolean;
+  baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
@@ -25,7 +27,7 @@ export class ProductItemComponent implements OnInit {
   }
 
     upvoteGame(productId: string): void {
-      this.http.post(`http://localhost:5000/api/votes/1/${productId}/upvote`, {})
+      this.http.post(`${this.baseUrl}/votes/1/${productId}/upvote`, {})
       .subscribe(response => {
         this.product.upvotes++;
         this.hasUpvoted = true;
@@ -35,7 +37,7 @@ export class ProductItemComponent implements OnInit {
     }
 
     downvoteGame(productId: string): void {
-      this.http.post(`http://localhost:5000/api/votes/1/${productId}/downvote`, {})
+      this.http.post(`${this.baseUrl}/votes/1/${productId}/downvote`, {})
       .subscribe(response => {
         this.product.downvotes++;
         this.hasDownvoted = true;

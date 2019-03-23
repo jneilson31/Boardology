@@ -29,6 +29,6 @@ export class SearchComponent implements OnInit {
         if (this.queryField.value === '') {
           this.hasNoSearchResults = true;
         }
-      })
+      });
   }
 }
