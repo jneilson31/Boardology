@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.fb.group(
       {
         username: ['', Validators.required],
-        email: ['', Validators.email],
+        email: ['', Validators.required],
         password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(14)]],
         confirmPassword: ['', Validators.required]
       },
@@ -48,6 +48,11 @@ export class RegisterComponent implements OnInit {
           this.router.navigate(['/']);
         });
       });
+    } else {
+      this.registerForm.get('username').markAsTouched();
+      this.registerForm.get('email').markAsTouched();
+      this.registerForm.get('password').markAsTouched();
+      this.registerForm.get('confirmPassword').markAsTouched();
     }
     console.log(this.registerForm.value);
   }

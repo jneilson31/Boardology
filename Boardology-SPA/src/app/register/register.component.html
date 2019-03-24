@@ -38,7 +38,7 @@
         || registerForm.get('confirmPassword').touched
         && registerForm.hasError('mismatch')}" class="form-control" formControlName="confirmPassword" placeholder="Confirm Password">
       <div class="invalid-feedback" *ngIf="registerForm.get('confirmPassword').hasError('required') && registerForm.get('confirmPassword').touched">Password
-        is required
+        is required (between 6 and 14 characters)
       </div>
       <div class="invalid-feedback" *ngIf="registerForm.hasError('mismatch') && registerForm.get('confirmPassword').touched">
         Passwords must match
@@ -46,7 +46,7 @@
     </div>
 
     <div class="form-group text-center">
-      <button class="btn btn-success" [disabled]="!registerForm.valid" type="submit">Register</button>
+      <button class="btn btn-success" type="submit">Register</button>
       <button class="btn btn-default" type="button" (click)="cancel()">Cancel</button>
     </div>
 
