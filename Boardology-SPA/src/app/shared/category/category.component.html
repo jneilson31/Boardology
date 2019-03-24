@@ -1,14 +1,13 @@
-<div class="accordion" id="accordionExample">
+<div class="accordion btn-link" [attr.data-target]="'#collapse' + category"
+aria-expanded="true" [attr.aria-controls]="'collapse' + category" id="accordionExample" data-toggle="collapse">
   <div class="card">
     <div class="card-header" id="{{category}}Header">
-      <h2 class="mb-0">
-        <button class="btn btn-link" type="button" data-toggle="collapse" [attr.data-target]="'#collapse' + category"
-          aria-expanded="true" [attr.aria-controls]="'collapse' + category">
+      <div class="category-title">
           {{ category }}
-        </button>
-      </h2>
+      </div>
     </div>
-    <div id="collapse{{category}}" class="collapse" [attr.aria-labelledby]="category +'Header'" data-parent="#accordionExample">
+    <div id="collapse{{category}}" class="collapse" [attr.aria-labelledby]="category +'Header'"
+      data-parent="#accordionExample">
       <div class="card-body">
         <ul>
           <li>Lorem, ipsum dolor.</li>

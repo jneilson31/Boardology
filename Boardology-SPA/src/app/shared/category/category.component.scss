@@ -1,12 +1,23 @@
 @import "src/styles";
 
+.btn-link {
+    
+    color: $color-white;
+    text-decoration: none;
+}
+
+.card-body {
+    color: $color-dark-gray;
+}
 
 .card-header {
     background-color: $color-dark-gray;
+    padding: .75rem .75rem;
+    margin-bottom: 0;
 }
 
-.btn-link {
-    color: $color-white;
-    text-decoration: none;
+.category-title {
+    font-size: 1rem;
+    padding: .75rem 0.75rem;
 }
 

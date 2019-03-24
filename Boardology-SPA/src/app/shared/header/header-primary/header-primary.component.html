@@ -8,7 +8,7 @@
     id="navbarSupportedContent">
     <div class="login d-flex justify-content-start">
       <button *ngIf="!isLoggedIn()" class="btn btn-primary btn-sm mr-2 w-50" (click)="onClickMenu()" routerLink="/login">Login</button>
-      <button *ngIf="isLoggedIn()" (click)="onLogout()" class="btn btn-primary btn-sm w-50" routerLink="/">Logout</button>
+      <button *ngIf="isLoggedIn()" (click)="onLogout()" class="btn btn-primary btn-sm w-100" routerLink="/">Logout</button>
       <button *ngIf="!isLoggedIn()" class="btn btn-outline-primary btn-sm w-50" (click)="onClickMenu()" routerLink="/register">Register</button>
     </div>
     <ul class="navbar-nav mr-auto">
