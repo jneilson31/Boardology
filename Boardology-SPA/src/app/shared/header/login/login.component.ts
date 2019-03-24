@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/_services/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  menuStatus: boolean = false;
 
   constructor(private authService: AuthService) { }
 
@@ -19,7 +20,12 @@ export class LoginComponent implements OnInit {
 
   onLogout() {
    this.authService.logout();
+   this.menuStatus = !this.menuStatus;
 
+  }
+
+  onClickMenu() {
+    this.menuStatus = !this.menuStatus;
   }
 
 }

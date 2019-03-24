@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header-primary.component.scss']
 })
 export class HeaderPrimaryComponent implements OnInit {
+  menuStatus: boolean = false;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onClickMenu() {
+    this.menuStatus = !this.menuStatus;
   }
 
 }
