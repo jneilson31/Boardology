@@ -6,7 +6,11 @@
   </button>
   <div class="collapse navbar-collapse" (click)="onClickMenu()" [ngClass]="menuStatus ? 'show' : ''"
     id="navbarSupportedContent">
-    <app-login></app-login>
+    <div class="login d-flex justify-content-start">
+      <button *ngIf="!isLoggedIn()" class="btn btn-primary btn-sm mr-2 w-50" (click)="onClickMenu()" routerLink="/login">Login</button>
+      <button *ngIf="isLoggedIn()" (click)="onLogout()" class="btn btn-primary btn-sm w-50" routerLink="/">Logout</button>
+      <button *ngIf="!isLoggedIn()" class="btn btn-outline-primary btn-sm w-50" (click)="onClickMenu()" routerLink="/register">Register</button>
+    </div>
     <ul class="navbar-nav mr-auto">
       <div class="dropdown-divider"></div>
       <li class="nav-item" (click)="onClickMenu()" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">

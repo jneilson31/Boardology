@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-header-primary',
@@ -8,13 +9,23 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderPrimaryComponent implements OnInit {
   menuStatus: boolean = false;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
 
   onClickMenu() {
     this.menuStatus = !this.menuStatus;
+  }
+
+  isLoggedIn() {
+    return this.authService.loggedIn();
+  }
+
+  onLogout() {
+   this.authService.logout();
+   this.menuStatus = !this.menuStatus;
+
   }
 
 }

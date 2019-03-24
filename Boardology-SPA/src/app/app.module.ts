@@ -12,7 +12,6 @@ import { SearchComponent } from './shared/search/search.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { ProductItemComponent } from './product/product-item/product-item.component';
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
-import { LoginComponent } from './shared/header/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
 import { ReviewsComponent } from './reviews/reviews.component';
@@ -48,7 +47,6 @@ export function tokenGetter() {
       ProductListComponent,
       ProductItemComponent,
       ProductDetailComponent,
-      LoginComponent,
       HomeComponent,
       ReviewsComponent,
       AboutComponent,
