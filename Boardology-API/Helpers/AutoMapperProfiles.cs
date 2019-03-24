@@ -12,7 +12,7 @@ namespace Boardology.API.Helpers
     {
         public AutoMapperProfiles()
         {
-          
+            CreateMap<User, UserForRegisterDto>(); // if we want to return anything else in local storage on sign in
         }
     }
 }

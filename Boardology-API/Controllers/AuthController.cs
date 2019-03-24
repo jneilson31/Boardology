@@ -1,4 +1,5 @@
-﻿using Boardology.API.Data;
+﻿using AutoMapper;
+using Boardology.API.Data;
 using Boardology.API.Dtos;
 using Boardology.API.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -20,11 +21,13 @@ namespace Boardology.API.Controllers
     {
         private readonly IAuthRepository _repo;
         private readonly IConfiguration _config;
+        private readonly IMapper _mapper;
 
-        public AuthController(IAuthRepository repo, IConfiguration config)
+        public AuthController(IAuthRepository repo, IConfiguration config, IMapper mapper)
         {
             _repo = repo;
             _config = config;
+            _mapper = mapper;
         }
 
         [HttpPost("register")]
@@ -85,9 +88,12 @@ namespace Boardology.API.Controllers
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
+            //var user = _mapper.Map<UserForRegisterDto>(userFromRepo); // if we want to return anything else in local storage on sign in
+
             return Ok(new
             {
-                token = tokenHandler.WriteToken(token)
+                token = tokenHandler.WriteToken(token),
+                //user if we want to return the user in local storage on sign in
             });
 
         }
