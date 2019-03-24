@@ -18,6 +18,7 @@ export class ProductDetailComponent implements OnInit {
   comments: Comment[] = [];
   review: FormControl = new FormControl();
   shouldShow = false;
+  signInError = false;
   baseUrl = environment.apiUrl;
   @ViewChild('textArea') textArea: ElementRef;
 
@@ -39,6 +40,10 @@ export class ProductDetailComponent implements OnInit {
   }
 
   toggleComment(): void {
+    if (!this.authService.loggedIn()) {
+      this.signInError = true;
+      return;
+    }
     this.shouldShow = !this.shouldShow;
     if (this.shouldShow) {
       setTimeout(() => {
