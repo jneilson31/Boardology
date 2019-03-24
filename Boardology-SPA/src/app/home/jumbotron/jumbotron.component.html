@@ -1,6 +1,7 @@
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-      <h2 class="display-4">Boardology.</h2>
+      <h2 *ngIf="!isLoggedIn()">Boardology.</h2>
+      <h2 *ngIf="isLoggedIn()">Hi, {{ userName | titlecase }}.</h2>
       <p class="lead">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel quos eaque dolore autem ipsum minus?</p>
     </div>
   </div>

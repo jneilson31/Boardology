@@ -36,8 +36,13 @@ export class AuthService {
     return this.http.post(this.baseUrl + 'register', user);
   }
 
-  loggedIn() {
+  loggedIn(): boolean {
     const token = localStorage.getItem('token');
     return !this.jwtHelper.isTokenExpired(token);
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.decodedToken = null;
   }
 }
