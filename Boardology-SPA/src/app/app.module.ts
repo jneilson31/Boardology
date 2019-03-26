@@ -21,6 +21,7 @@ import { SearchService } from './shared/search/search.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { CategorySortPipe } from './_pipes/board-category-sort.pipe';
 
 import { RegisterComponent } from './register/register.component';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -32,7 +33,6 @@ import { ProductService } from './_services/product.service';
 import { ProductListResolver } from './_resolvers/product-list-resolver';
 import { ProductDetailResolver } from './_resolvers/product-detail-resolver';
 import { ProductDetailCommentsResolver } from './_resolvers/product-detail-comments-resolver';
-import { BoardCategorySortPipe } from './_pipes/board-category-sort.pipe';
 import { CategoryGameComponent } from './shared/category/category-game/category-game.component';
 
 export function tokenGetter() {
@@ -59,7 +59,7 @@ export function tokenGetter() {
       CategoryComponent,
       HomeIntroContentComponent,
       CategoryGameComponent,
-      BoardCategorySortPipe
+      CategorySortPipe
    ],
    imports: [
       BrowserModule,

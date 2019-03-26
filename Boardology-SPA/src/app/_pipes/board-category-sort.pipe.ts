@@ -3,10 +3,10 @@ import { Product } from '../_models/product.model';
 import { ProductService } from '../_services/product.service';
 
 @Pipe({
-  name: 'boardCategorySort',
+  name: 'categorySort',
 })
 
-export class BoardCategorySortPipe implements PipeTransform {
+export class CategorySortPipe implements PipeTransform {
 
   transform(products: Product[], category: string): any {
 

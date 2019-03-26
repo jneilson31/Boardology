@@ -10,8 +10,9 @@ aria-expanded="true" [attr.aria-controls]="'collapse' + category" id="accordionE
       data-parent="#accordionExample">
       <div class="card-body">
         <ul>
-          <li *ngFor="let product of products | boardCategorySort: category"><a [routerLink]="['/games/', product.id]">{{product.name}}</a></li>
+          <li *ngFor="let product of products | categorySort: category | slice: 0:10"><a [routerLink]="['/games/', product.id]">{{product.name}}</a></li>
         </ul>
+        <a href="#">View More</a>
       </div>
     </div>
   </div>
