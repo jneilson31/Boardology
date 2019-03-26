@@ -38,51 +38,49 @@ export function tokenGetter() {
 }
 
 @NgModule({
-   declarations: [
-      AppComponent,
-      HeaderPrimaryComponent,
-      JumbotronComponent,
-      FooterComponent,
-      SearchComponent,
-      ProductListComponent,
-      ProductItemComponent,
-      ProductDetailComponent,
-      HomeComponent,
-      ReviewsComponent,
-      AboutComponent,
-      ContactComponent,
-      TimeAgoPipe,
-      RegisterComponent,
-      LoginFormComponent,
-      CategoryComponent,
-      HomeIntroContentComponent
-   ],
-   imports: [
-      BrowserModule,
-      HttpClientModule,
-      RouterModule,
-      AppRoutingModule,
-      HttpClientModule,
-      ReactiveFormsModule,
-      AngularFontAwesomeModule,
-      JwtModule.forRoot({
-          config: {
-              tokenGetter: tokenGetter,
-              whitelistedDomains: ['localhost:5000'],
-              blacklistedRoutes: ['localhost:5000/api/auth']
-          }
-      }),
-      FormsModule
-   ],
-   providers: [
-      SearchService,
-      ProductService,
-      ProductListResolver,
-      ProductDetailResolver,
-      ProductDetailCommentsResolver
-   ],
-   bootstrap: [
-      AppComponent
-   ]
+  declarations: [
+    AppComponent,
+    HeaderPrimaryComponent,
+    JumbotronComponent,
+    FooterComponent,
+    SearchComponent,
+    ProductListComponent,
+    ProductItemComponent,
+    ProductDetailComponent,
+    HomeComponent,
+    ReviewsComponent,
+    AboutComponent,
+    ContactComponent,
+    TimeAgoPipe,
+    RegisterComponent,
+    LoginFormComponent,
+    CategoryComponent,
+    HomeIntroContentComponent
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    RouterModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    AngularFontAwesomeModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['172.16.0.165:5000'],
+          blacklistedRoutes: ['172.16.0.165:5000/api/auth']
+      }
+    }),
+    FormsModule
+  ],
+  providers: [
+    SearchService,
+    ProductService,
+    ProductListResolver,
+    ProductDetailResolver,
+    ProductDetailCommentsResolver
+  ],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
