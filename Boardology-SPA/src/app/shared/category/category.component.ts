@@ -8,7 +8,7 @@ import { Product } from 'src/app/_models/product.model';
 })
 export class CategoryComponent implements OnInit {
 
-  @Input() product: Product;
+  @Input() products: Product[];
   @Input() category: string;
 
   constructor() { }
