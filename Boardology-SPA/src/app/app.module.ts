@@ -33,6 +33,7 @@ import { ProductListResolver } from './_resolvers/product-list-resolver';
 import { ProductDetailResolver } from './_resolvers/product-detail-resolver';
 import { ProductDetailCommentsResolver } from './_resolvers/product-detail-comments-resolver';
 import { BoardCategorySortPipe } from './_pipes/board-category-sort.pipe';
+import { CategoryGameComponent } from './shared/category/category-game/category-game.component';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
@@ -57,6 +58,7 @@ export function tokenGetter() {
       LoginFormComponent,
       CategoryComponent,
       HomeIntroContentComponent,
+      CategoryGameComponent,
       BoardCategorySortPipe
    ],
    imports: [

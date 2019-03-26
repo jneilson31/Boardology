@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Product } from '../_models/product.model';
+import { ProductService } from '../_services/product.service';
 
 @Pipe({
   name: 'boardCategorySort',
@@ -7,9 +8,15 @@ import { Product } from '../_models/product.model';
 
 export class BoardCategorySortPipe implements PipeTransform {
 
-  transform(product: Product[]): any {
-    return product.filter(product => product.category === "Board");
+  transform(products: Product[], category: string): any {
 
+    if (products) {
+      products.forEach((product) => {
+           product.category = product.category.toString().split(',');
+      });
+      console.log(products);
+      return products.filter(product => product.category.includes(category.toLowerCase()));
+    }
   }
 
 }
