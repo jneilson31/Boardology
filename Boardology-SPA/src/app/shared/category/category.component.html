@@ -1,18 +1,21 @@
-<div class="accordion btn-link" [attr.data-target]="'#collapse' + category"
-aria-expanded="true" [attr.aria-controls]="'collapse' + category" id="accordionExample" data-toggle="collapse">
+<div class="accordion btn-link" [attr.data-target]="'#collapse' + category" aria-expanded="true"
+  [attr.aria-controls]="'collapse' + category" id="accordionExample" data-toggle="collapse">
   <div class="card">
     <div class="card-header" id="{{category}}Header">
       <div class="category-title">
-          {{ category }}
+        {{ category }}
       </div>
     </div>
     <div id="collapse{{category}}" class="collapse" [attr.aria-labelledby]="category +'Header'"
       data-parent="#accordionExample">
       <div class="card-body">
         <ul>
-          <li *ngFor="let product of products | categorySort: category | slice: 0:10"><a [routerLink]="['/games/', product.id]">{{product.name}}</a></li>
+          <li *ngFor="let product of products | categorySort: category | slice: 0:10"><a
+              [routerLink]="['/games/', product.id]">{{product.name}}</a></li>
         </ul>
-        <a href="#">View More</a>
+        <div class="view-all-link">
+          <a href="#">View All</a>
+        </div>
       </div>
     </div>
   </div>

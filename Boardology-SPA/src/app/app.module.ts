@@ -21,7 +21,7 @@ import { SearchService } from './shared/search/search.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { TimeAgoPipe } from 'time-ago-pipe';
-import { CategorySortPipe } from './_pipes/board-category-sort.pipe';
+import { CategorySortPipe } from './_pipes/category-sort.pipe';
 
 import { RegisterComponent } from './register/register.component';
 import { JwtModule } from '@auth0/angular-jwt';
