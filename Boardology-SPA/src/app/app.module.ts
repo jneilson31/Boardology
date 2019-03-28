@@ -32,6 +32,7 @@ import { ProductService } from './_services/product.service';
 import { ProductListResolver } from './_resolvers/product-list-resolver';
 import { ProductDetailResolver } from './_resolvers/product-detail-resolver';
 import { ProductDetailCommentsResolver } from './_resolvers/product-detail-comments-resolver';
+import { DropdownDirective } from './_directives/dropdown.directive';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
@@ -55,7 +56,8 @@ export function tokenGetter() {
       RegisterComponent,
       LoginFormComponent,
       CategoryComponent,
-      HomeIntroContentComponent
+      HomeIntroContentComponent,
+      DropdownDirective
    ],
    imports: [
       BrowserModule,

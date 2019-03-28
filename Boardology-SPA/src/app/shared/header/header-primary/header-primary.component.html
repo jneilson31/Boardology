@@ -1,35 +1,35 @@
-<nav class="navbar nav-primary navbar-expand-lg navbar-dark ">
+<nav class="navbar nav-primary navbar-expand-lg navbar-dark" appDropdown #toggleCollapse="appDropdown">
   <a class="navbar-brand" href="#">Boardology</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" (click)="onClickMenu()" [ngClass]="menuStatus ? 'show' : ''"
+  <div class="collapse navbar-collapse" [ngClass]="{'show':toggleCollapse.isOpen}"
     id="navbarSupportedContent">
     <div class="login d-flex justify-content-start">
-      <button *ngIf="!isLoggedIn()" class="btn btn-primary btn-sm mr-2 w-50" (click)="onClickMenu()" routerLink="/login">Login</button>
+      <button *ngIf="!isLoggedIn()" class="btn btn-primary btn-sm mr-2 w-50" routerLink="/login">Login</button>
       <button *ngIf="isLoggedIn()" (click)="onLogout()" class="btn btn-primary btn-sm w-100" routerLink="/">Logout</button>
-      <button *ngIf="!isLoggedIn()" class="btn btn-outline-primary btn-sm w-50" (click)="onClickMenu()" routerLink="/register">Register</button>
+      <button *ngIf="!isLoggedIn()" class="btn btn-outline-primary btn-sm w-50" routerLink="/register">Register</button>
     </div>
     <ul class="navbar-nav mr-auto">
       <div class="dropdown-divider"></div>
-      <li class="nav-item" (click)="onClickMenu()" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
         <a class="nav-link" routerLink="/"><i class="fa fa-home"></i> Home <span class="sr-only">(current)</span></a>
       </li>
       <div class="dropdown-divider"></div>
-      <li class="nav-item" (click)="onClickMenu()" routerLinkActive="active">
+      <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" routerLink="games"><i class="fa fa-gamepad"></i> Games</a>
       </li>
       <div class="dropdown-divider"></div>
-      <li class="nav-item" (click)="onClickMenu()" routerLinkActive="active">
+      <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" routerLink="reviews"><i class="fa fa-sticky-note"></i> Reviews</a>
       </li>
       <div class="dropdown-divider"></div>
-      <li class="nav-item" (click)="onClickMenu()" routerLinkActive="active">
+      <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" routerLink="about-us"><i class="fa fa-user"></i> About</a>
       </li>
       <div class="dropdown-divider"></div>
-      <li class="nav-item" (click)="onClickMenu()" routerLinkActive="active">
+      <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" routerLink="contact-us"><i class="fa fa-envelope"></i> Contact</a>
       </li>
     </ul>

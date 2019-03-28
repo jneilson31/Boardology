@@ -7,15 +7,10 @@ import { AuthService } from 'src/app/_services/auth.service';
   styleUrls: ['./header-primary.component.scss']
 })
 export class HeaderPrimaryComponent implements OnInit {
-  menuStatus: boolean = false;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-  }
-
-  onClickMenu() {
-    this.menuStatus = !this.menuStatus;
   }
 
   isLoggedIn() {
@@ -24,7 +19,6 @@ export class HeaderPrimaryComponent implements OnInit {
 
   onLogout() {
    this.authService.logout();
-   this.menuStatus = !this.menuStatus;
 
   }
 
