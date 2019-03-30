@@ -14,7 +14,6 @@ export class CategorySortPipe implements PipeTransform {
       products.forEach((product) => {
            product.category = product.category.toString().split(',');
       });
-      console.log(products);
       return products.filter(product => product.category.includes(category.toLowerCase()));
     }
   }

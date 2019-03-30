@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Boardology.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190307011312_databaseadd")]
-    partial class databaseadd
+    [Migration("20190330220622_newest")]
+    partial class newest
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -57,6 +57,8 @@ namespace Boardology.API.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("AgeSuggestion");
+
+                    b.Property<string>("Category");
 
                     b.Property<string>("Description");
 

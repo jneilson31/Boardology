@@ -30,6 +30,7 @@ namespace Boardology.API.Data
 
             builder.Entity<Downvote>()
                 .HasOne(u => u.Game);
+
         }
     }
 }

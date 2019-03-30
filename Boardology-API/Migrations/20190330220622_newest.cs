@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Boardology.API.Migrations
 {
-    public partial class databaseadd : Migration
+    public partial class newest : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -22,7 +22,8 @@ namespace Boardology.API.Migrations
                     TimeToPlay = table.Column<string>(nullable: true),
                     AgeSuggestion = table.Column<string>(nullable: true),
                     YearCreated = table.Column<int>(nullable: false),
-                    PhotoUrl = table.Column<string>(nullable: true)
+                    PhotoUrl = table.Column<string>(nullable: true),
+                    Category = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
