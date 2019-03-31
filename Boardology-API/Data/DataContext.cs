@@ -16,6 +16,7 @@ namespace Boardology.API.Data
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Upvote> Upvotes { get; set; }
         public DbSet<Downvote> Downvotes { get; set; }
+        public DbSet<Collection> Collections { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -30,6 +31,22 @@ namespace Boardology.API.Data
 
             builder.Entity<Downvote>()
                 .HasOne(u => u.Game);
+
+            builder.Entity<Collection>()
+                .HasKey(k => new { k.UserId, k.GameId });
+
+            builder.Entity<Collection>()
+                .HasOne(k => k.User)
+                .WithMany(k => k.Collections)
+                .HasForeignKey(k => k.UserId);
+
+            builder.Entity<Collection>()
+                .HasOne(k => k.Game)
+                .WithMany(k => k.Collections)
+                .HasForeignKey(k => k.GameId);
+
+    
+
         }
     }
 }

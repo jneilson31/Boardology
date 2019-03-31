@@ -19,5 +19,6 @@ namespace Boardology.API.Models
         public int YearCreated { get; set; }
         public string PhotoUrl { get; set; }
         public string Category { get; set; }
+        public ICollection<Collection> Collections { get; set; }
     }
 }

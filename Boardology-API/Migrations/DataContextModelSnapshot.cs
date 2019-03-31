@@ -16,6 +16,19 @@ namespace Boardology.API.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.2-servicing-10034");
 
+            modelBuilder.Entity("Boardology.API.Models.Collection", b =>
+                {
+                    b.Property<int>("UserId");
+
+                    b.Property<int>("GameId");
+
+                    b.HasKey("UserId", "GameId");
+
+                    b.HasIndex("GameId");
+
+                    b.ToTable("Collections");
+                });
+
             modelBuilder.Entity("Boardology.API.Models.Comment", b =>
                 {
                     b.Property<int>("Id")
@@ -112,6 +125,19 @@ namespace Boardology.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Boardology.API.Models.Collection", b =>
+                {
+                    b.HasOne("Boardology.API.Models.Game", "Game")
+                        .WithMany("Collections")
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Boardology.API.Models.User", "User")
+                        .WithMany("Collections")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Boardology.API.Models.Comment", b =>

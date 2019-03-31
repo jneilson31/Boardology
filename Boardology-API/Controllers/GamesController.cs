@@ -40,25 +40,7 @@ namespace Boardology.API.Controllers
             return Ok(gameFromRepo);
         }
 
-        //[HttpDelete("{gameId}/delete")]
-        //[Authorize]
-        //public async Task<IActionResult> DeleteGame(int gameId)
-        //{
-        //    var gameFromRepo = await _repo.GetGame(gameId);
-        //    if (await _repo.GetGame(gameId) == null)
-        //    {
-        //        return NotFound();
-        //    }
 
-        //    _repo.Delete(gameFromRepo);
-
-        //    if (await _repo.SaveAll())
-        //    {
-        //        return Ok();
-        //    }
-
-        //    return BadRequest("Failed to delete game");
-        //}
 
         [HttpGet("search")]
         public async Task<IActionResult> GetSearchResults([FromQuery] string search)
@@ -66,6 +48,83 @@ namespace Boardology.API.Controllers
             var games = await _repo.GetSearchResults(search);
 
             return Ok(games);
+        }
+
+        [Authorize]
+        [HttpGet("{userId}/collection")]
+        public async Task<IActionResult> GetCollection(int userId)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+
+            var collection = await _repo.GetCollection(userId);
+
+            return Ok(collection);
+        }
+
+        [Authorize]
+        [HttpPost("{userId}/{gameId}/collection")]
+        public async Task<IActionResult> AddToCollection(int userId, int gameId)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+            
+
+            if (await _repo.GetCollectionItem(userId, gameId) != null)
+            {
+                return BadRequest("This item is already in your collection");
+            }
+
+            var collection = new Collection
+            {
+                UserId = userId,
+                GameId = gameId
+            };
+
+            _repo.Add(collection);
+
+            if (await _repo.SaveAll())
+            {
+                return Ok();
+            }
+
+            return BadRequest("Failed to add to collection");
+        }
+
+        [Authorize]
+        [HttpDelete("{userId}/{gameId}/collection")]
+        public async Task<IActionResult> DeleteFromCollection(int userId, int gameId)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+
+            var collectionItem = await _repo.GetCollectionItem(userId, gameId);
+
+            if (collectionItem == null)
+            {
+                return NotFound();
+            }
+
+
+            if (collectionItem.UserId != userId)
+            {
+                return Unauthorized();
+            }
+
+            _repo.Delete(collectionItem);
+
+            if (await _repo.SaveAll())
+            {
+                return Ok();
+            }
+
+            return BadRequest("Failed to delete game from collection");
         }
 
     }

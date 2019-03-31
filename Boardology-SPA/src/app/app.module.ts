@@ -21,6 +21,7 @@ import { SearchService } from './shared/search/search.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { CategorySortPipe } from './_pipes/category-sort.pipe';
 
 import { RegisterComponent } from './register/register.component';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -32,6 +33,8 @@ import { ProductService } from './_services/product.service';
 import { ProductListResolver } from './_resolvers/product-list-resolver';
 import { ProductDetailResolver } from './_resolvers/product-detail-resolver';
 import { ProductDetailCommentsResolver } from './_resolvers/product-detail-comments-resolver';
+import { CategoryGameComponent } from './shared/category/category-game/category-game.component';
+import { CollectionComponent } from './collection/collection.component';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
@@ -55,7 +58,10 @@ export function tokenGetter() {
       RegisterComponent,
       LoginFormComponent,
       CategoryComponent,
-      HomeIntroContentComponent
+      HomeIntroContentComponent,
+      CategoryGameComponent,
+      CategorySortPipe,
+      CollectionComponent
    ],
    imports: [
       BrowserModule,

@@ -9,14 +9,27 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Boardology.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190307011312_databaseadd")]
-    partial class databaseadd
+    [Migration("20190330234112_newestTest")]
+    partial class newestTest
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.2-servicing-10034");
+
+            modelBuilder.Entity("Boardology.API.Models.Collection", b =>
+                {
+                    b.Property<int>("UserId");
+
+                    b.Property<int>("GameId");
+
+                    b.HasKey("UserId", "GameId");
+
+                    b.HasIndex("GameId");
+
+                    b.ToTable("Collections");
+                });
 
             modelBuilder.Entity("Boardology.API.Models.Comment", b =>
                 {
@@ -57,6 +70,8 @@ namespace Boardology.API.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("AgeSuggestion");
+
+                    b.Property<string>("Category");
 
                     b.Property<string>("Description");
 
@@ -112,6 +127,19 @@ namespace Boardology.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Boardology.API.Models.Collection", b =>
+                {
+                    b.HasOne("Boardology.API.Models.Game", "Game")
+                        .WithMany("Collections")
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Boardology.API.Models.User", "User")
+                        .WithMany("Collections")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Boardology.API.Models.Comment", b =>
