@@ -23,6 +23,7 @@ namespace Boardology.API.Data
         Task<IList> GetComments(int gameId);
         Task<IList<Game>> GetSearchResults(string game);
         Task<IList> GetCollection(int userId);
-        Task<bool> CheckIfGameIsInCollection(int userId, int gameId);
+        //Task<bool> CheckIfGameIsInCollection(int userId, int gameId);
+        Task<Collection> GetCollectionItem(int userId, int gameId);
     }
 }

@@ -26,4 +26,13 @@ export class CollectionComponent implements OnInit {
       this.productCollection = results;
      });
   }
+
+  removeFromCollection(productId: number): void {
+    this.http.delete(`${this.baseUrl}games/${this.authService.decodedToken.nameid}/${productId}/collection`)
+      .subscribe(results => {
+        this.getCollection();
+      }, error => {
+        console.log(error);
+      });
+  }
 }

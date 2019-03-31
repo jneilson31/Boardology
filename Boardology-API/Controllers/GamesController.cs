@@ -50,9 +50,15 @@ namespace Boardology.API.Controllers
             return Ok(games);
         }
 
+        [Authorize]
         [HttpGet("{userId}/collection")]
         public async Task<IActionResult> GetCollection(int userId)
         {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+
             var collection = await _repo.GetCollection(userId);
 
             return Ok(collection);
@@ -66,12 +72,11 @@ namespace Boardology.API.Controllers
             {
                 return Unauthorized();
             }
+            
 
-            var isAlreadyInCollection = await _repo.CheckIfGameIsInCollection(userId, gameId);
-
-            if (isAlreadyInCollection)
+            if (await _repo.GetCollectionItem(userId, gameId) != null)
             {
-                return BadRequest("You already added this game to your collection");
+                return BadRequest("This item is already in your collection");
             }
 
             var collection = new Collection
@@ -88,6 +93,38 @@ namespace Boardology.API.Controllers
             }
 
             return BadRequest("Failed to add to collection");
+        }
+
+        [Authorize]
+        [HttpDelete("{userId}/{gameId}/collection")]
+        public async Task<IActionResult> DeleteFromCollection(int userId, int gameId)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+
+            var collectionItem = await _repo.GetCollectionItem(userId, gameId);
+
+            if (collectionItem == null)
+            {
+                return NotFound();
+            }
+
+
+            if (collectionItem.UserId != userId)
+            {
+                return Unauthorized();
+            }
+
+            _repo.Delete(collectionItem);
+
+            if (await _repo.SaveAll())
+            {
+                return Ok();
+            }
+
+            return BadRequest("Failed to delete game from collection");
         }
 
     }

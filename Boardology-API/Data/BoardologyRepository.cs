@@ -146,14 +146,20 @@ namespace Boardology.API.Data
             return collectionList;
         }
 
-        public async Task<bool> CheckIfGameIsInCollection(int userId, int gameId)
+        //public async Task<bool> CheckIfGameIsInCollection(int userId, int gameId)
+        //{
+        //    var value = await _context.Collections.FirstOrDefaultAsync(u => u.UserId == userId && u.GameId == gameId);
+        //    if (value != null)
+        //    {
+        //        return true;
+        //    }
+        //    return false;
+        //}
+
+        public async Task<Collection> GetCollectionItem(int userId, int gameId)
         {
             var value = await _context.Collections.FirstOrDefaultAsync(u => u.UserId == userId && u.GameId == gameId);
-            if (value != null)
-            {
-                return true;
-            }
-            return false;
+            return value;
         }
 
     }

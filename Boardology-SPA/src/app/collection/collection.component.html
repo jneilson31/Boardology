@@ -9,19 +9,22 @@
 </div> -->
 <div class="container">
   <h3 class="text-center">Your Collection:</h3>
-  <p *ngIf="!productCollection?.length">You haven't added any items to your collection yet!</p>
+  <div *ngIf="!productCollection?.length">
+    <p>You don't have any items in your collection!</p>
+    <button class="btn btn-primary" [routerLink]="['/games']">View Games</button>
+  </div>
   <ul class="list-group">
-    <li *ngFor="let product of productCollection" class="list-group-item" [routerLink]="['/games/', product.id]">
-      <div class="row no-gutters">
+    <li *ngFor="let product of productCollection" class="list-group-item" >
+      <div class="row no-gutters" [routerLink]="['/games/', product.id]">
         <div class="col-3">
-          <span class="game-image"><img src="{{ product.photoUrl }}" alt="{{ product.name }}">
-          </span>
+          <span class="game-image"><img src="{{ product.photoUrl }}" alt="{{ product.name }}"></span>
         </div>
         <div class="col-9">
           <span class="game-text">{{ product.name }}
           </span>
         </div>
       </div>
+      <p class="delete"(click)="removeFromCollection(product.id)">Delete</p>
     </li>
   </ul>
 </div>
