@@ -14,5 +14,6 @@ namespace Boardology.API.Models
         public byte[] PasswordSalt { get; set; }
         public DateTime DateJoined { get; set; }
         public ICollection<Comment> Comments { get; set; }
+        public ICollection<Collection> Collections { get; set; }
     }
 }

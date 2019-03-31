@@ -53,7 +53,7 @@ export class ProductDetailComponent implements OnInit {
     }
   }
 
-  submitReview(productId: number): void {
+  submitReview(): void {
     if (this.review.value) {
       this.http
         .post(`${this.baseUrl}comments/${this.authService.decodedToken.nameid}/${this.product.id}/comment`, {
@@ -83,6 +83,18 @@ export class ProductDetailComponent implements OnInit {
         },
         error => {
           console.log(error);
+        }
+      );
+  }
+
+  addToCollection() {
+    this.http.post(`${this.baseUrl}games/${this.authService.decodedToken.nameid}/${this.product.id}/collection`, {})
+      .subscribe(
+        response => {
+          console.log('success');
+        },
+        error => {
+          console.log(error.error);
         }
       );
   }

@@ -11,6 +11,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { ProductListResolver } from './_resolvers/product-list-resolver';
 import { ProductDetailResolver } from './_resolvers/product-detail-resolver';
 import { ProductDetailCommentsResolver } from './_resolvers/product-detail-comments-resolver';
+import { CollectionComponent } from './collection/collection.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -25,7 +26,8 @@ const appRoutes: Routes = [
             { path: 'about-us', component: AboutComponent },
             { path: 'contact-us', component: ContactComponent },
             { path: 'register', component: RegisterComponent },
-            { path: 'login', component: LoginFormComponent }
+            { path: 'login', component: LoginFormComponent },
+            { path: 'collection', component: CollectionComponent },
         ]
     }
 ];

@@ -1,0 +1,24 @@
+<!-- <div class="shadow card mb-4" *ngFor="let product of productCollection">
+    <div class="card-body" routerLinkActive="active" [routerLink]="['/games/', product.id]">
+      <div class="row no-gutters">
+        <div class="col-4 align-self-center p-2">
+          <img class="img-fluid d-flex" src="{{  product.photoUrl }}" alt=" {{ product.name }}">
+        </div>
+      </div>
+    </div>
+</div> -->
+
+<ul class="list-group">
+  <li *ngFor="let product of productCollection" class="list-group-item" [routerLink]="['/games/', product.id]">
+    <div class="row no-gutters">
+      <div class="col-3">
+        <span class="game-image"><img src="{{ product.photoUrl }}" alt="{{ product.name }}">
+        </span>
+      </div>
+      <div class="col-9">
+        <span class="game-text">{{ product.name }}
+        </span>
+      </div>
+    </div>
+  </li>
+</ul>
