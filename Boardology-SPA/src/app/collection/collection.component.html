@@ -7,18 +7,21 @@
       </div>
     </div>
 </div> -->
-
-<ul class="list-group">
-  <li *ngFor="let product of productCollection" class="list-group-item" [routerLink]="['/games/', product.id]">
-    <div class="row no-gutters">
-      <div class="col-3">
-        <span class="game-image"><img src="{{ product.photoUrl }}" alt="{{ product.name }}">
-        </span>
+<div class="container">
+  <h3 class="text-center">Your Collection:</h3>
+  <p *ngIf="!productCollection?.length">You haven't added any items to your collection yet!</p>
+  <ul class="list-group">
+    <li *ngFor="let product of productCollection" class="list-group-item" [routerLink]="['/games/', product.id]">
+      <div class="row no-gutters">
+        <div class="col-3">
+          <span class="game-image"><img src="{{ product.photoUrl }}" alt="{{ product.name }}">
+          </span>
+        </div>
+        <div class="col-9">
+          <span class="game-text">{{ product.name }}
+          </span>
+        </div>
       </div>
-      <div class="col-9">
-        <span class="game-text">{{ product.name }}
-        </span>
-      </div>
-    </div>
-  </li>
-</ul>
+    </li>
+  </ul>
+</div>

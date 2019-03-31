@@ -88,6 +88,10 @@ export class ProductDetailComponent implements OnInit {
   }
 
   addToCollection() {
+    if (!this.authService.loggedIn()) {
+      this.signInError = true;
+      return;
+    }
     this.http.post(`${this.baseUrl}games/${this.authService.decodedToken.nameid}/${this.product.id}/collection`, {})
       .subscribe(
         response => {
