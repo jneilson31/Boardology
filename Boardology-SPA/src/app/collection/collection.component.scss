@@ -1,5 +1,5 @@
 img {
-    width: 60px;
+    width: 40px;
 }
 
 .list-group-item {
@@ -12,3 +12,9 @@ img {
     text-decoration: underline;
     float:right;
 }
+
+.share-column, .collection-total {
+    text-align: center;
+    line-height: 40px;
+}
+
