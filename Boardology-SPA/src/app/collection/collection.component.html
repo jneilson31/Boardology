@@ -7,7 +7,7 @@
       </div>
     </div>
 </div> -->
-<div class="container">
+<!-- <div class="container">
   <h3 class="text-center">Your Collection:</h3>
   <div *ngIf="!productCollection?.length">
     <p>You don't have any items in your collection!</p>
@@ -27,7 +27,7 @@
       <p class="delete"(click)="removeFromCollection(product.id)">Delete</p>
     </li>
   </ul>
-</div>
+</div> -->
 
 <hr>
 
@@ -41,13 +41,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
+    <tr *ngFor="let product of productCollection">
       <th class="collection-total" scope="row">1</th>
-      <td><img src="../../assets/sorry.jpeg" alt=""></td>
-      <td>Sorry</td>
+      <td><img src="{{ product.photoUrl }}" alt=""></td>
+      <td>{{ product.name }}</td>
       <td class="share-column"><i class="fa fa-share-square"></i></td>
     </tr>
-    <tr>
+    <!-- <tr>
       <th class="collection-total" scope="row">2</th>
       <td><img src="../../assets/sorry.jpeg" alt=""></td>
       <td>Sorry</td>
@@ -58,6 +58,6 @@
       <td><img src="../../assets/sorry.jpeg" alt=""></td>
       <td>Sorry</td>
       <td class="share-column"><i class="fa fa-share-square"></i></td>
-    </tr>
+    </tr> -->
   </tbody>
 </table>
