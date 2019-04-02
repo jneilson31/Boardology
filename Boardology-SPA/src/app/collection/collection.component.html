@@ -41,8 +41,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let product of productCollection">
-      <th class="collection-total" scope="row">1</th>
+    <tr *ngFor="let product of productCollection; let i = index">
+      <th class="collection-total" scope="row">{{ i + 1 }}</th>
       <td><img src="{{ product.photoUrl }}" alt=""></td>
       <td>{{ product.name }}</td>
       <td class="share-column"><i class="fa fa-share-square"></i></td>
