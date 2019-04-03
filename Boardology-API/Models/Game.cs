@@ -20,5 +20,6 @@ namespace Boardology.API.Models
         public string PhotoUrl { get; set; }
         public string Category { get; set; }
         public ICollection<Collection> Collections { get; set; }
+        public ICollection<Wishlist> Wishlists { get; set; }
     }
 }
