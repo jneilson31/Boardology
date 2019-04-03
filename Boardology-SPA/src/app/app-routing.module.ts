@@ -12,6 +12,7 @@ import { ProductListResolver } from './_resolvers/product-list-resolver';
 import { ProductDetailResolver } from './_resolvers/product-detail-resolver';
 import { ProductDetailCommentsResolver } from './_resolvers/product-detail-comments-resolver';
 import { CollectionComponent } from './collection/collection.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -28,6 +29,8 @@ const appRoutes: Routes = [
             { path: 'register', component: RegisterComponent },
             { path: 'login', component: LoginFormComponent },
             { path: 'collection', component: CollectionComponent },
+            { path: 'wishlist', component: WishlistComponent },
+
         ]
     }
 ];
