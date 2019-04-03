@@ -25,5 +25,8 @@ namespace Boardology.API.Data
         Task<IList> GetCollection(int userId);
         //Task<bool> CheckIfGameIsInCollection(int userId, int gameId);
         Task<Collection> GetCollectionItem(int userId, int gameId);
+        Task<IList> GetWishlist(int userId);
+        Task<Wishlist> GetWishlistItem(int userId, int gameId);
+
     }
 }
