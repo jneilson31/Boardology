@@ -17,6 +17,7 @@ namespace Boardology.API.Data
         public DbSet<Upvote> Upvotes { get; set; }
         public DbSet<Downvote> Downvotes { get; set; }
         public DbSet<Collection> Collections { get; set; }
+        public DbSet<Wishlist> Wishlists { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -45,7 +46,20 @@ namespace Boardology.API.Data
                 .WithMany(k => k.Collections)
                 .HasForeignKey(k => k.GameId);
 
-    
+            builder.Entity<Wishlist>()
+                .HasKey(k => new { k.UserId, k.GameId });
+
+            builder.Entity<Wishlist>()
+                .HasOne(k => k.User)
+                .WithMany(k => k.Wishlists)
+                .HasForeignKey(k => k.UserId);
+
+            builder.Entity<Wishlist>()
+                .HasOne(k => k.Game)
+                .WithMany(k => k.Wishlists)
+                .HasForeignKey(k => k.GameId);
+
+
 
         }
     }

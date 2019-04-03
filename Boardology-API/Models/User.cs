@@ -15,5 +15,6 @@ namespace Boardology.API.Models
         public DateTime DateJoined { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public ICollection<Collection> Collections { get; set; }
+        public ICollection<Wishlist> Wishlists { get; set; }
     }
 }

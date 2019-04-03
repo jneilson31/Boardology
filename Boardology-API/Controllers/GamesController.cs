@@ -127,5 +127,82 @@ namespace Boardology.API.Controllers
             return BadRequest("Failed to delete game from collection");
         }
 
+        [Authorize]
+        [HttpGet("{userId}/wishlist")]
+        public async Task<IActionResult> GetWishlist(int userId)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+
+            var wishlist = await _repo.GetWishlist(userId);
+
+            return Ok(wishlist);
+        }
+
+        [Authorize]
+        [HttpPost("{userId}/{gameId}/wishlist")]
+        public async Task<IActionResult> AddToWishlist(int userId, int gameId)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+
+
+            if (await _repo.GetWishlistItem(userId, gameId) != null)
+            {
+                return BadRequest("This item is already in your wishlist");
+            }
+
+            var wishlist = new Wishlist
+            {
+                UserId = userId,
+                GameId = gameId
+            };
+
+            _repo.Add(wishlist);
+
+            if (await _repo.SaveAll())
+            {
+                return Ok();
+            }
+
+            return BadRequest("Failed to add to collection");
+        }
+
+        [Authorize]
+        [HttpDelete("{userId}/{gameId}/wishlist")]
+        public async Task<IActionResult> DeleteFromWishlist(int userId, int gameId)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+
+            var wishlistItem = await _repo.GetWishlistItem(userId, gameId);
+
+            if (wishlistItem == null)
+            {
+                return NotFound();
+            }
+
+
+            if (wishlistItem.UserId != userId)
+            {
+                return Unauthorized();
+            }
+
+            _repo.Delete(wishlistItem);
+
+            if (await _repo.SaveAll())
+            {
+                return Ok();
+            }
+
+            return BadRequest("Failed to delete game from wishlist");
+        }
+
     }
 }

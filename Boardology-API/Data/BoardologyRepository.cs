@@ -146,19 +146,35 @@ namespace Boardology.API.Data
             return collectionList;
         }
 
-        //public async Task<bool> CheckIfGameIsInCollection(int userId, int gameId)
-        //{
-        //    var value = await _context.Collections.FirstOrDefaultAsync(u => u.UserId == userId && u.GameId == gameId);
-        //    if (value != null)
-        //    {
-        //        return true;
-        //    }
-        //    return false;
-        //}
-
         public async Task<Collection> GetCollectionItem(int userId, int gameId)
         {
             var value = await _context.Collections.FirstOrDefaultAsync(u => u.UserId == userId && u.GameId == gameId);
+            return value;
+        }
+
+
+        public async Task<IList> GetWishlist(int userId)
+        {
+
+            var wishlist = await
+                (from wishlists in _context.Wishlists
+                    join games in _context.Games
+                        on wishlists.GameId equals games.Id
+                    where wishlists.UserId == userId
+                    select new
+                    {
+                        games.Id,
+                        games.Name,
+                        games.PhotoUrl
+                    }).ToListAsync();
+
+
+            return wishlist;
+        }
+
+        public async Task<Wishlist> GetWishlistItem(int userId, int gameId)
+        {
+            var value = await _context.Wishlists.FirstOrDefaultAsync(u => u.UserId == userId && u.GameId == gameId);
             return value;
         }
 
