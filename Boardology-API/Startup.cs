@@ -89,7 +89,7 @@ namespace Boardology.API
             //app.UseHttpsRedirection();
             //seedGames.SeedBoardGames();
             //seedUsers.SeedBoardologyUsers();
-            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().SetPreflightMaxAge(new TimeSpan(0, 5, 0)));
             app.UseAuthentication();
             app.UseMvc();
         }

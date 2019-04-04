@@ -37,7 +37,7 @@ namespace Boardology.API.Controllers
 
             if (upvote != null)
             {
-                return BadRequest("You already upvoted this game");
+                return BadRequest("You already upvoted that game!");
             }
 
             if (await _repo.GetGame(gameId) == null)
@@ -76,7 +76,7 @@ namespace Boardology.API.Controllers
 
             if (downvote != null)
             {
-                return BadRequest("You already downvoted this game");
+                return BadRequest("You already downvoted that game!");
             }
 
             if (await _repo.GetGame(gameId) == null)

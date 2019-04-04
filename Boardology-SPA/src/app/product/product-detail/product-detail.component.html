@@ -24,13 +24,11 @@
     <button class="btn btn-primary mr-2 w-50">Add to Wishlist</button>
     <button class="btn btn-primary w-50" (click)="addToCollection()">Add to Collection</button>
   </div>
-  <p class="sign-in-error text-center" *ngIf="signInError">You need to log in first!</p>
   
 <hr>
 <p>{{ product.description }}</p>
 
   <h3>Reviews<span class="leave-review pull-right mt-3" (click)="toggleComment()" >Leave a review</span></h3>
-  <p class="sign-in-error text-center" *ngIf="signInError">You need to log in first!</p>
 
   <div class="form-group" *ngIf="shouldShow">
     <textarea class="form-control" placeholder="Leave a review..." [formControl]="review" #textArea> </textarea>
