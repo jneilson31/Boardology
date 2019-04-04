@@ -3,6 +3,7 @@ import { Product } from '../../_models/product.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../../_services/auth.service';
+import { AlertifyService } from '../../_services/alertify.service';
 
 @Component({
   selector: 'app-product-item',
@@ -17,7 +18,7 @@ export class ProductItemComponent implements OnInit {
   isTrending: boolean;
   baseUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(private http: HttpClient, private authService: AuthService, private alertify: AlertifyService) { }
 
   ngOnInit() {
     this.isTrending = this.isProductTrending();
@@ -29,6 +30,7 @@ export class ProductItemComponent implements OnInit {
 
     upvoteGame(productId: string): void {
       if (!this.authService.loggedIn()) {
+        this.alertify.error('You need to be logged in to do that', 2);
         return;
       }
       this.http.post(`${this.baseUrl}votes/${this.authService.decodedToken.nameid}/${productId}/upvote`, {})
@@ -36,12 +38,13 @@ export class ProductItemComponent implements OnInit {
         this.product.upvotes++;
         this.hasUpvoted = true;
       }, error => {
-        console.log(error);
+        this.alertify.error(error.error, 2);
       });
     }
 
     downvoteGame(productId: string): void {
       if (!this.authService.loggedIn()) {
+        this.alertify.error('You need to be logged in to do that!', 2);
         return;
       }
       this.http.post(`${this.baseUrl}votes/${this.authService.decodedToken.nameid}/${productId}/downvote`, {})
@@ -49,7 +52,7 @@ export class ProductItemComponent implements OnInit {
         this.product.downvotes++;
         this.hasDownvoted = true;
       }, error => {
-        console.log(error);
+        this.alertify.error(error.error, 2);
       });
     }
 

@@ -3,6 +3,7 @@ import { AuthService } from '../_services/auth.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AlertifyService } from '../_services/alertify.service';
 
 @Component({
   selector: 'app-login-form',
@@ -15,7 +16,12 @@ export class LoginFormComponent implements OnInit {
   authenticationErrorText: string;
   loginForm: FormGroup;
 
-  constructor(private authService: AuthService, private location: Location, private router: Router, private fb: FormBuilder) {}
+  constructor(
+    private authService: AuthService,
+    private location: Location,
+    private router: Router,
+    private fb: FormBuilder,
+    private alertify: AlertifyService) {}
 
   ngOnInit() {
     this.createRegisterForm();
@@ -35,10 +41,10 @@ export class LoginFormComponent implements OnInit {
     this.user = Object.assign({}, this.loginForm.value);
     this.authService.login(this.user).subscribe(
       next => {
-        console.log('logged in successfully');
+        this.alertify.success('Logged in successfully', 2);
       },
       error => {
-        console.log(error);
+        this.alertify.error(error.error, 3);
         this.authenticationErrorText = error.error;
         this.authenticationError = true;
       },
