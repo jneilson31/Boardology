@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../../_services/auth.service';
 import { AlertifyService } from '../../_services/alertify.service';
+import { Upvote } from '../../_models/upvote.model';
+import { Downvote } from '../../_models/downvote.model';
 
 @Component({
   selector: 'app-product-item',
@@ -13,6 +15,8 @@ import { AlertifyService } from '../../_services/alertify.service';
 export class ProductItemComponent implements OnInit {
 
   @Input() product: Product;
+  @Input() upvotes: any[];
+  @Input() downvotes: any[];
   hasUpvoted = false;
   hasDownvoted = false;
   isTrending: boolean;
@@ -58,6 +62,21 @@ export class ProductItemComponent implements OnInit {
 
     isProductTrending(): boolean {
       return this.isTrending = this.product.upvotes > this.product.downvotes * 2 ? true : false;
+    }
+
+    isProductUpvoted(productId: number): boolean {
+      if (!this.authService.loggedIn()) {
+        return false;
+      }
+      console.log(this.upvotes);
+      return this.upvotes.some(upvote => upvote.gameId === productId);
+    }
+
+    isProductDownvoted(productId: number): boolean {
+      if (!this.authService.loggedIn()) {
+        return false;
+      }
+      return this.downvotes.some(upvote => upvote.gameId === productId);
     }
 
 

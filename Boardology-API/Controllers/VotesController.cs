@@ -101,5 +101,31 @@ namespace Boardology.API.Controllers
 
             return BadRequest("Failed to downvote game");
         }
+
+        [Authorize]
+        [HttpGet("{userId}/downvotes")]
+        public async Task<IActionResult> GetDownvotes(int userId)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+            var downvotes = await _repo.GetDownvotesForUser(userId);
+
+            return Ok(downvotes);
+        }
+
+        [Authorize]
+        [HttpGet("{userId}/upvotes")]
+        public async Task<IActionResult> GetUpvotes(int userId)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+            var upvotes = await _repo.GetDownvotesForUser(userId);
+
+            return Ok(upvotes);
+        }
     }
 }
