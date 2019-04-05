@@ -38,6 +38,33 @@ namespace Boardology.API.Data
             return await _context.Downvotes.FirstOrDefaultAsync(u => u.DownVoterId == userId && u.GameId == gameId);
         }
 
+        public async Task<IList> GetDownvotesForUser(int userId)
+        {
+
+            var downvoteList = await
+                (from downvotes in _context.Downvotes
+                 where downvotes.DownVoterId == userId
+                 select new
+                 {
+                     downvotes.GameId
+                 }).ToListAsync();
+
+            return downvoteList;
+        }
+
+        public async Task<IList> GetUpvotesForUser(int userId)
+        {
+            var upvoterList = await
+                (from upvotes in _context.Upvotes
+                 where upvotes.UpVoterId == userId
+                 select new
+                 {
+                     upvotes.GameId
+                 }).ToListAsync();
+
+            return upvoterList;
+        }
+
         public async Task<Game> GetGame(int id)
         {
             var game = await _context.Games.FirstOrDefaultAsync(u => u.Id == id);
@@ -48,6 +75,7 @@ namespace Boardology.API.Data
         {
             var games = await _context.Games.ToListAsync();
             return games;
+
         }
 
  

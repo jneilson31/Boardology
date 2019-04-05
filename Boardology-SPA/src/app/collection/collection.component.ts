@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { CollectionProduct } from '../_models/collection-product.model';
 import { Observable } from 'rxjs';
 import { AuthService } from '../_services/auth.service';
+import { AlertifyService } from '../_services/alertify.service';
 
 @Component({
   selector: 'app-collection',
@@ -13,26 +14,32 @@ import { AuthService } from '../_services/auth.service';
 export class CollectionComponent implements OnInit {
   baseUrl = environment.apiUrl;
   productCollection: CollectionProduct[];
+  hasRetrievedCollection = false;
 
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(private http: HttpClient, private authService: AuthService, private alertify: AlertifyService) {}
 
   ngOnInit() {
     this.getCollection();
   }
 
   getCollection(): void {
-     this.http.get<CollectionProduct[]>(`${this.baseUrl}games/${this.authService.decodedToken.nameid}/collection`)
-     .subscribe(results => {
-      this.productCollection = results;
-     });
+    if (!this.hasRetrievedCollection) {
+      this.http.get<CollectionProduct[]>(`${this.baseUrl}games/${this.authService.decodedToken.nameid}/collection`)
+        .subscribe(results => {
+          this.productCollection = results;
+        });
+    }
   }
 
   removeFromCollection(productId: number): void {
+    this.alertify.confirm('Are you sure you want remove this game from your collection?', 'Yes', undefined, () => {
     this.http.delete(`${this.baseUrl}games/${this.authService.decodedToken.nameid}/${productId}/collection`)
       .subscribe(results => {
-        this.getCollection();
+        const productToRemove = this.productCollection.findIndex(x => x.id === productId);
+        this.productCollection.splice(productToRemove, 1);
       }, error => {
         console.log(error);
       });
+    });
   }
 }

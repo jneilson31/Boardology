@@ -6,6 +6,7 @@ import { Comment } from '../../_models/comment.model';
 import { FormControl } from '@angular/forms';
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../../_services/auth.service';
+import { AlertifyService } from '../../_services/alertify.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -18,11 +19,13 @@ export class ProductDetailComponent implements OnInit {
   comments: Comment[] = [];
   review: FormControl = new FormControl();
   shouldShow = false;
-  signInError = false;
   baseUrl = environment.apiUrl;
   @ViewChild('textArea') textArea: ElementRef;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, public authService: AuthService) {}
+  constructor(private route: ActivatedRoute,
+    private http: HttpClient,
+    public authService: AuthService,
+    private alertify: AlertifyService) {}
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -41,7 +44,7 @@ export class ProductDetailComponent implements OnInit {
 
   toggleComment(): void {
     if (!this.authService.loggedIn()) {
-      this.signInError = true;
+      this.alertify.error('You need to be logged in to do that', 2);
       return;
     }
     this.shouldShow = !this.shouldShow;
@@ -75,21 +78,23 @@ export class ProductDetailComponent implements OnInit {
   }
 
   deleteComment(commentId: number) {
-    this.http
-      .delete(`${this.baseUrl}comments/user/${this.authService.decodedToken.nameid}/comment/${commentId}/delete`)
-      .subscribe(
-        response => {
-          this.getComments();
-        },
-        error => {
-          console.log(error);
-        }
-      );
+    this.alertify.confirm('Are you sure you want to delete your comment?', undefined, undefined, () => {
+      this.http
+        .delete(`${this.baseUrl}comments/user/${this.authService.decodedToken.nameid}/comment/${commentId}/delete`)
+        .subscribe(
+          response => {
+            this.getComments();
+          },
+          error => {
+            this.alertify.error(error.error);
+          }
+        );
+    });
   }
 
   addToCollection() {
     if (!this.authService.loggedIn()) {
-      this.signInError = true;
+      this.alertify.error('You need to be logged in to do that', 2);
       return;
     }
     this.http.post(`${this.baseUrl}games/${this.authService.decodedToken.nameid}/${this.product.id}/collection`, {})
@@ -98,7 +103,7 @@ export class ProductDetailComponent implements OnInit {
           console.log('success');
         },
         error => {
-          console.log(error.error);
+          this.alertify.error(error.error);
         }
       );
   }

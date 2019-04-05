@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UserForRegister } from '../_models/user-for-register';
 import { AuthService } from '../_services/auth.service';
 import { Location } from '@angular/common';
+import { AlertifyService } from '../_services/alertify.service';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,7 @@ export class RegisterComponent implements OnInit {
   user: UserForRegister;
   registerForm: FormGroup;
 
-  constructor(private authService: AuthService, private fb: FormBuilder, private router: Router) { }
+  constructor(private authService: AuthService, private fb: FormBuilder, private router: Router, private alertify: AlertifyService) { }
 
   ngOnInit() {
     this.createRegisterForm();
@@ -40,9 +41,9 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       this.user = Object.assign({}, this.registerForm.value);
       this.authService.register(this.user).subscribe(() => {
-        console.log('success');
+        this.alertify.success('Successfully created account', 2);
       }, error => {
-        console.log(error);
+        this.alertify.error(error.error, 3);
       }, () => {
         this.authService.login(this.user).subscribe(() => {
           this.router.navigate(['/']);
@@ -54,11 +55,12 @@ export class RegisterComponent implements OnInit {
       this.registerForm.get('password').markAsTouched();
       this.registerForm.get('confirmPassword').markAsTouched();
     }
-    console.log(this.registerForm.value);
   }
 
   cancel() {
-    this.router.navigate(['/']);
+    this.alertify.confirm('Are you sure you want to cancel?', undefined, undefined, () => {
+      this.router.navigate(['/']);
+    });
   }
 
 }

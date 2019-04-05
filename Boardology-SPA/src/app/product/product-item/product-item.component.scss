@@ -50,8 +50,16 @@
 }
 
 i {
-    color: $color-board-aqua;
+    color: white;
     margin-right: 4px;
+}
+
+.upvoted {
+    color: $color-board-aqua;
+}
+
+.downvoted {
+    color: red;
 }
 
 // .trending {

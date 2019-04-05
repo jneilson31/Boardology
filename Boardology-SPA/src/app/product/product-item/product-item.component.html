@@ -18,9 +18,9 @@
     <div class="card-footer">
         <div class="row">
             <div class="col d-flex justify-content-start">
-                <div (click)="upvoteGame(product.id)"><i class="fa fa-thumbs-up"></i> {{ product.upvotes }} </div>
+                <div (click)="upvoteGame(product.id)"><i class="fa fa-thumbs-up" [ngClass]="{upvoted: isProductUpvoted(product.id) || hasUpvoted}"></i> {{ product.upvotes }} </div>
                 <span class="mx-2">|</span>
-                <div (click)="downvoteGame(product.id)"><i class="fa fa-thumbs-down"></i> {{ product.downvotes }}</div>
+                <div (click)="downvoteGame(product.id)"><i class="fa fa-thumbs-down" [ngClass]="{downvoted: isProductDownvoted(product.id) || hasDownvoted}"></i> {{ product.downvotes }}</div>
             </div>
             <div class="col d-flex justify-content-end">
                 <p>Price - $32.99</p>

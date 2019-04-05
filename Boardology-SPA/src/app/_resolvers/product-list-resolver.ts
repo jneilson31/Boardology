@@ -10,7 +10,7 @@ export class ProductListResolver implements Resolve<Product[]> {
 
     constructor(private router: Router, private productService: ProductService) { }
 
-    resolve(): Observable<Product[]> {
+    resolve(): Observable<any> {
         return this.productService.getProducts().pipe(
             catchError(error => {
                 console.log('error', error);

@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
   getProducts() {
     this.productService.getProducts()
     .subscribe(products => {
-      this.products = products;
+      this.products = products[0];
     }, error => {
       console.log(error);
     });
