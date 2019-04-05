@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
+import { ProductService } from '../_services/product.service';
+import { WishlistProduct } from '../_models/wishlist-product.model';
 
 @Component({
   selector: 'app-wishlist',
@@ -8,7 +10,7 @@ import { HttpClient} from '@angular/common/http';
 })
 export class WishlistComponent implements OnInit {
 
-  wishlist
+  wishlist: WishlistProduct[] = [];
   
   constructor(private http: HttpClient) { }
 
@@ -17,6 +19,10 @@ export class WishlistComponent implements OnInit {
 
   onGetWishlist() {
     return this.http.get(`http://localhost:5000/api/Games/{userId}/wishlist`);
+  }
+
+  addToWishlist() {
+    
   }
 
 }
