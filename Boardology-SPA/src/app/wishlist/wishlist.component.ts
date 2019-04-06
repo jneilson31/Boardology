@@ -1,28 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { ProductService } from '../_services/product.service';
 import { WishlistProduct } from '../_models/wishlist-product.model';
+import { environment } from '../../environments/environment';
+import { AuthService } from '../_services/auth.service';
 
 @Component({
-  selector: 'app-wishlist',
-  templateUrl: './wishlist.component.html',
-  styleUrls: ['./wishlist.component.scss']
+  selector: "app-wishlist",
+  templateUrl: "./wishlist.component.html",
+  styleUrls: ["./wishlist.component.scss"]
 })
 export class WishlistComponent implements OnInit {
+  productWishlist: WishlistProduct[] = [];
+  baseUrl = environment.apiUrl;
 
-  wishlist: WishlistProduct[] = [];
-  
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private authService: AuthService) { }
 
   ngOnInit() {
+    this.onGetWishlist();
   }
 
   onGetWishlist() {
-    return this.http.get(`http://localhost:5000/api/Games/{userId}/wishlist`);
+    return this.http
+      .get<WishlistProduct[]>(
+        `${this.baseUrl}games/${
+          this.authService.decodedToken.nameid
+        }/wishlist`
+      )
+      .subscribe(response => {
+        this.productWishlist = response;
+      });
   }
-
-  addToWishlist() {
-    
-  }
-
 }

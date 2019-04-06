@@ -68,7 +68,6 @@ export class ProductItemComponent implements OnInit {
       if (!this.authService.loggedIn()) {
         return false;
       }
-      console.log(this.upvotes);
       return this.upvotes.some(upvote => upvote.gameId === productId);
     }
 
