@@ -16,7 +16,7 @@ export class CollectionComponent implements OnInit {
   productCollection: CollectionProduct[];
   hasRetrievedCollection = false;
 
-  constructor(private http: HttpClient, private authService: AuthService, private alertify: AlertifyService) {}
+  constructor(private http: HttpClient, private authService: AuthService, private alertify: AlertifyService) { }
 
   ngOnInit() {
     this.getCollection();
@@ -33,13 +33,13 @@ export class CollectionComponent implements OnInit {
 
   removeFromCollection(productId: number): void {
     this.alertify.confirm('Are you sure you want remove this game from your collection?', 'Yes', undefined, () => {
-    this.http.delete(`${this.baseUrl}games/${this.authService.decodedToken.nameid}/${productId}/collection`)
-      .subscribe(results => {
-        const productToRemove = this.productCollection.findIndex(x => x.id === productId);
-        this.productCollection.splice(productToRemove, 1);
-      }, error => {
-        console.log(error);
-      });
+      this.http.delete(`${this.baseUrl}games/${this.authService.decodedToken.nameid}/${productId}/collection`)
+        .subscribe(results => {
+          const productToRemove = this.productCollection.findIndex(x => x.id === productId);
+          this.productCollection.splice(productToRemove, 1);
+        }, error => {
+          console.log(error);
+        });
     });
   }
 }

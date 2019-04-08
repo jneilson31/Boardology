@@ -14,8 +14,7 @@ export class WishlistComponent implements OnInit {
   productWishlist: WishlistProduct[] = [];
   baseUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient,
-              private authService: AuthService) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   ngOnInit() {
     this.onGetWishlist();
@@ -25,7 +24,7 @@ export class WishlistComponent implements OnInit {
     return this.http
       .get<WishlistProduct[]>(
         `${this.baseUrl}games/${
-          this.authService.decodedToken.nameid
+        this.authService.decodedToken.nameid
         }/wishlist`
       )
       .subscribe(response => {

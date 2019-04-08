@@ -1,36 +1,12 @@
-<!-- <div class="shadow card mb-4" *ngFor="let product of productCollection">
-    <div class="card-body" routerLinkActive="active" [routerLink]="['/games/', product.id]">
-      <div class="row no-gutters">
-        <div class="col-4 align-self-center p-2">
-          <img class="img-fluid d-flex" src="{{  product.photoUrl }}" alt=" {{ product.name }}">
-        </div>
-      </div>
-    </div>
-</div> -->
-<!-- <div class="container">
-  <h3 class="text-center">Your Collection:</h3>
+<div class="container">
+  <h2>My Collection</h2>
+  <hr />
   <div *ngIf="!productCollection?.length">
     <p>You don't have any items in your collection!</p>
     <button class="btn btn-primary" [routerLink]="['/games']">View Games</button>
   </div>
-  <ul class="list-group">
-    <li *ngFor="let product of productCollection" class="list-group-item" >
-      <div class="row no-gutters" [routerLink]="['/games/', product.id]">
-        <div class="col-3">
-          <span class="game-image"><img src="{{ product.photoUrl }}" alt="{{ product.name }}"></span>
-        </div>
-        <div class="col-9">
-          <span class="game-text">{{ product.name }}
-          </span>
-        </div>
-      </div>
-      <p class="delete"(click)="removeFromCollection(product.id)">Delete</p>
-    </li>
-  </ul>
-</div> -->
-<h2>My Collection</h2>
-<hr>
-
+</div>
+<hr />
 <table class="table table-striped table-dark table-hover">
   <thead>
     <tr>
@@ -44,20 +20,8 @@
     <tr *ngFor="let product of productCollection; let i = index">
       <th class="collection-total" scope="row">{{ i + 1 }}</th>
       <td><img src="{{ product.photoUrl }}" alt=""></td>
-      <td>{{ product.name }}</td>
+      <td [routerLink]="['/games/', product.id]">{{ product.name }}</td>
       <td class="share-column"><i class="fa fa-share-square"></i></td>
     </tr>
-    <!-- <tr>
-      <th class="collection-total" scope="row">2</th>
-      <td><img src="../../assets/sorry.jpeg" alt=""></td>
-      <td>Sorry</td>
-      <td class="share-column"><i class="fa fa-share-square"></i></td>
-    </tr>
-    <tr>
-      <th class="collection-total" scope="row">3</th>
-      <td><img src="../../assets/sorry.jpeg" alt=""></td>
-      <td>Sorry</td>
-      <td class="share-column"><i class="fa fa-share-square"></i></td>
-    </tr> -->
   </tbody>
 </table>
