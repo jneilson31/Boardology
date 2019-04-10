@@ -28,6 +28,7 @@ namespace Boardology.API.Data
         Task<Wishlist> GetWishlistItem(int userId, int gameId);
         Task<IList> GetDownvotesForUser(int userId);
         Task<IList> GetUpvotesForUser(int userId);
-
+        Task<Game> DecreaseUpvotes(int gameId);
+        Task<Game> DecreaseDownvotes(int gameId);
     }
 }

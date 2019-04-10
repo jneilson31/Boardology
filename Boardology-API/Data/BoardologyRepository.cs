@@ -104,6 +104,26 @@ namespace Boardology.API.Data
             return game;
         }
 
+        public async Task<Game> DecreaseUpvotes(int gameId)
+        {
+            var game = await _context.Games.SingleOrDefaultAsync(u => u.Id == gameId);
+            if (game != null)
+            {
+                game.Upvotes = game.Upvotes - 1;
+            }
+            return game;
+        }
+
+        public async Task<Game> DecreaseDownvotes(int gameId)
+        {
+            var game = await _context.Games.SingleOrDefaultAsync(u => u.Id == gameId);
+            if (game != null)
+            {
+                game.Downvotes = game.Downvotes - 1;
+            }
+            return game;
+        }
+
         public async Task<Comment> GetComment(int commentId)
         {
             var comment = await _context.Comments.SingleOrDefaultAsync(u => u.Id == commentId);

@@ -5,6 +5,7 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 import { Product } from '../../_models/product.model';
+import { AlertifyService } from '../../_services/alertify.service';
 
 @Component({
   selector: 'app-search',
@@ -15,20 +16,25 @@ export class SearchComponent implements OnInit {
 
   products: Product[] = [];
   queryField: FormControl = new FormControl();
-  hasNoSearchResults = true;
-  constructor(private searchService: SearchService) { }
+  hasSearchResults = false;
+  isDoneSearching = false;
+  constructor(private searchService: SearchService, private alertify: AlertifyService) { }
 
   ngOnInit() {
     this.queryField.valueChanges
     .debounceTime(350)
     .distinctUntilChanged()
-    .switchMap((query) => this.searchService.search(query))
+    .switchMap(query => this.searchService.search(query))
     .subscribe(results => {
         this.products = results;
-        this.hasNoSearchResults = this.products.length ? false : true;
+        this.hasSearchResults = this.products.length ? true : false;
+        this.isDoneSearching = true;
         if (this.queryField.value === '') {
-          this.hasNoSearchResults = true;
+          this.hasSearchResults = false;
+          this.isDoneSearching = false;
         }
+      }, error => {
+        this.alertify.error('Could not search!');
       });
   }
 }

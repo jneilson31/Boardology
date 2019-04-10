@@ -17,8 +17,8 @@ export class ProductItemComponent implements OnInit {
   @Input() product: Product;
   @Input() upvotes: any[];
   @Input() downvotes: any[];
-  hasUpvoted = false;
-  hasDownvoted = false;
+  hasUpvoted: boolean;
+  hasDownvoted: boolean;
   isTrending: boolean;
   baseUrl = environment.apiUrl;
 
@@ -26,6 +26,8 @@ export class ProductItemComponent implements OnInit {
 
   ngOnInit() {
     this.isTrending = this.isProductTrending();
+    this.hasUpvoted = this.isProductUpvoted();
+    this.hasDownvoted = this.isProductDownvoted();
   }
 
     getShortenedDescription(description: string): string {
@@ -39,10 +41,15 @@ export class ProductItemComponent implements OnInit {
       }
       this.http.post(`${this.baseUrl}votes/${this.authService.decodedToken.nameid}/${productId}/upvote`, {})
       .subscribe(response => {
-        this.product.upvotes++;
-        this.hasUpvoted = true;
+        if (this.hasUpvoted) {
+          this.product.upvotes--;
+          this.hasUpvoted = false;
+        } else {
+          this.product.upvotes++;
+          this.hasUpvoted = true;
+        }
       }, error => {
-        this.alertify.error(error.error, 2);
+        this.alertify.error(error.error);
       });
     }
 
@@ -53,8 +60,13 @@ export class ProductItemComponent implements OnInit {
       }
       this.http.post(`${this.baseUrl}votes/${this.authService.decodedToken.nameid}/${productId}/downvote`, {})
       .subscribe(response => {
-        this.product.downvotes++;
-        this.hasDownvoted = true;
+        if (this.hasDownvoted) {
+          this.product.downvotes--;
+          this.hasDownvoted = false;
+        } else {
+          this.product.downvotes++;
+          this.hasDownvoted = true;
+        }
       }, error => {
         this.alertify.error(error.error, 2);
       });
@@ -64,18 +76,18 @@ export class ProductItemComponent implements OnInit {
       return this.isTrending = this.product.upvotes > this.product.downvotes * 2 ? true : false;
     }
 
-    isProductUpvoted(productId: number): boolean {
+    isProductUpvoted(): boolean {
       if (!this.authService.loggedIn()) {
         return false;
       }
-      return this.upvotes.some(upvote => upvote.gameId === productId);
+      return this.upvotes.some(upvote => upvote.gameId === this.product.id);
     }
 
-    isProductDownvoted(productId: number): boolean {
+    isProductDownvoted(): boolean {
       if (!this.authService.loggedIn()) {
         return false;
       }
-      return this.downvotes.some(upvote => upvote.gameId === productId);
+      return this.downvotes.some(upvote => upvote.gameId === this.product.id);
     }
 
 

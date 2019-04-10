@@ -29,20 +29,28 @@ namespace Boardology.API.Controllers
         [HttpPost("{userId}/{gameId}/upvote")]
         public async Task<IActionResult> UpvoteGame(int userId, int gameId)
         {
-            // if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-            // {
-            //     return Unauthorized();
-            // }
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+            
+            if (await _repo.GetGame(gameId) == null)
+            {
+                return NotFound();
+            }
+
             var upvote = await _repo.GetUpvote(userId, gameId);
 
             if (upvote != null)
             {
-                return BadRequest("You already upvoted that game!");
-            }
-
-            if (await _repo.GetGame(gameId) == null)
-            {
-                return NotFound();
+                
+                await _repo.DecreaseUpvotes(gameId);
+                _repo.Delete(upvote);
+                if (await _repo.SaveAll())
+                {
+                    return Ok();
+                }
+                return BadRequest("Failed to remove upvote");
             }
 
             upvote = new Upvote
@@ -68,20 +76,27 @@ namespace Boardology.API.Controllers
         [HttpPost("{userId}/{gameId}/downvote")]
         public async Task<IActionResult> DownvoteGame(int userId, int gameId)
         {
-            // if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-            // {
-            //     return Unauthorized();
-            // }
-            var downvote = await _repo.GetDownvote(userId, gameId);
-
-            if (downvote != null)
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
             {
-                return BadRequest("You already downvoted that game!");
+                return Unauthorized();
             }
 
             if (await _repo.GetGame(gameId) == null)
             {
                 return NotFound();
+            }
+
+            var downvote = await _repo.GetDownvote(userId, gameId);
+
+            if (downvote != null)
+            {
+                await _repo.DecreaseUpvotes(gameId);
+                _repo.Delete(downvote);
+                if (await _repo.SaveAll())
+                {
+                    return Ok();
+                }
+                return BadRequest("Failed to remove upvote");
             }
 
             downvote = new Downvote
@@ -123,7 +138,7 @@ namespace Boardology.API.Controllers
             {
                 return Unauthorized();
             }
-            var upvotes = await _repo.GetDownvotesForUser(userId);
+            var upvotes = await _repo.GetUpvotesForUser(userId);
 
             return Ok(upvotes);
         }
