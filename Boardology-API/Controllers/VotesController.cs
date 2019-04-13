@@ -118,29 +118,34 @@ namespace Boardology.API.Controllers
         }
 
         [Authorize]
-        [HttpGet("{userId}/downvotes")]
-        public async Task<IActionResult> GetDownvotes(int userId)
-        {
-            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-            {
-                return Unauthorized();
-            }
-            var downvotes = await _repo.GetDownvotesForUser(userId);
-
-            return Ok(downvotes);
-        }
-
-        [Authorize]
-        [HttpGet("{userId}/upvotes")]
-        public async Task<IActionResult> GetUpvotes(int userId)
+        [HttpGet("{userId}/votes")]
+        public async Task<IActionResult> GetVotes(int userId)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
             {
                 return Unauthorized();
             }
             var upvotes = await _repo.GetUpvotesForUser(userId);
+            var downvotes = await _repo.GetDownvotesForUser(userId);
 
-            return Ok(upvotes);
+            return Ok(new
+            {
+                upvotes = upvotes,
+                downvotes = downvotes
+            });
         }
+
+        //[Authorize]
+        //[HttpGet("{userId}/upvotes")]
+        //public async Task<IActionResult> GetUpvotes(int userId)
+        //{
+        //    if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+        //    {
+        //        return Unauthorized();
+        //    }
+            
+
+            
+        //}
     }
 }

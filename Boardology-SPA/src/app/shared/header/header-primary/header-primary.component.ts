@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/_services/auth.service';
   styleUrls: ['./header-primary.component.scss']
 })
 export class HeaderPrimaryComponent implements OnInit {
-  menuStatus: boolean = false;
+  menuStatus = false;
 
   constructor(private authService: AuthService) { }
 

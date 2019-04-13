@@ -29,7 +29,10 @@ namespace Boardology.API.Controllers
         public async Task<IActionResult> GetGames()
         {
             var games = await _repo.GetGames();
-            return Ok(games);
+            return Ok(new
+            {
+                games = games
+            });
         }
 
         [HttpGet("{gameId}/game")]
