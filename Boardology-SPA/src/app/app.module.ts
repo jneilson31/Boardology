@@ -36,6 +36,7 @@ import { ProductDetailCommentsResolver } from './_resolvers/product-detail-comme
 import { CategoryGameComponent } from './shared/category/category-game/category-game.component';
 import { CollectionComponent } from './collection/collection.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
+import { CacheInterceptorProvider } from './shared/interceptors/cache.interceptor';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
@@ -87,7 +88,8 @@ export function tokenGetter() {
       ProductService,
       ProductListResolver,
       ProductDetailResolver,
-      ProductDetailCommentsResolver
+      ProductDetailCommentsResolver,
+      CacheInterceptorProvider,
    ],
    bootstrap: [
       AppComponent
