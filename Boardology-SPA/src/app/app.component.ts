@@ -3,6 +3,9 @@ import { AuthService } from './_services/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ProductService } from './_services/product.service';
 import { Product } from './_models/product.model';
+import { Downvote } from './_models/downvote.model';
+import { Upvote } from './_models/upvote.model';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +16,7 @@ export class AppComponent implements OnInit {
   title = 'Boardology';
   jwtHelper = new JwtHelperService();
   products: Product[];
+  subject = new Subject<Product[]>();
 
   constructor(
     private authService: AuthService,
@@ -24,17 +28,5 @@ export class AppComponent implements OnInit {
     if (token) {
       this.authService.decodedToken = this.jwtHelper.decodeToken(token);
     }
-    this.getProducts();
-  }
-
-  getProducts() {
-    this.productService.getProducts().subscribe(
-      products => {
-        this.productService.products = products[0];
-      },
-      error => {
-        console.log(error);
-      }
-    );
   }
 }

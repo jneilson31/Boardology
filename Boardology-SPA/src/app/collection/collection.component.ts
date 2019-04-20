@@ -14,7 +14,6 @@ import { AlertifyService } from '../_services/alertify.service';
 export class CollectionComponent implements OnInit {
   baseUrl = environment.apiUrl;
   productCollection: CollectionProduct[];
-  hasRetrievedCollection = false;
 
   constructor(private http: HttpClient, private authService: AuthService, private alertify: AlertifyService) { }
 
@@ -23,12 +22,13 @@ export class CollectionComponent implements OnInit {
   }
 
   getCollection(): void {
-    if (!this.hasRetrievedCollection) {
+    if (!this.authService.loggedIn()) {
+      return;
+    }
       this.http.get<CollectionProduct[]>(`${this.baseUrl}games/${this.authService.decodedToken.nameid}/collection`)
         .subscribe(results => {
           this.productCollection = results;
         });
-    }
   }
 
   removeFromCollection(productId: number): void {

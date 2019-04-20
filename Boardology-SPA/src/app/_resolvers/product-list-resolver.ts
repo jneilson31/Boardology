@@ -5,18 +5,23 @@ import { catchError } from 'rxjs/operators';
 import { Product } from '../_models/product.model';
 import { ProductService } from '../_services/product.service';
 
-@Injectable()
-export class ProductListResolver implements Resolve<Product[]> {
 
-    constructor(private router: Router, private productService: ProductService) { }
+// We can implement this later. For now, don't.
 
-    resolve(): Observable<any> {
-        return this.productService.getProducts().pipe(
-            catchError(error => {
-                console.log('error', error);
-                this.router.navigate(['/']);
-                return of(null);
-            })
-        );
-    }
-}
+// @Injectable()
+// export class ProductListResolver implements Resolve<Product[]> {
+
+//     constructor(private router: Router, private productService: ProductService) { }
+
+//     resolve(): Observable<any> {
+//         return this.productService.getProducts().pipe(
+//             catchError(error => {
+//                 console.log('error', error);
+//                 this.router.navigate(['/']);
+//                 return of(null);
+//             })
+//         );
+//     }
+// }
+
+

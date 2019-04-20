@@ -30,7 +30,6 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { CategoryComponent } from './shared/category/category.component';
 import { HomeIntroContentComponent } from './home/home-intro-content/home-intro-content.component';
 import { ProductService } from './_services/product.service';
-import { ProductListResolver } from './_resolvers/product-list-resolver';
 import { ProductDetailResolver } from './_resolvers/product-detail-resolver';
 import { ProductDetailCommentsResolver } from './_resolvers/product-detail-comments-resolver';
 import { CategoryGameComponent } from './shared/category/category-game/category-game.component';
@@ -86,7 +85,6 @@ export function tokenGetter() {
    providers: [
       SearchService,
       ProductService,
-      ProductListResolver,
       ProductDetailResolver,
       ProductDetailCommentsResolver,
       CacheInterceptorProvider,

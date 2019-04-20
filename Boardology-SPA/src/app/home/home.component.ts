@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Product } from '../_models/product.model';
 import { ProductService } from '../_services/product.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
-
+export class HomeComponent implements OnInit{
   categories: string[] = [
     'All',
     'Adventure',
@@ -29,16 +29,19 @@ export class HomeComponent implements OnInit {
     'Party',
     'Sports',
     // 'Wargame',
-    'Word',
+    'Word'
     // 'Zombies',
   ];
 
   products: Product[];
+  productSubscription: Subscription;
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService) {}
 
   ngOnInit() {
-    this.products = this.productService.products;
+     this.productService.getProducts()
+     .subscribe(products => {
+       this.products = products;
+     });
   }
-
 }

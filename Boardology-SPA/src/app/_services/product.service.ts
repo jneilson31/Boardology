@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Product } from '../_models/product.model';
-import { Observable, forkJoin } from 'rxjs';
+import { Observable, forkJoin, Subject } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -12,6 +12,7 @@ export class ProductService {
   baseUrl = environment.apiUrl;
   products: Product[];
   comments: Comment[];
+  subject = new Subject<Product[]>();
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
@@ -19,16 +20,8 @@ export class ProductService {
     return this.http.get<Product>(`${this.baseUrl}games/${gameId}/game`);
   }
 
-  getProducts(): Observable<any> {
-    const productList = this.http.get<Product[]>(`${this.baseUrl}games`);
-
-    if (!this.authService.loggedIn()) {
-       return forkJoin([productList]);
-    }
-
-    const upvoteList = this.http.get(`${this.baseUrl}votes/${this.authService.decodedToken.nameid}/upvotes`);
-    const downvoteList = this.http.get(`${this.baseUrl}votes/${this.authService.decodedToken.nameid}/downvotes`);
-    return forkJoin([productList, upvoteList, downvoteList]);
+  getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseUrl}games`);
   }
 
   getComments(gameId: number): Observable<Comment[]> {
