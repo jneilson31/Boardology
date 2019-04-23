@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SearchService } from '../search/search.service';
 import { FormControl } from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -27,7 +26,6 @@ export class SearchComponent implements OnInit {
   isDoneSearching = false;
 
   constructor(
-    private searchService: SearchService,
     private alertify: AlertifyService,
     private productService: ProductService
   ) {}
