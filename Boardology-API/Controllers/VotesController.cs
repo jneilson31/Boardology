@@ -90,7 +90,7 @@ namespace Boardology.API.Controllers
 
             if (downvote != null)
             {
-                await _repo.DecreaseUpvotes(gameId);
+                await _repo.DecreaseDownvotes(gameId);
                 _repo.Delete(downvote);
                 if (await _repo.SaveAll())
                 {
