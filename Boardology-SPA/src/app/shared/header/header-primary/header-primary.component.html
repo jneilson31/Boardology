@@ -1,11 +1,11 @@
-<nav class="navbar nav-primary navbar-expand-lg navbar-dark ">
+<nav class="navbar nav-primary navbar-expand-lg navbar-dark sticky-test">
   <a class="navbar-brand" routerLink="/" routerLinkActive="router-link-active" >Boardology</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" (click)="toggleSidebar()">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" (click)="onClickMenu()" [ngClass]="menuStatus ? 'show' : ''"
-    id="navbarSupportedContent">
+</nav>
+<nav class="navbar nav-primary navbar-expand-lg navbar-dark drawer" [ngClass]="{'openDrawer': menuStatus && hasClicked, 'closeDrawer': !menuStatus && hasClicked}">
+  <div class="collapse navbar-collapse show nav-content" id="navbarSupportedContent" >
     <div class="login d-flex justify-content-start">
       <button *ngIf="!isLoggedIn()" class="btn btn-primary btn-sm mr-2 w-50" (click)="onClickMenu()" routerLink="/login">Login</button>
       <button *ngIf="isLoggedIn()" (click)="onLogout()" class="btn btn-primary btn-sm w-100" routerLink="/">Logout</button>
