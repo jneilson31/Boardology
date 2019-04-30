@@ -1,5 +1,5 @@
 <!-- <p id="filterText" class="pt-2 px-3 text-right">Filter</p> -->
-<app-search></app-search>
+<app-search [originalProducts]= "products"></app-search>
 <div class="container">
     <h1>Games</h1>
     <app-product-item *ngFor="let product of products | slice:0:[max]" [product]="product" [upvotes]="upvotes" [downvotes]="downvotes"></app-product-item>
