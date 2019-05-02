@@ -35,10 +35,10 @@ export class ProductItemComponent implements OnInit {
   }
 
     upvoteGame(productId: string): void {
-      if (!this.authService.loggedIn()) {
-        this.alertify.error('You need to be logged in to do that', 2);
+      if (!this.authService.checkLogin()) {
         return;
       }
+
       this.http.post(`${this.baseUrl}votes/${this.authService.decodedToken.nameid}/${productId}/upvote`, {})
       .subscribe(response => {
         if (this.hasUpvoted) {
@@ -54,10 +54,10 @@ export class ProductItemComponent implements OnInit {
     }
 
     downvoteGame(productId: string): void {
-      if (!this.authService.loggedIn()) {
-        this.alertify.error('You need to be logged in to do that!', 2);
+      if (!this.authService.checkLogin()) {
         return;
       }
+
       this.http.post(`${this.baseUrl}votes/${this.authService.decodedToken.nameid}/${productId}/downvote`, {})
       .subscribe(response => {
         if (this.hasDownvoted) {
