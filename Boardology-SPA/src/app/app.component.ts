@@ -3,9 +3,10 @@ import { AuthService } from './_services/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ProductService } from './_services/product.service';
 import { Product } from './_models/product.model';
-import { Downvote } from './_models/downvote.model';
-import { Upvote } from './_models/upvote.model';
 import { Subject } from 'rxjs';
+import { Router, NavigationEnd } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-root',
@@ -20,13 +21,26 @@ export class AppComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private productService: ProductService
-  ) {}
+    private productService: ProductService,
+    public router: Router
+  ) {
+   
+   }
 
   ngOnInit() {
     const token = localStorage.getItem('token');
     if (token) {
       this.authService.decodedToken = this.jwtHelper.decodeToken(token);
     }
+   this.startGoogleAnalytics();
+  }
+
+  private startGoogleAnalytics(): void {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        (<any>window).ga('set', 'page', event.urlAfterRedirects);
+        (<any>window).ga('send', 'pageview');
+      }
+    });
   }
 }
