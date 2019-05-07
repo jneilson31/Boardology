@@ -1,0 +1,20 @@
+//   Media Queries   //
+$break-mobile: "min-width: 576px";
+$break-tablet: "min-width: 768px";
+$break-desktop: "min-width: 992px";
+$break-desktop-large: "min-width: 1200px";
+
+$break-mobile-max: "max-width: 575.98px";
+$break-tablet-max: "max-width: 767.98px";
+$break-desktop-max: "max-width: 991.98px";
+$break-desktop-large-max: "max-width: 1199.98px";
+
+//   Z-Index   //
+
+$zindex-dropdown:          1000 !default;
+$zindex-sticky:            1020 !default;
+$zindex-fixed:             1030 !default;
+$zindex-modal-backdrop:    1040 !default;
+$zindex-modal:             1050 !default;
+$zindex-popover:           1060 !default;
+$zindex-tooltip:           1070 !default;
