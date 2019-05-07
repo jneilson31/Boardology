@@ -146,7 +146,7 @@ namespace Boardology.API.Data
                      comments.Content,
                      comments.Created,
                      comments.UserId,
-                     users.Username
+                     users.UserName
                  }).Take(5).ToListAsync();
                  
 
