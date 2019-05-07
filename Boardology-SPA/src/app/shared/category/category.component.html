@@ -10,10 +10,10 @@
     <div id="collapse{{category}}" class="collapse" [attr.aria-labelledby]="category +'Header'"
       data-parent="#accordionExample">
       <div class="card-body">
-        <ul>
+        <ol>
           <li *ngFor="let product of products | categorySort: category | slice: 0:10"><a
               [routerLink]="['/games/', product.id]">{{product.name}}</a></li>
-        </ul>
+        </ol>
         <div class="view-all-link">
           <a href="#">View All</a>
         </div>
