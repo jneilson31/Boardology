@@ -1,29 +1,13 @@
 <div class="container">
-  <h1>Hello World!</h1>
-  <!-- <div class="card">
-    <div class="row no-gutters">
-      <div class="col-5">
-        <img class="img-fluid" src="../../assets/sorry.jpeg" alt="">
-
-      </div>
-      <div class="col-7 pl-2">
-        <h3>Game Title</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos quam dolore fugiat adipisci, harum ex temporibus
-          ea quas delectus at.</p>
-      </div>
-      <div class="d-inline-flex w-75">
-        <button class="btn btn-primary">Add to Wishlist</button>
-        <button class="btn btn-primary">Add to Collection</button>
-      </div>
-      <div class="d-inline-flex w-25">
-        <div class="col d-flex justify-content-start">
-          <div (click)="upvoteGame(product.id)"><i class="fa fa-thumbs-up"></i> {{ product.upvotes }} </div>
+    <div class="flip-card mt-4">
+      <div class="flip-card-inner" (click)="toggleFlip()" [@flipState]="cardFlip">
+        <div class="flip-card-front">
         </div>
-        <span class="">|</span>
-        <div class="col d-flex justify-content-end">
-          <div (click)="downvoteGame(product.id)"><i class="fa fa-thumbs-down"></i> {{ product.downvotes }}</div>
+        <div class="flip-card-back">
+          <h1>John Doe</h1> 
+          <p>Architect & Engineer</p> 
+          <p>We love that guy</p>
         </div>
       </div>
     </div>
-  </div> -->
 </div>

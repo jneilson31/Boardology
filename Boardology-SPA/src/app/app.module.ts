@@ -21,6 +21,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { CategorySortPipe } from './_pipes/category-sort.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { RegisterComponent } from './register/register.component';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -72,6 +73,7 @@ export function tokenGetter() {
       HttpClientModule,
       ReactiveFormsModule,
       AngularFontAwesomeModule,
+      BrowserAnimationsModule,
       JwtModule.forRoot({
           config: {
               tokenGetter: tokenGetter,
