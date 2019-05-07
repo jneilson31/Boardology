@@ -1,4 +1,10 @@
 @import 'themes/colors';
+@import 'base/typography';
+
+button {
+    font-family: $font-secondary;
+    font-size: 14px;
+}
 
 .btn-primary {
     // background: #00b09b;  /* fallback for old browsers */

@@ -6,6 +6,11 @@
     background: linear-gradient(to right, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+.navbar-brand {
+    font-family: $font-primary;
+    font-size: 24px;
+}
+
 .nav-primary {
     background-color: $color-dark-gray;
 }
