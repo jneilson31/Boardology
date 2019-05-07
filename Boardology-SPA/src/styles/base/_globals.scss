@@ -24,66 +24,7 @@ body {
 	// color: $color-text;
 }
 
-h1, h2,
-h3, h4,
-h5, h6 {
-	// font-family: $font-proxima-nova-semibold;
-	margin: 0;
-	font-weight: normal;
 
-	.subtitle {
-		display: block;
-		// font-size: $global-font-size;
-		// font-family: $font-proxima-nova;
-	}
-}
-
-h1 {
-	font-size: 28px;
-	// color: $color-contacts-blue;
-	margin-bottom: 15px;
-	text-align: center;
-
-	// @media ($breakpoint-desktop) {
-	// 	font-size: 34px;
-	// 	margin-bottom: 25px;
-	// }
-}
-
-h2 {
-	font-size: 24px;
-	// color: $color-contacts-blue;
-	margin-bottom: 15px;
-
-	// @media ($breakpoint-desktop) {
-	// 	font-size: 28px;
-	// }
-}
-
-h3 {
-	font-size: 21px;
-	margin-bottom: 10px;
-
-	// @media ($breakpoint-desktop) {
-	// 	font-size: 24px;
-	// 	margin-bottom: 15px;
-	// }
-}
-
-h4 {
-	font-size: 21px;
-	margin-bottom: 10px;
-}
-
-h5 {
-	font-size: 18px;
-	margin-bottom: 5px;
-}
-
-h6 {
-	font-size: 16px;
-	margin-bottom: 0;
-}
 
 
 

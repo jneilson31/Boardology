@@ -1,7 +1,7 @@
 <div class="shadow card mb-4">
-    <div class="card-header">
+    <h4 class="card-header">
         {{ product.name }}
-    </div>
+    </h4>
     <div class="card-body" routerLinkActive="active" [routerLink]="['/games/', product.id]">
         <div class="row no-gutters"><div class="ribbon" *ngIf="isTrending"><span>Trending</span></div>
             <div class="col-4 align-self-center p-2">

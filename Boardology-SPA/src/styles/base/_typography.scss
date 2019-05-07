@@ -2,4 +2,66 @@
 
 $global-font-size: 16px;
 $font-base: Arial, sans-serif;
-// $font-contacts-neue-medium-condensed: "ContactsNeueMediumCondensed", $font-base;
+$font-primary: "Oswald", $font-base;
+$font-secondary: "Esteban", $font-base;
+
+// H Elements  //
+
+h1, h2,
+h3, h4,
+h5, h6 {
+	font-family: $font-primary;
+	font-weight: normal;
+	margin: 0;
+
+	.subtitle {
+		display: block;
+		font-size: $global-font-size;
+		// font-family: $font-proxima-nova;
+	}
+}
+
+h1 {
+	font-size: 32px;
+	margin-bottom: 15px;
+
+	// @media ($breakpoint-desktop) {
+	// 	font-size: 34px;
+	// 	margin-bottom: 25px;
+	// }
+}
+
+h2 {
+	font-size: 28px;
+	// color: $color-contacts-blue;
+	margin-bottom: 15px;
+
+	// @media ($breakpoint-desktop) {
+	// 	font-size: 28px;
+	// }
+}
+
+h3 {
+	font-size: 25px;
+	margin-bottom: 10px;
+
+	// @media ($breakpoint-desktop) {
+	// 	font-size: 24px;
+	// 	margin-bottom: 15px;
+	// }
+}
+
+h4 {
+	font-size: 25px;
+	margin-bottom: 10px;
+}
+
+h5 {
+	font-size: 22px;
+	margin-bottom: 5px;
+}
+
+h6 {
+	font-size: 20px;
+	margin-bottom: 0;
+}
