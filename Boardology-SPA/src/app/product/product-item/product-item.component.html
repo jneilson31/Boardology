@@ -31,29 +31,20 @@
     <div class="flip-card-inner" (click)="toggleFlip()" [@flipState]="cardFlip">
         <div class="flip-card-front">
             <div class="ribbon" *ngIf="isTrending"><span>Trending</span></div>
-            <div class="row">
-                <div class="col">
-                        <img class="img-fluid" src="{{  product.photoUrl }}" alt=" {{ product.name }}">
-                </div>
-                <div class="col">
-                    <h2>{{ product.name}}</h2>
-                    <i class="fa fa-plus-circle"></i>
-
-                </div>
-            </div>
-
+            <h2>{{ product.name}}</h2>
+            <i class="fa fa-plus-circle"></i>
         </div>
-        <div class="flip-card-back">
-            <h6>Game Description</h6>
-            <p class="productDescription"> {{ getShortenedDescription(product.description) }} </p>
-            <div class="gameInfoContainer">
-                <div class="gameInfo">Players <p>{{ product.numPlayers }}</p>
-                </div>
-                <div class="gameInfo">Time <p>{{ product.timeToPlay }}</p>
-                </div>
-                <div class="gameInfo">Age <p>{{ product.ageSuggestion }}</p>
+            <div class="flip-card-back">
+                <h6>Game Description</h6>
+                <p class="productDescription"> {{ getShortenedDescription(product.description) }} </p>
+                <div class="gameInfoContainer">
+                    <div class="gameInfo">Players <p>{{ product.numPlayers }}</p>
+                    </div>
+                    <div class="gameInfo">Time <p>{{ product.timeToPlay }}</p>
+                    </div>
+                    <div class="gameInfo">Age <p>{{ product.ageSuggestion }}</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

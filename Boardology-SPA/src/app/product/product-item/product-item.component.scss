@@ -161,8 +161,8 @@ font-weight:400;
 }
 
 .flip-card-front {
-  background-color: $color-;
-  color: $color-dark-gray;
+  background-color: $color-dark-gray;
+  color: $color-white;
   z-index: 2;
   
 }
@@ -211,7 +211,6 @@ i {
     font-size: 32px;
     padding-left: 24px;
     justify-self: flex-end;
-    color: $color-dark-gray;
 }
 
 .productDescription {
