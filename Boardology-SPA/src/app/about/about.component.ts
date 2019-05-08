@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Product } from '../_models/product.model';
 
 @Component({
   selector: 'app-about',
@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   animations: [
     trigger('flipState', [
       state('sideB', style({
-        transform: 'rotateY(179.9deg)'
+        transform: 'rotateY(180deg)'
       })),
       state('sideA', style({
         transform: 'rotateY(0)'
@@ -19,7 +19,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ])
   ]
 })
+
 export class AboutComponent implements OnInit {
+  @Input() product: Product;
 
   cardFlip: string = 'sideA';
 

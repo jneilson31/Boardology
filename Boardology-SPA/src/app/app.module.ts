@@ -17,7 +17,7 @@ import { RouterModule } from '@angular/router';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { CategorySortPipe } from './_pipes/category-sort.pipe';

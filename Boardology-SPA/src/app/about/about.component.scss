@@ -33,8 +33,8 @@
 }
 
 .flip-card-front {
-  background-color: $color-board-aqua;
-  color: black;
+  background-color: $color-board-light-green;
+  color: $color-dark-gray;
   z-index: 2;
   display: flex;
     align-items: flex-end;
@@ -42,18 +42,23 @@
 }
 
 .flip-card-back {
-  background-color: $color-board-light-green;
+  background: #00b09b;  /* fallback for old browsers */
+  background-image: -webkit-linear-gradient(to right bottom, rgba(#00b09b, 0.9), rgba(#96c93d, 0.9));
+  background-image: linear-gradient(to right bottom, rgba(#00b09b, 0.9), rgba(#96c93d, 0.9));
   color: white;
   transform: rotateY(180deg);
   z-index: 1;
 }
 
 .gameInfo {
-  background-color: $color-dark-gray;
-  width: 100%;
-  padding: 20px 15px;
+  align-items: flex-start;
   color: white;
-
+  display: flex;
+  height: 65px;
+  justify-content: center;
+  padding: 8px 16px;
+  width: 100%;
+  background-color: #414345;
 }
 
 .gameInfo:nth-of-type(1) {

@@ -6,11 +6,24 @@ import { AuthService } from '../../_services/auth.service';
 import { AlertifyService } from '../../_services/alertify.service';
 import { Upvote } from '../../_models/upvote.model';
 import { Downvote } from '../../_models/downvote.model';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
-  styleUrls: ['./product-item.component.scss']
+  styleUrls: ['./product-item.component.scss'],
+  animations: [
+    trigger('flipState', [
+      state('sideB', style({
+        transform: 'rotateY(180deg)'
+      })),
+      state('sideA', style({
+        transform: 'rotateY(0)'
+      })),
+      transition('sideB => sideA', animate('500ms ease-out')),
+      transition('sideA => sideB', animate('500ms ease-in'))
+    ])
+  ]
 })
 export class ProductItemComponent implements OnInit {
 
@@ -21,6 +34,7 @@ export class ProductItemComponent implements OnInit {
   hasDownvoted: boolean;
   isTrending: boolean;
   baseUrl = environment.apiUrl;
+  cardFlip = "sideB";
 
   constructor(private http: HttpClient, private authService: AuthService, private alertify: AlertifyService) { }
 
@@ -89,6 +103,11 @@ export class ProductItemComponent implements OnInit {
       }
       return this.downvotes.some(upvote => upvote.gameId === this.product.id);
     }
+
+  toggleFlip() {
+    console.log("clicked");
+    this.cardFlip = (this.cardFlip === 'sideA') ? 'sideB' : 'sideA';
+  }
 
 
 }

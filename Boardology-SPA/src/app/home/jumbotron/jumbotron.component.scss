@@ -3,8 +3,6 @@
 
 .jumbotron {
     background: #00b09b;  /* fallback for old browsers */
-    // background: -webkit-linear-gradient(to left, #96c93d, #00b09b);  /* Chrome 10-25, Safari 5.1-6 */
-    // background: linear-gradient(to left, #96c93d, #00b09b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background-image: -webkit-linear-gradient(to right bottom, rgba(#00b09b, 0.9), rgba(#96c93d, 0.9)) ,url(../../../assets/board-games.jpg); /* Chrome 10-25, Safari 5.1-6 */
     background-image: linear-gradient(to right bottom, rgba(#00b09b, 0.9), rgba(#96c93d, 0.9)) ,url(../../../assets/board-games.jpg); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background-size: cover;

@@ -1,4 +1,4 @@
-<div class="shadow card mb-4">
+<!-- <div class="shadow card mb-4">
     <h4 class="card-header">
         {{ product.name }}
     </h4>
@@ -9,7 +9,6 @@
             </div>
             <div class="col-8 p-1">
                 <p class="game-description"><em> {{ getShortenedDescription(product.description) }}</em></p>
-                <!-- <button class="btn btn-primary btn-sm">Click to purchase game</button> -->
                 <span ><i class="numReviews">({{product.numReviews}})</i></span>
             </div>
             
@@ -27,4 +26,21 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
+<div class="flip-card mt-4 shadow">
+    <div class="flip-card-inner" (click)="toggleFlip()" [@flipState]="cardFlip">
+      <div class="flip-card-front">
+          <h2>{{ product.name}}</h2>
+        <i class="fa fa-plus-circle"></i>
+      </div>
+      <div class="flip-card-back">
+          <div class="gameInfoContainer">
+
+          </div>
+        <div class="gameInfo">Players <p>{{ product.numPlayers }}</p></div>
+        <div class="gameInfo">Time <p>{{ product.timeToPlay }}</p></div>
+        <div class="gameInfo">Age <p>{{ product.ageSuggestion }}</p></div>
+      </div>
+    </div>
+  </div>
