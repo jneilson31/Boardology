@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
@@ -36,9 +36,14 @@ import { CategoryGameComponent } from './shared/category/category-game/category-
 import { CollectionComponent } from './collection/collection.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { CacheInterceptorProvider } from './shared/interceptors/cache.interceptor';
+import { AppLoadService } from './_services/app-load.service';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
+}
+
+export function init_app (appLoadService: AppLoadService) {
+   return () => appLoadService.initializeApp();
 }
 
 @NgModule({
@@ -88,6 +93,8 @@ export function tokenGetter() {
       ProductDetailResolver,
       ProductDetailCommentsResolver,
       CacheInterceptorProvider,
+      AppLoadService,
+    { provide: APP_INITIALIZER, useFactory: init_app, deps: [AppLoadService], multi: true }
    ],
    bootstrap: [
       AppComponent
