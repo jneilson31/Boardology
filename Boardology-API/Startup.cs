@@ -48,7 +48,7 @@ namespace Boardology.API
             });
 
             builder = new IdentityBuilder(builder.UserType, typeof(Role), builder.Services); // probably only need this if I want users and roles
-            builder.AddEntityFrameworkStores<DataContext>();
+            builder.AddEntityFrameworkStores<DataContext>().AddDefaultTokenProviders(); // I needed adddefaulttokenproviders or it wouldn't work. Maybe if I do email confirmation, no longer need?
             builder.AddSignInManager<SignInManager<User>>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

@@ -78,6 +78,8 @@ namespace Boardology.API.Controllers
                 return StatusCode(201);
             }
 
+
+
             return BadRequest(result.Errors);
 
 
@@ -99,13 +101,22 @@ namespace Boardology.API.Controllers
                 return Unauthorized("Something went wrong signing in. Please ensure your information is correct and attempt to sign in again.");
             }
 
+            //var result = await _signInManager.CheckPasswordSignInAsync(user, userForLoginDto.Password, false);
+
+            //var token = "CfDJ8IYranPcjBtPijPpm4AHwQgybeZNahDBX4o+Hylm2VNwmvGoiFaBHzKvID3Qdq0xeoapYhEh1TKKXN3IRB1uOS8r51JQ4AQlPne0ymcotlYJIe5vTQ+jW823RhzspW+2UbhFWiDRfOXy5WPa3nAEIKJS0jO50/gpWRGYr2x3QL/eFDoo5xVye8ovpBRtlNrw1Q==";
+
+            //var passwordReset = await _userManager.ResetPasswordAsync(user, token, "warner");
+
             var result = await _signInManager.CheckPasswordSignInAsync(user, userForLoginDto.Password, false);
+
+            //var loginToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+
 
             if (result.Succeeded)
             {
                 return Ok(new
                 {
-                    token = GenerateJwtToken(user),
+                    token = GenerateJwtToken(user)
                     //user if we want to return the user in local storage on sign in
                 });
             }
