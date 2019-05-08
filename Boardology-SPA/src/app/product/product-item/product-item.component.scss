@@ -62,16 +62,16 @@ i {
     color: red;
 }
 
-// .trending {
-//     background-color: $color-board-aqua;
-//     color:white;
-//     padding: 1px 4px;
-//     position:relative;
-//     float:right;
-//     font-size:0.7em;
-//     bottom:12px;
-//     left:24px;
-// }
+.trending {
+    background-color: $color-board-aqua;
+    color:white;
+    padding: 1px 4px;
+    position:relative;
+    float:right;
+    font-size:0.7em;
+    bottom:12px;
+    left:24px;
+}
 
 .numReviews {
 font-size:0.7em;
@@ -161,7 +161,7 @@ font-weight:400;
 }
 
 .flip-card-front {
-  background-color: $color-board-light-green;
+  background-color: $color-;
   color: $color-dark-gray;
   z-index: 2;
   
@@ -176,13 +176,19 @@ font-weight:400;
     z-index: 1;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
     justify-content: space-between;
+    h6 {
+        padding: 12px;
+    }
 }
 
 .gameInfoContainer {
     display: flex;
     width: 100%;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: $color-dark-gray;
 }
 
 .gameInfo {
@@ -190,24 +196,24 @@ font-weight:400;
   height: 65px;
   padding: 8px 16px;
   width: 100%;
-  background-color: #414345;
+  font-size: 12px;
+  p {
+      font-size: $global-font-size;
+  };
 }
 
-.gameInfo:nth-of-type(1) {
-  border-right: 1px solid white;
-  border-bottom-left-radius: 5px;
-}
-.gameInfo:nth-of-type(3) {
-  border-left: 1px solid white;
-  border-bottom-right-radius: 5px;
+.gameInfo:nth-of-type(2) {
+    border-right: 1px solid white;
+    border-left: 1px solid white;
 }
 
 i {
     font-size: 32px;
     padding-left: 24px;
     justify-self: flex-end;
+    color: $color-dark-gray;
 }
 
 .productDescription {
-    padding: 20px 12px;
+    padding: 0px 12px;
 }
