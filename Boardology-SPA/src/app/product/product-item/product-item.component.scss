@@ -168,15 +168,21 @@ font-weight:400;
 }
 
 .flip-card-back {
-  background: #00b09b;  /* fallback for old browsers */
-  background-image: -webkit-linear-gradient(to right bottom, rgba(#00b09b, 0.9), rgba(#96c93d, 0.9));
-  background-image: linear-gradient(to right bottom, rgba(#00b09b, 0.9), rgba(#96c93d, 0.9));
-  color: white;
-  transform: rotateY(180deg);
-  z-index: 1;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
+    background: #00b09b;
+    background-image: linear-gradient(to right bottom, rgba(0, 176, 155, 0.9), rgba(150, 201, 61, 0.9));
+    color: white;
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.gameInfoContainer {
+    display: flex;
+    width: 100%;
 }
 
 .gameInfo {
@@ -194,4 +200,14 @@ font-weight:400;
 .gameInfo:nth-of-type(3) {
   border-left: 1px solid white;
   border-bottom-right-radius: 5px;
+}
+
+i {
+    font-size: 32px;
+    padding-left: 24px;
+    justify-self: flex-end;
+}
+
+.productDescription {
+    padding: 20px 12px;
 }

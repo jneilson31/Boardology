@@ -34,7 +34,7 @@ export class ProductItemComponent implements OnInit {
   hasDownvoted: boolean;
   isTrending: boolean;
   baseUrl = environment.apiUrl;
-  cardFlip = "sideB";
+  cardFlip = "sideA";
 
   constructor(private http: HttpClient, private authService: AuthService, private alertify: AlertifyService) { }
 

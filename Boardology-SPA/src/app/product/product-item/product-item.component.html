@@ -27,20 +27,21 @@
         </div>
     </div>
 </div> -->
-
 <div class="flip-card mt-4 shadow">
     <div class="flip-card-inner" (click)="toggleFlip()" [@flipState]="cardFlip">
-      <div class="flip-card-front">
-          <h2>{{ product.name}}</h2>
-        <i class="fa fa-plus-circle"></i>
-      </div>
-      <div class="flip-card-back">
-            <div class="gameInfo">Players <p>{{ product.numPlayers }}</p>
+        <div class="flip-card-front">
+            <h2>{{ product.name}}</h2>
+            <i class="fa fa-plus-circle"></i>
+        </div>
+        <div class="flip-card-back">
+            <p class="productDescription"> {{ getShortenedDescription(product.description) }} </p>
+            <div class="gameInfoContainer">
+                <div class="gameInfo">Players <p>{{ product.numPlayers }}</p>
+                </div>
+                <div class="gameInfo">Time <p>{{ product.timeToPlay }}</p>
+                </div>
+                <div class="gameInfo">Age <p>{{ product.ageSuggestion }}</p>
+                </div>
             </div>
-            <div class="gameInfo">Time <p>{{ product.timeToPlay }}</p>
-            </div>
-            <div class="gameInfo">Age <p>{{ product.ageSuggestion }}</p>
-            </div>
-      </div>
+        </div>
     </div>
-  </div>
