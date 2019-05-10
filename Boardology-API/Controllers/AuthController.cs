@@ -3,6 +3,7 @@ using Boardology.API.Data;
 using Boardology.API.Dtos;
 using Boardology.API.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -12,6 +13,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 
 namespace Boardology.API.Controllers
@@ -24,13 +26,15 @@ namespace Boardology.API.Controllers
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly IEmailSender _emailSender;
 
-        public AuthController(IConfiguration config, IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager)
+        public AuthController(IConfiguration config, IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager, IEmailSender emailSender)
         {
             _config = config;
             _mapper = mapper;
             _userManager = userManager;
             _signInManager = signInManager;
+            _emailSender = emailSender;
         }
 
         [HttpPost("register")]
@@ -101,14 +105,13 @@ namespace Boardology.API.Controllers
                 return Unauthorized("Something went wrong signing in. Please ensure your information is correct and attempt to sign in again.");
             }
 
-            //var result = await _signInManager.CheckPasswordSignInAsync(user, userForLoginDto.Password, false);
+            var result = await _signInManager.CheckPasswordSignInAsync(user, userForLoginDto.Password, false);
 
             //var token = "CfDJ8IYranPcjBtPijPpm4AHwQgybeZNahDBX4o+Hylm2VNwmvGoiFaBHzKvID3Qdq0xeoapYhEh1TKKXN3IRB1uOS8r51JQ4AQlPne0ymcotlYJIe5vTQ+jW823RhzspW+2UbhFWiDRfOXy5WPa3nAEIKJS0jO50/gpWRGYr2x3QL/eFDoo5xVye8ovpBRtlNrw1Q==";
 
             //var passwordReset = await _userManager.ResetPasswordAsync(user, token, "warner");
-
-            var result = await _signInManager.CheckPasswordSignInAsync(user, userForLoginDto.Password, false);
-
+            
+   
             //var loginToken = await _userManager.GeneratePasswordResetTokenAsync(user);
 
 
@@ -126,6 +129,32 @@ namespace Boardology.API.Controllers
             //var user = _mapper.Map<UserForRegisterDto>(userFromRepo); // if we want to return anything else in local storage on sign in
 
 
+        }
+
+        [HttpPost("password/reset")]
+        public async Task<IActionResult> SendPasswordResetLink(Email email)
+        {
+            //var userFromRepo = await _repo.Login(userForLoginDto.Email.ToLower(), userForLoginDto.Password);
+            //if (userFromRepo == null)
+            //{
+            //    return Unauthorized("Something went wrong signing in. Please ensure your information is correct and attempt to sign in again.");
+            //}
+
+            var user = await _userManager.FindByEmailAsync("trentonneilson14@hotmail.com");
+
+            if (user == null)
+            {
+                return BadRequest("No email found");
+            }
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+            var callbackUrl = "localhost:4200/?token=" + token;
+            var htmlContent = "<strong>and easy to do anywhere, even with C#</strong>";
+
+            await _emailSender.SendEmailAsync(email.ToString(), "Reset Password", $"Please reset your password by using the following URL: <p>{callbackUrl}<p>");
+
+            return Ok();
         }
 
         private string GenerateJwtToken(User user)
