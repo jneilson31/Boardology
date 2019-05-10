@@ -216,3 +216,15 @@ i {
 .productDescription {
     padding: 0px 12px;
 }
+
+.categoryBox {
+    align-items: center;
+    background: rgba(0, 0, 0, 0.762);
+    border: 1px solid $color-dark-gray; 
+    border-radius: 5px;
+    color: $color-white;
+    display: flex;
+    height: 150px;
+    justify-content: center;
+    width: 100%;
+}

@@ -20,6 +20,29 @@ export class ProductListComponent implements OnInit {
   downvotes: Downvote[];
   max = 20;
   baseUrl = environment.apiUrl;
+  categories: string[] = [
+    'All',
+    'Adventure',
+    // 'Action',
+    'Board',
+    'Card',
+    'Childrens',
+    'Dice',
+    'Educational',
+    // 'Expansion',
+    'Exploration',
+    'Humor',
+    'Memory',
+    // 'Miniatures',
+    // 'Movies & Television',
+    // 'Murder',
+    'Mystery',
+    'Party',
+    'Sports',
+    // 'Wargame',
+    'Word'
+    // 'Zombies',
+  ];
 
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private authService: AuthService ) { }
