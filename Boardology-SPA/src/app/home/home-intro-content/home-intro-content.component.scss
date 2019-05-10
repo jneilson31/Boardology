@@ -6,22 +6,6 @@
     align-items: center;
 }
 
-.homeContentContainer {
-    display: flex;
-    align-items: center;
-}
-
-.homeContentContainer:nth-of-type(2) {
-    display: flex;
+.row:nth-of-type(even) {
     flex-direction: row-reverse;
-    align-items: center;
-}
-
-.titleContainer {
-    text-align: center;
-    width: 70%;
-}
-
-.imgContainer {
-    padding: 12px;
 }
