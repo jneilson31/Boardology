@@ -36,6 +36,7 @@ import { CategoryGameComponent } from './shared/category/category-game/category-
 import { CollectionComponent } from './collection/collection.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { CacheInterceptorProvider } from './shared/interceptors/cache.interceptor';
+import { ArticlesComponent } from './shared/articles/articles.component';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
@@ -63,7 +64,8 @@ export function tokenGetter() {
       CategoryGameComponent,
       CategorySortPipe,
       CollectionComponent,
-      WishlistComponent
+      WishlistComponent,
+      ArticlesComponent
    ],
    imports: [
       BrowserModule,

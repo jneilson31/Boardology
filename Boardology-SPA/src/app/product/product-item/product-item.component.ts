@@ -34,9 +34,11 @@ export class ProductItemComponent implements OnInit {
   hasDownvoted: boolean;
   isTrending: boolean;
   baseUrl = environment.apiUrl;
-  cardFlip = "sideA";
+  cardFlip = 'sideA';
 
-  constructor(private http: HttpClient, private authService: AuthService, private alertify: AlertifyService) { }
+  constructor(private http: HttpClient,
+              private authService: AuthService,
+              private alertify: AlertifyService) { }
 
   ngOnInit() {
     this.isTrending = this.isProductTrending();
