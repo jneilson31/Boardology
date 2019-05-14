@@ -1,31 +1,34 @@
 @import 'src/styles/main';
 
-.categoryBox {
-    align-items: center;
-    background: rgba(0, 0, 0, 0.762);
-    border: 1px solid $color-dark-gray; 
-    border-radius: 5px;
-    color: $color-white;
-    display: flex;
-    height: 150px;
-    justify-content: center;
-    width: 100%;
+// .categoryContainer {
+//     margin-bottom: 1rem;
+//     height: 200px;
+//     overflow-x: scroll;
+//     overflow-y: hidden;
+//     white-space: nowrap;
+// }
+
+.categoryContainer {
+    margin-bottom: 1rem;
 }
 
-.backTitleWrap {
-    width: 100%;
-    text-align: center;
-    background: darken($color-board-aqua, 5%);
-    padding: 1.2rem;
-}
+// .card-a {
+//     display: inline-block;
+//     background: red;
+//     height: 100%;
+//     width: 200px;
+// }
 
-.triangleDown {
-      width: 0;
-      height: 0;
-      border-left: 60px solid transparent;
-      border-right: 60px solid transparent;
-      border-top: 60px solid $color-board-aqua;
-      position: absolute;
-      filter: drop-shadow(0px 5px 5px $color-dark-gray);
-      top: 80px;
-}
+// .card-b {
+//     display: inline-block;
+//     background: yellow;
+//     height: 100%;
+//     width: 200px;
+// }
+
+// .card-c {
+//     display: inline-block;
+//     background: greenyellow;
+//     height: 100%;
+//     width: 200px;
+// }

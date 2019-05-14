@@ -7,12 +7,14 @@ import { Upvote } from '../../_models/upvote.model';
 import { Downvote } from '../../_models/downvote.model';
 import { AuthService } from '../../_services/auth.service';
 import { forkJoin } from 'rxjs';
+import { trigger, state, style, animate, transition } from '@angular/animations';
+
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss']
-})
+  styleUrls: ['./product-list.component.scss'],
+  })
 
 export class ProductListComponent implements OnInit {
   products: Product[];
@@ -20,27 +22,28 @@ export class ProductListComponent implements OnInit {
   downvotes: Downvote[];
   max = 20;
   baseUrl = environment.apiUrl;
+  categoryLoad: boolean = false;
   categories: string[] = [
     'All',
     'Adventure',
-    // 'Action',
+    'Action',
     'Board',
     'Card',
     'Childrens',
     'Dice',
-    'Educational',
+    // 'Educational',
     // 'Expansion',
     'Exploration',
     'Humor',
     'Memory',
     // 'Miniatures',
     // 'Movies & Television',
-    // 'Murder',
+    'Murder',
     'Mystery',
-    'Party',
+    // 'Party',
     'Sports',
     // 'Wargame',
-    'Word'
+    'Word',
     // 'Zombies',
   ];
 
@@ -73,6 +76,11 @@ export class ProductListComponent implements OnInit {
 
   scrollToTop(): void {
     window.scroll(0, 0);
+  }
+
+  populateGamesInCategory() {
+    console.log('clicked');
+
   }
 
 }

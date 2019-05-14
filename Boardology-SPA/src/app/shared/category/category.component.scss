@@ -1,70 +1,23 @@
 @import 'src/styles/main';
 
-.btn-link {
-    color: $color-white;
-    text-decoration: none;
-}
-
-.card-body {
-    color: $color-dark-gray;
-}
-
-.card-header {
-    background-color: $color-dark-gray;
-    padding: .75rem .75rem;
-    margin-bottom: 0;
-}
-
-.category-title {
-    font-size: 1rem;
-    padding: .75rem 0.75rem;
-}
-
-.view-all-link {
-    text-align: center;
-    
-}
-
-.down-arrow {
-    float: right;
-    margin-top: 4px;
-    font-size: 18px;
-}
-
 .categoryBox {
-    align-items: center;
-    background: rgba(0, 0, 0, 0.762);
+    display: inline-block;
     border: 1px solid $color-dark-gray; 
     border-radius: 5px;
     color: $color-white;
-    display: flex;
     height: 150px;
+    padding: .75rem;
+    width: 100%;
+}
+
+.innerBox {
+    align-items: center;
+    background: #00b09b;  /* fallback for old browsers */
+    background-image: -webkit-linear-gradient(to right bottom, rgba(#00b09b, 0.9), rgba(#96c93d, 0.9)) ,url(../../../assets/board-games.jpg); /* Chrome 10-25, Safari 5.1-6 */
+    background-image: linear-gradient(to right bottom, rgba(#00b09b, 0.9), rgba(#96c93d, 0.9)) ,url(../../../assets/board-games.jpg); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border-radius: 5px;
+    display: flex;
+    height: 100%;
     justify-content: center;
-    margin-top: 1.5rem;
     width: 100%;
 }
-
-.backTitleWrap {
-    width: 100%;
-    text-align: center;
-    background: darken($color-board-aqua, 5%);
-    padding: 1.2rem;
-}
-
-.triangleDown {
-    border-left: 75px solid transparent;
-    border-right: 75px solid transparent;
-    border-top: 70px solid #00b09b;
-    filter: drop-shadow(0px 5px 5px #414345);
-    -webkit-filter: drop-shadow(0px 5px 5px #414345);
-    height: 0;
-    position: absolute;
-    right: 18px;
-    top: 80px;
-    width: 0;
-}
-
-.categoryTitle {
-    position: absolute;
-}
-
