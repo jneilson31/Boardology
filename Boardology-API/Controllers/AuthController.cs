@@ -141,7 +141,7 @@ namespace Boardology.API.Controllers
             {
                 return Ok();
             }
-
+           
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
 
             var callbackUrl = "localhost:4200/?token=" + token;
