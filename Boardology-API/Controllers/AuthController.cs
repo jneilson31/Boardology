@@ -131,28 +131,22 @@ namespace Boardology.API.Controllers
 
         }
 
-        [HttpPost("password/reset")]
-        public async Task<IActionResult> SendPasswordResetLink(Email email)
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> SendPasswordResetLink(UserEmailAddress email)
         {
-            //var userFromRepo = await _repo.Login(userForLoginDto.Email.ToLower(), userForLoginDto.Password);
-            //if (userFromRepo == null)
-            //{
-            //    return Unauthorized("Something went wrong signing in. Please ensure your information is correct and attempt to sign in again.");
-            //}
 
-            var user = await _userManager.FindByEmailAsync("trentonneilson14@hotmail.com");
+            var user = await _userManager.FindByEmailAsync(email.Email);
 
             if (user == null)
             {
-                return BadRequest("No email found");
+                return Ok();
             }
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
 
             var callbackUrl = "localhost:4200/?token=" + token;
-            var htmlContent = "<strong>and easy to do anywhere, even with C#</strong>";
 
-            await _emailSender.SendEmailAsync(email.ToString(), "Reset Password", $"Please reset your password by using the following URL: <p>{callbackUrl}<p>");
+            await _emailSender.SendEmailAsync(email.Email, "Reset Password", $"Please reset your password by using the following URL: <p>{callbackUrl}<p>");
 
             return Ok();
         }

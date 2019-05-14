@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace Boardology.API.Dtos
 {
-    public class Email
+    public class UserEmailAddress
     {
-        public string EmailAddress { get; set; }
+        public string Email { get; set; }
     }
 }

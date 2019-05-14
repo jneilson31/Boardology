@@ -12,6 +12,7 @@ import { ProductDetailResolver } from './_resolvers/product-detail-resolver';
 import { ProductDetailCommentsResolver } from './_resolvers/product-detail-comments-resolver';
 import { CollectionComponent } from './collection/collection.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -29,7 +30,7 @@ const appRoutes: Routes = [
             { path: 'login', component: LoginFormComponent },
             { path: 'collection', component: CollectionComponent },
             { path: 'wishlist', component: WishlistComponent },
-
+            { path: 'password-reset', component: ResetPasswordComponent}
         ]
     }
 ];

@@ -25,12 +25,12 @@ namespace Boardology.API.Helpers
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             {
-                From = new EmailAddress("skinnypigdeals@skinnypig.com", "Trenton Neilson"),
+                From = new EmailAddress("skinnypigdeals@skinnypig.com", "Skinny PIg"),
                 Subject = subject,
                 PlainTextContent = message,
                 HtmlContent = message
             };
-            msg.AddTo(new EmailAddress("baller14@mailinator.com"));
+            msg.AddTo(new EmailAddress(email));
 
             // Disable click tracking.
             // See https://sendgrid.com/docs/User_Guide/Settings/tracking.html

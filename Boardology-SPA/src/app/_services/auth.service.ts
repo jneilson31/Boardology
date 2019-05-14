@@ -7,6 +7,8 @@ import { UserForRegister } from '../_models/user-for-register';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -43,6 +45,10 @@ export class AuthService {
 
   register(user: UserForRegister) {
     return this.http.post(this.baseUrl + 'register', user);
+  }
+
+  resetPassword(emailAddress: any) {
+    return this.http.post(this.baseUrl + 'reset-password', emailAddress);
   }
 
   loggedIn(): boolean {
