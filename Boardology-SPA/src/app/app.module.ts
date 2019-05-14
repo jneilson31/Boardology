@@ -17,10 +17,11 @@ import { RouterModule } from '@angular/router';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { CategorySortPipe } from './_pipes/category-sort.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { RegisterComponent } from './register/register.component';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -35,6 +36,7 @@ import { CategoryGameComponent } from './shared/category/category-game/category-
 import { CollectionComponent } from './collection/collection.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { CacheInterceptorProvider } from './shared/interceptors/cache.interceptor';
+import { ArticlesComponent } from './shared/articles/articles.component';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
@@ -62,7 +64,8 @@ export function tokenGetter() {
       CategoryGameComponent,
       CategorySortPipe,
       CollectionComponent,
-      WishlistComponent
+      WishlistComponent,
+      ArticlesComponent
    ],
    imports: [
       BrowserModule,
@@ -72,6 +75,7 @@ export function tokenGetter() {
       HttpClientModule,
       ReactiveFormsModule,
       AngularFontAwesomeModule,
+      BrowserAnimationsModule,
       JwtModule.forRoot({
           config: {
               tokenGetter: tokenGetter,

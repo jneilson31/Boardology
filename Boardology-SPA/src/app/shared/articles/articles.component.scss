@@ -1,0 +1,34 @@
+@import 'src/styles/main';
+
+.article-container {
+    padding: .75rem;
+    border-top: 1px solid $color-dark-gray;
+    border-bottom: 1px solid $color-dark-gray;
+    margin-bottom: -1px;
+}
+
+.article-container:last-of-type {
+    margin-bottom: 2rem;
+}
+
+.article-container:nth-of-type(odd){
+    background-color: rgba(150, 201, 61, .2);;
+}
+
+.article-desc, .article-title {
+    margin-bottom: .5rem;
+}
+
+.article-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    p {
+        margin-bottom: 0;
+    }
+}
+
+.grayed-text {
+    color: $color-grayed-out;
+    font-size: 12px;
+}

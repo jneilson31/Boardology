@@ -1,4 +1,4 @@
-<div class="accordion btn-link" [attr.data-target]="'#collapse' + category" aria-expanded="true"
+<!-- <div class="accordion btn-link" [attr.data-target]="'#collapse' + category" aria-expanded="true"
   [attr.aria-controls]="'collapse' + category" id="accordionExample" data-toggle="collapse">
   <div class="card">
     <div class="card-header" id="{{category}}Header">
@@ -20,4 +20,10 @@
       </div>
     </div>
   </div>
+</div> -->
+<div class="categoryBox">
+  <div class="backTitleWrap">
+    <div class="triangleDown"></div>
+  </div>
+  <div class="categoryTitle">{{ category }}</div>
 </div>
