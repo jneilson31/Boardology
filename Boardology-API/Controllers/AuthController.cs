@@ -41,18 +41,6 @@ namespace Boardology.API.Controllers
 
         public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
         {
-            //userForRegisterDto.Username = userForRegisterDto.Username.ToLower();
-            //userForRegisterDto.Email = userForRegisterDto.Email.ToLower();
-
-            //if (await _repo.UsernameExists(userForRegisterDto.Username))
-            //{
-            //    return BadRequest("Username already exists");
-            //}
-
-            //if (await _repo.EmailExists(userForRegisterDto.Email))
-            //{
-            //    return BadRequest("Email already exists");
-            //}
 
             var username = await _userManager.FindByNameAsync(userForRegisterDto.Username);
 
@@ -68,7 +56,6 @@ namespace Boardology.API.Controllers
                 return BadRequest("There is already an account associated with this email");
             }
 
-
             var userToCreate = new User
             {
                 UserName = userForRegisterDto.Username,
@@ -81,22 +68,12 @@ namespace Boardology.API.Controllers
             {
                 return StatusCode(201);
             }
-
-
-
             return BadRequest(result.Errors);
-
-
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
-            //var userFromRepo = await _repo.Login(userForLoginDto.Email.ToLower(), userForLoginDto.Password);
-            //if (userFromRepo == null)
-            //{
-            //    return Unauthorized("Something went wrong signing in. Please ensure your information is correct and attempt to sign in again.");
-            //}
 
             var user = await _userManager.FindByEmailAsync(userForLoginDto.Email);
 
@@ -106,13 +83,6 @@ namespace Boardology.API.Controllers
             }
 
             var result = await _signInManager.CheckPasswordSignInAsync(user, userForLoginDto.Password, false);
-
-            //var token = "CfDJ8IYranPcjBtPijPpm4AHwQgybeZNahDBX4o+Hylm2VNwmvGoiFaBHzKvID3Qdq0xeoapYhEh1TKKXN3IRB1uOS8r51JQ4AQlPne0ymcotlYJIe5vTQ+jW823RhzspW+2UbhFWiDRfOXy5WPa3nAEIKJS0jO50/gpWRGYr2x3QL/eFDoo5xVye8ovpBRtlNrw1Q==";
-
-            //var passwordReset = await _userManager.ResetPasswordAsync(user, token, "warner");
-            
-   
-            //var loginToken = await _userManager.GeneratePasswordResetTokenAsync(user);
 
 
             if (result.Succeeded)
@@ -125,8 +95,37 @@ namespace Boardology.API.Controllers
             }
 
             return Unauthorized("Something went wrong signing in. Please ensure your information is correct and attempt to sign in again.");
+            
+        }
 
-            //var user = _mapper.Map<UserForRegisterDto>(userFromRepo); // if we want to return anything else in local storage on sign in
+        [HttpPost("autologin")]
+        public async Task<IActionResult> Autologin(UserForAutoLoginDto userForAutoLoginDto)
+        {
+
+            var user = await _userManager.FindByIdAsync(userForAutoLoginDto.id);
+            if (user == null)
+            {
+                return BadRequest("Could not find user");
+            }
+
+            var newPassword = Guid.NewGuid().ToString();
+            var token = userForAutoLoginDto.token.Replace(" ", "+");
+            var passwordResult = await _userManager.ResetPasswordAsync(user, token, newPassword);
+
+            var result = await _signInManager.CheckPasswordSignInAsync(user, newPassword, false);
+
+
+
+            if (result.Succeeded)
+            {
+                return Ok(new
+                {
+                    token = GenerateJwtToken(user)
+                });
+            }
+
+            return Unauthorized("Something went wrong. Please try resetting your password again.");
+            
 
 
         }
@@ -144,9 +143,9 @@ namespace Boardology.API.Controllers
            
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
 
-            var callbackUrl = "localhost:4200/?token=" + token;
-
-            await _emailSender.SendEmailAsync(email.Email, "Reset Password", $"Please reset your password by using the following URL: <p>{callbackUrl}<p>");
+            var callbackUrl = $"http://localhost:4200/?token={token}&id={user.Id}";
+            
+            await _emailSender.SendEmailAsync(email.Email, "Reset Password", $"<p>Hi there {user.UserName},</p><p>Click below to reset your password</p><a href='{callbackUrl}'>Click here</a><hr><p><i>Boardology</i></p>");
 
             return Ok();
         }

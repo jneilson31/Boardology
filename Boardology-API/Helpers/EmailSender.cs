@@ -25,7 +25,7 @@ namespace Boardology.API.Helpers
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             {
-                From = new EmailAddress("skinnypigdeals@skinnypig.com", "Skinny PIg"),
+                From = new EmailAddress("boardology@boardologyco.com", "Boardology"),
                 Subject = subject,
                 PlainTextContent = message,
                 HtmlContent = message

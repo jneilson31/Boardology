@@ -43,6 +43,27 @@ export class AuthService {
     );
   }
 
+  loginWithAutologinToken(model: any) {
+    return this.http.post(this.baseUrl + 'autologin', model).pipe(
+      map((response: any) => {
+        const user = response;
+        if (user) {
+          localStorage.setItem('token', user.token);
+          localStorage.setItem('user', JSON.stringify(user.user));
+          this.decodedToken = this.jwtHelper.decodeToken(user.token);
+          this.currentUser = user.user;
+        }
+
+        if (this.redirectUrl) {
+          this.router.navigate([this.redirectUrl]);
+          this.redirectUrl = null;
+        } else {
+          this.router.navigate(['/']);
+        }
+      })
+    );
+  }
+
   register(user: UserForRegister) {
     return this.http.post(this.baseUrl + 'register', user);
   }
