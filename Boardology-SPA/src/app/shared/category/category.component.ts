@@ -1,22 +1,37 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from 'src/app/_models/product.model';
-import { ProductService } from '../../_services/product.service';
-import { Observable } from 'rxjs';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
-  styleUrls: ['./category.component.scss']
+  styleUrls: ['./category.component.scss'],
+  animations: [
+    trigger('invertArrow', [
+      state('up', style({
+        transform: 'rotateZ(0deg)'
+
+      })),
+      state('down', style({
+        transform: 'rotateZ(-180deg)'
+      })),
+      transition('up <=> down', animate('500ms ease-in')),
+    ])
+  ]
 })
 export class CategoryComponent implements OnInit {
 
- // @Input() product: Product;
   @Input() category: string;
   @Input() products: Product[];
+  arrowDirection = 'up';
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  toggleArrow() {
+    this.arrowDirection = (this.arrowDirection === 'down') ? 'up' : 'down';
   }
 
 

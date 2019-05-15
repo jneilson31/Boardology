@@ -1,10 +1,10 @@
-<!-- <div class="accordion btn-link" [attr.data-target]="'#collapse' + category" aria-expanded="true"
+<div class="accordion btn-link" (click)="toggleArrow()" [attr.data-target]="'#collapse' + category" aria-expanded="true"
   [attr.aria-controls]="'collapse' + category" id="accordionExample" data-toggle="collapse">
   <div class="card">
     <div class="card-header" id="{{category}}Header">
       <div class="category-title">
-        {{ category }}
-        <i class="fa fa-angle-down down-arrow"></i>
+        <div>{{ category }}</div>
+        <i class="fa fa-angle-down down-arrow" [@invertArrow]="arrowDirection"></i>
       </div>
     </div>
     <div id="collapse{{category}}" class="collapse" [attr.aria-labelledby]="category +'Header'"
@@ -20,9 +20,6 @@
       </div>
     </div>
   </div>
-</div> -->
-<div class="categoryBox">
-  <div class="innerBox">
-    {{ category }}
-  </div>
 </div>
+
+
