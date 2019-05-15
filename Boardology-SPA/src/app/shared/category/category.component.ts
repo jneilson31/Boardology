@@ -9,13 +9,13 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   animations: [
     trigger('invertArrow', [
       state('up', style({
-        transform: 'rotateZ(0deg)'
+        transform: 'rotateX(0deg)'
 
       })),
       state('down', style({
-        transform: 'rotateZ(-180deg)'
+        transform: 'rotateX(-180deg)'
       })),
-      transition('up <=> down', animate('500ms ease-in')),
+      transition('up <=> down', animate('300ms ease-in')),
     ])
   ]
 })
