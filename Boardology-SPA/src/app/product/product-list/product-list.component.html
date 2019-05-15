@@ -9,21 +9,11 @@
 <div class="container">
     <h2>Categories</h2>
     <div class="row mb-4">
-        <app-category class="col-6" *ngFor="let category of categories" [category]="category" [products]="products">
+        <app-category class="col-6 categoryContainer" *ngFor="let category of categories" [category]="category" [products]="products">
         </app-category>
     </div>
 </div>
-<!-- <div class="container">
-    <div class="row">
-        <div class="col" *ngFor="let product of products" [product]="product">
-            <div class="categoryBox mt-4">
-                <div>{{ product.category }}</div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="categoryBox mt-4">
-
-            </div>
-        </div>
-    </div>
+<!-- <div class="categoryContainer">
+    <app-category *ngFor="let category of categories" [category]="category" [products]="products">
+    </app-category>
 </div> -->
