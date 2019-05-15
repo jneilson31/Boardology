@@ -1,23 +1,38 @@
 @import 'src/styles/main';
 
-.categoryBox {
-    display: inline-block;
-    border: 1px solid $color-dark-gray; 
-    border-radius: 5px;
+.btn-link {
     color: $color-white;
-    height: 150px;
-    padding: .75rem;
-    width: 100%;
+    text-decoration: none;
 }
 
-.innerBox {
-    align-items: center;
-    background: #00b09b;  /* fallback for old browsers */
-    background-image: -webkit-linear-gradient(to right bottom, rgba(#00b09b, 0.9), rgba(#96c93d, 0.9)) ,url(../../../assets/board-games.jpg); /* Chrome 10-25, Safari 5.1-6 */
-    background-image: linear-gradient(to right bottom, rgba(#00b09b, 0.9), rgba(#96c93d, 0.9)) ,url(../../../assets/board-games.jpg); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    border-radius: 5px;
-    display: flex;
-    height: 100%;
-    justify-content: center;
-    width: 100%;
+.card-body {
+    color: $color-dark-gray;
+    li {
+        list-style: outside;
+    }
 }
+
+.card-header {
+    background-color: $color-dark-gray;
+    padding: .75rem .75rem;
+    margin-bottom: 0;
+}
+
+.category-title {
+    align-items: center;
+    display: flex;
+    font-size: 1rem;
+    justify-content: space-between;
+    padding: .75rem 0.75rem;
+}
+
+.down-arrow {
+    font-size: 1.5rem;
+    color: $color-board-aqua;
+}
+
+.view-all-link {
+    text-align: center;
+    
+}
+

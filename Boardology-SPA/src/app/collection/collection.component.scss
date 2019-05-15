@@ -1,3 +1,5 @@
+@import 'src/styles/main';
+
 img {
     width: 40px;
 }
@@ -16,5 +18,9 @@ img {
 .share-column, .collection-total {
     text-align: center;
     line-height: 40px;
+}
+
+th {
+    font-weight: $font-weight-normal;
 }
 

@@ -7,7 +7,6 @@ import { Upvote } from '../../_models/upvote.model';
 import { Downvote } from '../../_models/downvote.model';
 import { AuthService } from '../../_services/auth.service';
 import { forkJoin } from 'rxjs';
-import { trigger, state, style, animate, transition } from '@angular/animations';
 
 
 @Component({
@@ -77,10 +76,4 @@ export class ProductListComponent implements OnInit {
   scrollToTop(): void {
     window.scroll(0, 0);
   }
-
-  populateGamesInCategory() {
-    console.log('clicked');
-
-  }
-
 }

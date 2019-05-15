@@ -1,6 +1,7 @@
 img {
     width: 40px;
 }
+@import 'src/styles/main';
 
 .list-group-item {
     padding: .25rem;
@@ -16,4 +17,8 @@ img {
 .share-column, .collection-total {
     text-align: center;
     line-height: 40px;
+}
+
+th {
+    font-weight: $font-weight-normal;
 }
