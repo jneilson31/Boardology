@@ -19,6 +19,7 @@ namespace Boardology.API.Data
         public DbSet<Downvote> Downvotes { get; set; }
         public DbSet<Collection> Collections { get; set; }
         public DbSet<Wishlist> Wishlists { get; set; }
+        public DbSet<Article> Articles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

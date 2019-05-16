@@ -226,5 +226,11 @@ namespace Boardology.API.Data
             return value;
         }
 
+        public async Task<Article> GetArticle(int id)
+        {
+            var article = await _context.Articles.FirstOrDefaultAsync(u => u.Id == id);
+            return article;
+        }
+
     }
 }
