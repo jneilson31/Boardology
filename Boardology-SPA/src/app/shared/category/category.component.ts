@@ -34,6 +34,11 @@ export class CategoryComponent implements OnInit {
     this.arrowDirection = (this.arrowDirection === 'down') ? 'up' : 'down';
   }
 
+  getProductName(name: string) {
+    console.log(name);
+    return name.replace(/\s+/g, '-').toLowerCase();
+  }
+
 
 
 }

@@ -23,7 +23,7 @@ const appRoutes: Routes = [
         runGuardsAndResolvers: 'always',
         children: [
             { path: 'games', component: ProductListComponent},
-            { path: 'games/:gameId', component: ProductDetailComponent, resolve: {product: ProductDetailResolver,
+            { path: 'games/:gameId/:name', component: ProductDetailComponent, resolve: {product: ProductDetailResolver,
                 comments: ProductDetailCommentsResolver} },
             { path: 'reviews', component: ReviewsComponent },
             { path: 'about-us', component: AboutComponent },
