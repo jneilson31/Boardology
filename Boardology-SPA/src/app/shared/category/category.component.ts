@@ -35,7 +35,6 @@ export class CategoryComponent implements OnInit {
   }
 
   getProductName(name: string) {
-    console.log(name);
     return name.replace(/\s+/g, '-').toLowerCase();
   }
 
