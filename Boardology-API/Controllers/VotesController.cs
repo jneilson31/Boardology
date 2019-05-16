@@ -40,6 +40,7 @@ namespace Boardology.API.Controllers
             }
 
             var upvote = await _repo.GetUpvote(userId, gameId);
+            var downvote = await _repo.GetDownvote(userId, gameId);
 
             if (upvote != null)
             {
@@ -53,6 +54,8 @@ namespace Boardology.API.Controllers
                 return BadRequest("Failed to remove upvote");
             }
 
+            
+
             upvote = new Upvote
             {
                 UpVoterId = userId,
@@ -62,6 +65,12 @@ namespace Boardology.API.Controllers
             _repo.Add(upvote);
 
             await _repo.IncreaseUpvotes(gameId);
+
+            if (downvote != null)
+            {
+                await _repo.DecreaseDownvotes(gameId);
+                _repo.Delete(downvote);
+            }
 
 
             if (await _repo.SaveAll())
@@ -86,6 +95,7 @@ namespace Boardology.API.Controllers
                 return NotFound();
             }
 
+            var upvote = await _repo.GetUpvote(userId, gameId);
             var downvote = await _repo.GetDownvote(userId, gameId);
 
             if (downvote != null)
@@ -108,6 +118,12 @@ namespace Boardology.API.Controllers
             _repo.Add(downvote);
 
             await _repo.IncreaseDownvotes(gameId);
+
+            if (upvote != null)
+            {
+                await _repo.DecreaseUpvotes(gameId);
+                _repo.Delete(upvote);
+            }
 
             if (await _repo.SaveAll())
             {
