@@ -13,6 +13,8 @@ import { ProductDetailCommentsResolver } from './_resolvers/product-detail-comme
 import { CollectionComponent } from './collection/collection.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { CollectionGuard } from './_guards/collection.guard';
+import { WishlistGuard } from './_guards/wishlist.guard';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -28,8 +30,8 @@ const appRoutes: Routes = [
             { path: 'contact-us', component: ContactComponent },
             { path: 'register', component: RegisterComponent },
             { path: 'login', component: LoginFormComponent },
-            { path: 'collection', component: CollectionComponent },
-            { path: 'wishlist', component: WishlistComponent },
+            { path: 'collection', component: CollectionComponent, canActivate: [CollectionGuard] },
+            { path: 'wishlist', component: WishlistComponent, canActivate: [WishlistGuard] },
             { path: 'password-reset', component: ResetPasswordComponent}
         ]
     }
