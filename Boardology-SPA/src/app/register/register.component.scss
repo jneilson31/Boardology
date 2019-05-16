@@ -1,0 +1,27 @@
+@import 'src/styles/main';
+
+.existing-user-wrapper {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+p {
+    margin: 32px auto 16px;
+}
+
+.circle {
+    align-items: center;
+    background: $color-white;
+    border-radius: 50%;
+    border: 1px solid $color-dark-gray;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    width: 40px;
+}
+
+.arrow-lead {
+    display: flex;
+    justify-content: center;
+    margin: -20px;
+}
