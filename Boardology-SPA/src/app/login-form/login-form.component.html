@@ -1,54 +1,53 @@
-<div class="row no-gutters">
-  <div class="registrationWrapper col-6">
-    <div class="loginBox">Login</div>
-  </div>
-  <div class="registrationWrapper col-6">
-    <div class="loginBox">Register</div>
-  </div>
-</div>
-
-
-
-<div>
-  <div class="container">
-
-    <h2>Sign In</h2>
-    <div class="login-form">
-      <form [formGroup]="loginForm" (ngSubmit)="login()">
-        <div class="form-group">
-          <input class="form-control"
-            [ngClass]="{'is-invalid': loginForm.get('email').errors && loginForm.get('email').touched}" type="text"
-            name="email" placeholder="Email" formControlName="email" />
-          <div class="invalid-feedback"
-            *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').touched">Email
-            is required (6-14 characters)
-          </div>
-        </div>
-        <div class="form-group">
-          <input class="form-control"
-            [ngClass]="{'is-invalid': loginForm.get('password').errors && loginForm.get('password').touched}"
-            type="password" name="password" placeholder="Password" formControlName="password" />
-          <div class="invalid-feedback"
-            *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">Password
-            is required (6-14 characters)
-          </div>
-        </div>
-        <button class="btn btn-white" type="submit">
-          Login
-        </button>
-      </form>
+<div class="signInContainer">
+  <div class="row no-gutters">
+    <div class="registrationWrapper col-6">
+      <div>Login</div>
     </div>
-
+    <div class="registrationWrapper col-6">
+      <div>Register</div>
+    </div>
   </div>
-</div>
-<!-- <div class="container">
-  <div class="new-user-wrapper">
-    <div class="arrow-lead">
-      <div class="circle">
-        <i class="fa fa-chevron-down"></i>
+  <div>
+    <div class="container">
+  
+      <h2>Sign In</h2>
+      <div class="login-form">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <div class="form-group">
+            <input class="form-control"
+              [ngClass]="{'is-invalid': loginForm.get('email').errors && loginForm.get('email').touched}" type="text"
+              name="email" placeholder="Email" formControlName="email" />
+            <div class="invalid-feedback"
+              *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').touched">Email
+              is required (6-14 characters)
+            </div>
+          </div>
+          <div class="form-group">
+            <input class="form-control"
+              [ngClass]="{'is-invalid': loginForm.get('password').errors && loginForm.get('password').touched}"
+              type="password" name="password" placeholder="Password" formControlName="password" />
+            <div class="invalid-feedback"
+              *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">Password
+              is required (6-14 characters)
+            </div>
+          </div>
+          <button class="btn btn-white" type="submit">
+            Login
+          </button>
+        </form>
       </div>
+  
     </div>
-    <p>New to Boardology?</p>
-    <button class="btn btn-outline-primary" routerLink="/register" type="button">Create a Boardology Account</button>
   </div>
-</div> -->
+  <!-- <div class="container">
+    <div class="new-user-wrapper">
+      <div class="arrow-lead">
+        <div class="circle">
+          <i class="fa fa-chevron-down"></i>
+        </div>
+      </div>
+      <p>New to Boardology?</p>
+      <button class="btn btn-outline-primary" routerLink="/register" type="button">Create a Boardology Account</button>
+    </div>
+  </div> -->
+</div>
