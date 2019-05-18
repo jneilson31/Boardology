@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Article } from 'src/app/_models/article-model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-articles',
@@ -6,10 +9,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./articles.component.scss']
 })
 export class ArticlesComponent implements OnInit {
+  baseUrl = environment.apiUrl;
+  articles: Article[];
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    this.getArticles();
+  }
+
+  getArticles() {
+    this.http.get<Article[]>(`${this.baseUrl}articles`)
+    .subscribe(articles => {
+      this.articles = articles;
+    });
+  }
+
+  getArticleName(name: string) {
+    return name.replace(/\s+/g, '-').toLowerCase();
   }
 
 }

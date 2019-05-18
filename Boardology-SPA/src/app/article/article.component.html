@@ -1,0 +1,10 @@
+<div class="container col-12">
+    <div class="text-center">
+        <h1 class="title">{{article?.title}}</h1>
+        <div class="author"><i>{{article?.author}}</i></div>
+        <h5>{{article?.dateCreated | date: 'MMM d, y'}}</h5>
+        <img class="image" src="{{article?.photoUrl}}" alt="photo">
+    </div>
+    <p [innerHTML]="article?.content"></p>
+</div>
+

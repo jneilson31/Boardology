@@ -1,48 +1,13 @@
-<h2>Top Articles</h2>
+<h2>Recent Articles</h2>
 <div class="list-group">
-  <div href="#" class="article-container">
+  <div *ngFor="let article of articles" [routerLink]="['/article/', article.id, getArticleName(article.title)]" routerLinkActive="router-link-active"  class="article-container">
     <div class="w-100">
-      <h5 class="article-title">Lorem ipsum dolor sit.</h5>
+      <h5 class="article-title">{{article.title}}</h5>
     </div>
     <div class="article-info grayed-text">
-      <div>George W. Bush</div>
-      <p>August 6, 2010</p>
-    </div>
-  </div>
-  <div href="#" class="article-container">
-    <div class="w-100">
-      <h5 class="article-title">Lorem ipsum dolor sit amet consectetur.</h5>
-      <div class="article-info grayed-text">
-        <div>T. Payne Christensen</div>
-        <p>July 3, 2018</p>
-      </div>
-    </div>
-  </div>
-  <div href="#" class="article-container">
-    <div class="w-100">
-      <h5 class="article-title">Lorem, ipsum dolor.</h5>
-    </div>
-    <div class="article-info grayed-text">
-      <div>Mitchell W. Hedberg</div>
-      <p>January 2, 2004</p>
-    </div>
-  </div>
-  <div href="#" class="article-container">
-    <div class="w-100">
-      <h5 class="article-title">Lorem ipsum dolor sit amet consectetur.</h5>
-      <div class="article-info grayed-text">
-        <div>Nathan P. Reakena</div>
-        <p>September 30, 2013</p>
-      </div>
-    </div>
-  </div>
-  <div href="#" class="article-container">
-    <div class="w-100">
-      <h5 class="article-title">Lorem, ipsum dolor.</h5>
-    </div>
-    <div class="article-info grayed-text">
-      <div>Runaigh B Risnee</div>
-      <p>October 5, 2002</p>
+      <div>{{article?.author}}</div>
+      <p><i class="fa fa-comment mr-1"></i>{{article.comments}}</p>
+      <p>{{article?.dateCreated | date: 'MMM d, y'}}</p>
     </div>
   </div>
 </div>

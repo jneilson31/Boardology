@@ -226,10 +226,27 @@ namespace Boardology.API.Data
             return value;
         }
 
+        public async Task<List<Article>> GetArticles()
+        {
+            var articles = await _context.Articles.OrderByDescending(d => d.DateCreated).ToListAsync();
+            return articles;
+        }
+
         public async Task<Article> GetArticle(int id)
         {
             var article = await _context.Articles.FirstOrDefaultAsync(u => u.Id == id);
             return article;
+        }
+
+        public async Task<Article> IncreaseArticleComments(int articleId)
+        {
+            var article = await _context.Articles.FirstOrDefaultAsync(u => u.Id == articleId);
+            if (article != null)
+            {
+                article.Comments = article.Comments + 1;
+            }
+            return article;
+            
         }
 
     }

@@ -30,6 +30,8 @@ namespace Boardology.API.Data
         Task<IList> GetUpvotesForUser(int userId);
         Task<Game> DecreaseUpvotes(int gameId);
         Task<Game> DecreaseDownvotes(int gameId);
+        Task<List<Article>> GetArticles();
         Task<Article> GetArticle(int id);
+        Task<Article> IncreaseArticleComments(int articleId);
     }
 }

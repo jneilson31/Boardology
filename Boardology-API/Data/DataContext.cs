@@ -20,6 +20,8 @@ namespace Boardology.API.Data
         public DbSet<Collection> Collections { get; set; }
         public DbSet<Wishlist> Wishlists { get; set; }
         public DbSet<Article> Articles { get; set; }
+        public DbSet<ArticleComment> ArticleComments { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

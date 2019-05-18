@@ -3,14 +3,16 @@ using System;
 using Boardology.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Boardology.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20190518010949_includeAuthorOnArticle")]
+    partial class includeAuthorOnArticle
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,8 +25,6 @@ namespace Boardology.API.Migrations
 
                     b.Property<string>("Author");
 
-                    b.Property<int>("Comments");
-
                     b.Property<string>("Content");
 
                     b.Property<DateTime>("DateCreated");
@@ -36,24 +36,6 @@ namespace Boardology.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Articles");
-                });
-
-            modelBuilder.Entity("Boardology.API.Models.ArticleComment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("ArticleId");
-
-                    b.Property<string>("Content");
-
-                    b.Property<DateTime>("Created");
-
-                    b.Property<int>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ArticleComments");
                 });
 
             modelBuilder.Entity("Boardology.API.Models.Collection", b =>
