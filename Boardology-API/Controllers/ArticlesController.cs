@@ -13,17 +13,31 @@ namespace Boardology.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ArticleController : ControllerBase
+    public class ArticlesController : ControllerBase
     {
 
         private readonly IBoardologyRepository _repo;
         private readonly IMapper _mapper;
 
-        public ArticleController(IBoardologyRepository repo, IMapper mapper)
+        public ArticlesController(IBoardologyRepository repo, IMapper mapper)
         {
             _repo = repo;
         }
-        
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetArticles()
+        {
+            var articles = await _repo.GetArticles();
+
+            if (articles == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(articles);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetArticle(int id)
         {
@@ -35,7 +49,8 @@ namespace Boardology.API.Controllers
             }
 
             return Ok(article);
-            }
+        }
+
 
     }
 }

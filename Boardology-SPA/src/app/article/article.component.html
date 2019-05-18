@@ -1,0 +1,7 @@
+<div class="container col-12 text-center">
+    <h1>{{article?.title}}</h1>
+    <h5>{{article?.dateCreated | date: 'MMM d, y'}}</h5>
+    <img src="{{article?.photoUrl}}" alt="photo">
+    <p [innerHTML]="article?.content"></p>
+</div>
+

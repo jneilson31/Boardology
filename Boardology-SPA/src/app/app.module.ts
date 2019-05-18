@@ -38,6 +38,7 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { CacheInterceptorProvider } from './shared/interceptors/cache.interceptor';
 import { ArticlesComponent } from './shared/articles/articles.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ArticleComponent } from './article/article.component';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
@@ -67,7 +68,8 @@ export function tokenGetter() {
       CollectionComponent,
       WishlistComponent,
       ArticlesComponent,
-      ResetPasswordComponent
+      ResetPasswordComponent,
+      ArticleComponent
    ],
    imports: [
       BrowserModule,

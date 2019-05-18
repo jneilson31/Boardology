@@ -15,6 +15,7 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { CollectionGuard } from './_guards/collection.guard';
 import { WishlistGuard } from './_guards/wishlist.guard';
+import { ArticleComponent } from './article/article.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -32,7 +33,8 @@ const appRoutes: Routes = [
             { path: 'login', component: LoginFormComponent },
             { path: 'collection', component: CollectionComponent, canActivate: [CollectionGuard] },
             { path: 'wishlist', component: WishlistComponent, canActivate: [WishlistGuard] },
-            { path: 'password-reset', component: ResetPasswordComponent}
+            { path: 'password-reset', component: ResetPasswordComponent},
+            { path: 'article/:articleId', component: ArticleComponent }
         ]
     }
 ];
