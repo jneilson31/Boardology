@@ -146,7 +146,7 @@ namespace Boardology.API.Data
                      comments.Content,
                      comments.Created,
                      comments.UserId,
-                     users.Username
+                     users.UserName
                  }).Take(5).ToListAsync();
                  
 
@@ -224,6 +224,12 @@ namespace Boardology.API.Data
         {
             var value = await _context.Wishlists.FirstOrDefaultAsync(u => u.UserId == userId && u.GameId == gameId);
             return value;
+        }
+
+        public async Task<Article> GetArticle(int id)
+        {
+            var article = await _context.Articles.FirstOrDefaultAsync(u => u.Id == id);
+            return article;
         }
 
     }

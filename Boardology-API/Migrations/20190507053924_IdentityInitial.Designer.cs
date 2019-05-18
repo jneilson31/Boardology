@@ -3,36 +3,20 @@ using System;
 using Boardology.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Boardology.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20190507053924_IdentityInitial")]
+    partial class IdentityInitial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.2-servicing-10034");
-
-            modelBuilder.Entity("Boardology.API.Models.Article", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Content");
-
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<string>("PhotoUrl");
-
-                    b.Property<string>("Title");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Articles");
-                });
 
             modelBuilder.Entity("Boardology.API.Models.Collection", b =>
                 {

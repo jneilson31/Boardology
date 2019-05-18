@@ -7,6 +7,8 @@ import { UserForRegister } from '../_models/user-for-register';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -41,8 +43,33 @@ export class AuthService {
     );
   }
 
+  loginWithAutologinToken(model: any) {
+    return this.http.post(this.baseUrl + 'autologin', model).pipe(
+      map((response: any) => {
+        const user = response;
+        if (user) {
+          localStorage.setItem('token', user.token);
+          localStorage.setItem('user', JSON.stringify(user.user));
+          this.decodedToken = this.jwtHelper.decodeToken(user.token);
+          this.currentUser = user.user;
+        }
+
+        if (this.redirectUrl) {
+          this.router.navigate([this.redirectUrl]);
+          this.redirectUrl = null;
+        } else {
+          this.router.navigate(['/']);
+        }
+      })
+    );
+  }
+
   register(user: UserForRegister) {
     return this.http.post(this.baseUrl + 'register', user);
+  }
+
+  resetPassword(emailAddress: any) {
+    return this.http.post(this.baseUrl + 'reset-password', emailAddress);
   }
 
   loggedIn(): boolean {

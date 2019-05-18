@@ -1,4 +1,6 @@
 ﻿using Boardology.API.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,20 +9,22 @@ using System.Threading.Tasks;
 
 namespace Boardology.API.Data
 {
-    public class DataContext : DbContext
+    public class DataContext : IdentityDbContext<User, Role, int, IdentityUserClaim<int>, UserRole, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<int>>
     {
         public DataContext(DbContextOptions<DataContext> options) : base (options) { }
-
-        public DbSet<User> Users { get; set; }
+        
         public DbSet<Game> Games { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Upvote> Upvotes { get; set; }
         public DbSet<Downvote> Downvotes { get; set; }
         public DbSet<Collection> Collections { get; set; }
         public DbSet<Wishlist> Wishlists { get; set; }
+        public DbSet<Article> Articles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            base.OnModelCreating(builder);
+
             builder.Entity<Upvote>()
                 .HasKey(k => new { k.UpVoterId, k.GameId });
 
