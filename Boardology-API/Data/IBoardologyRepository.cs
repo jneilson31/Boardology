@@ -32,5 +32,6 @@ namespace Boardology.API.Data
         Task<Game> DecreaseDownvotes(int gameId);
         Task<List<Article>> GetArticles();
         Task<Article> GetArticle(int id);
+        Task<Article> IncreaseArticleComments(int articleId);
     }
 }

@@ -6,4 +6,5 @@ export interface Article {
      photoUrl: string;
      dateCreated: Date;
      author: string;
+     comments: number;
 }

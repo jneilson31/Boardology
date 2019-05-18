@@ -228,7 +228,7 @@ namespace Boardology.API.Data
 
         public async Task<List<Article>> GetArticles()
         {
-            var articles = await _context.Articles.ToListAsync();
+            var articles = await _context.Articles.OrderByDescending(d => d.DateCreated).ToListAsync();
             return articles;
         }
 
@@ -236,6 +236,17 @@ namespace Boardology.API.Data
         {
             var article = await _context.Articles.FirstOrDefaultAsync(u => u.Id == id);
             return article;
+        }
+
+        public async Task<Article> IncreaseArticleComments(int articleId)
+        {
+            var article = await _context.Articles.FirstOrDefaultAsync(u => u.Id == articleId);
+            if (article != null)
+            {
+                article.Comments = article.Comments + 1;
+            }
+            return article;
+            
         }
 
     }

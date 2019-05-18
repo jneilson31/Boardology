@@ -51,6 +51,47 @@ namespace Boardology.API.Controllers
             return Ok(article);
         }
 
+        [Authorize]
+        [HttpPost("{userId}/{articleId}/comment")]
+        public async Task<IActionResult> AddComment(int userId, int articleId, ArticleComment comment)
+        {
+
+            if (comment == null)
+            {
+                throw new Exception("No comment");
+            }
+
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+            
+
+            if (await _repo.GetArticle(articleId) == null)
+            {
+                return NotFound();
+            }
+
+
+            comment = new ArticleComment
+            {
+                UserId = userId,
+                ArticleId = articleId,
+                Content = comment.Content
+            };
+
+            _repo.Add(comment);
+
+            await _repo.IncreaseArticleComments(articleId);
+
+            if (await _repo.SaveAll())
+            {
+                return Ok();
+            }
+
+            return BadRequest("Failed to add comment");
+        }
+
 
     }
 }

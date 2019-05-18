@@ -12,6 +12,7 @@ namespace Boardology.API.Models
         public string Content { get; set; }
         public string PhotoUrl { get; set; }
         public string Author { get; set; }
+        public int Comments { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.Today;
     }
 }

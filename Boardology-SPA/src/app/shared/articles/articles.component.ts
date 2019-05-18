@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Article } from 'src/app/_models/article-model';
 import { environment } from 'src/environments/environment';
@@ -23,6 +23,10 @@ export class ArticlesComponent implements OnInit {
     .subscribe(articles => {
       this.articles = articles;
     });
+  }
+
+  getArticleName(name: string) {
+    return name.replace(/\s+/g, '-').toLowerCase();
   }
 
 }

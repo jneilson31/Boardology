@@ -34,7 +34,7 @@ const appRoutes: Routes = [
             { path: 'collection', component: CollectionComponent, canActivate: [CollectionGuard] },
             { path: 'wishlist', component: WishlistComponent, canActivate: [WishlistGuard] },
             { path: 'password-reset', component: ResetPasswordComponent},
-            { path: 'article/:articleId', component: ArticleComponent }
+            { path: 'article/:articleId/:name', component: ArticleComponent }
         ]
     }
 ];
