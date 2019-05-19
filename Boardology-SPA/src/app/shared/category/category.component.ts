@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from 'src/app/_models/product.model';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { ProductService } from 'src/app/_services/product.service';
 
 @Component({
   selector: 'app-category',
@@ -25,7 +26,7 @@ export class CategoryComponent implements OnInit {
   @Input() products: Product[];
   arrowDirection = 'up';
 
-  constructor() { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit() {
   }
@@ -36,5 +37,14 @@ export class CategoryComponent implements OnInit {
 
   getProductName(name: string) {
     return name.replace(/\s+/g, '-').toLowerCase();
+  }
+
+  setCategory(category: string) {
+    if (category === 'All') {
+      this.productService.category = '';
+    } else {
+
+      this.productService.category = category;
+    }
   }
 }

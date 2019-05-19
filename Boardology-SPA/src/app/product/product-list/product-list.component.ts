@@ -7,6 +7,7 @@ import { Upvote } from '../../_models/upvote.model';
 import { Downvote } from '../../_models/downvote.model';
 import { AuthService } from '../../_services/auth.service';
 import { forkJoin } from 'rxjs';
+import { ProductService } from 'src/app/_services/product.service';
 
 
 @Component({
@@ -47,9 +48,10 @@ export class ProductListComponent implements OnInit {
   ];
 
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private authService: AuthService ) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private authService: AuthService, private productService: ProductService ) { }
 
   ngOnInit() {
+    this.productService.category = '';
     if (this.authService.loggedIn()) {
       const productList = this.http.get<Product[]>(`${this.baseUrl}games`);
       const upvoteList = this.http.get<Upvote[]>(`${this.baseUrl}votes/${this.authService.decodedToken.nameid}/upvotes`);
@@ -75,5 +77,9 @@ export class ProductListComponent implements OnInit {
 
   scrollToTop(): void {
     window.scroll(0, 0);
+  }
+
+  getCategory(): string {
+    return this.productService.category.toLowerCase() || "";
   }
 }

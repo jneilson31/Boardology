@@ -13,6 +13,7 @@ export class ProductService {
   products: Product[];
   comments: Comment[];
   subject = new Subject<Product[]>();
+  category: string = '';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
