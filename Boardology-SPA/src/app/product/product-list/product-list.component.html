@@ -5,9 +5,104 @@
 <div *ngIf="[max] < products?.length -1" class="text-center" (click)="viewMore()">View more</div>
 <div *ngIf="[max] >= products?.length -1" class="text-center" (click)="scrollToTop()">Back to top</div> -->
 
-<div class="container">
+<!-- <div class="container">
     <div class="categories">
         <h1>Games</h1>
         <app-category *ngFor="let category of categories" [category]="category" [products]="products"></app-category>
+    </div>
+</div> -->
+
+<div class="scrollMenu mb-2">
+    <app-category *ngFor="let category of categories" [category]="category" [products]="products"></app-category>
+</div>
+<div class="container">
+    <h1>Games in Adventure</h1>
+</div>
+<div class="gameWrapper">
+    <div class="gameContent">
+        <div class="container">
+            <h4>Title of Game</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+        </div>
+        <div class="reviewGame">
+            <div class="image"></div> 
+            <i class="fa fa-edit"></i>
+        </div>
+        <div class="votingWrapper">
+            <div class="upvotes">
+                <i class="fa fa-thumbs-up" [ngClass]="{downvoted: hasDownvoted}"></i>
+                <span>1400</span>
+            </div>
+            <div class="downvotes">
+                <i class="fa fa-thumbs-down" [ngClass]="{downvoted: hasDownvoted}"></i>
+                <span>200</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="gameWrapper">
+    <div class="gameContent">
+        <div class="container">
+            <h4>Title of Game</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+        </div>
+        <div class="reviewGame">
+            <div class="image"></div>
+            <i class="fa fa-edit"></i>
+        </div>
+        <div class="votingWrapper">
+            <div class="upvotes">
+                <i class="fa fa-thumbs-up" [ngClass]="{downvoted: hasDownvoted}"></i>
+                <span>1400</span>
+            </div>
+            <div class="downvotes">
+                <i class="fa fa-thumbs-down" [ngClass]="{downvoted: hasDownvoted}"></i>
+                <span>200</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="gameWrapper">
+    <div class="gameContent">
+        <div class="container">
+            <h4>Title of Game</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+        </div>
+        <div class="reviewGame">
+            <div class="image"></div>
+            <i class="fa fa-edit"></i>
+        </div>
+        <div class="votingWrapper">
+            <div class="upvotes">
+                <i class="fa fa-thumbs-up" [ngClass]="{downvoted: hasDownvoted}"></i>
+                <span>1400</span>
+            </div>
+            <div class="downvotes">
+                <i class="fa fa-thumbs-down" [ngClass]="{downvoted: hasDownvoted}"></i>
+                <span>200</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="gameWrapper">
+    <div class="gameContent">
+        <div class="container">
+            <h4>Title of Game</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+        </div>
+        <div class="reviewGame">
+            <div class="image"></div>
+            <i class="fa fa-edit"></i>
+        </div>
+        <div class="votingWrapper">
+            <div class="upvotes">
+                <i class="fa fa-thumbs-up" [ngClass]="{downvoted: hasDownvoted}"></i>
+                <span>1400</span>
+            </div>
+            <div class="downvotes">
+                <i class="fa fa-thumbs-down" [ngClass]="{downvoted: hasDownvoted}"></i>
+                <span>200</span>
+            </div>
+        </div>
     </div>
 </div>

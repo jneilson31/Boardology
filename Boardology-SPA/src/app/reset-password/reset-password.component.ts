@@ -44,7 +44,7 @@ export class ResetPasswordComponent implements OnInit {
 
   cancel() {
     this.alertify.confirm('Are you sure you want to cancel?', undefined, undefined, () => {
-      this.router.navigate(['/']);
+      this.router.navigate(['/login']);
     });
   }
 
