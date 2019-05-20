@@ -5,9 +5,136 @@
 <div *ngIf="[max] < products?.length -1" class="text-center" (click)="viewMore()">View more</div>
 <div *ngIf="[max] >= products?.length -1" class="text-center" (click)="scrollToTop()">Back to top</div> -->
 
-<div class="container">
+<!-- <div class="container">
     <div class="categories">
         <h1>Games</h1>
         <app-category *ngFor="let category of categories" [category]="category" [products]="products"></app-category>
+    </div>
+</div> -->
+
+<div class="scrollMenu">
+    <app-category *ngFor="let category of categories" [category]="category" [products]="products"></app-category>
+</div>
+<div class="container">
+    <h1>Games in Adventure</h1>
+    <div class="gameWrapper">
+        <div class="row no-gutters">
+            <div class="col-11">
+                <div class="gameContent">
+                    <h5 class="mb-3">This is a long title to a game, this one would be even longer.</h5>
+                    <div class="row">
+                        <div class="col-5 centerImg">
+                            <img class="img-fluid"
+                                src="http://prodimage.images-bn.com/pimages/0714043012196_p0_v1_s1200x630.jpg" alt="">
+                            <div>
+                                <i class="fa fa-edit"></i>
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus fuga est facilis
+                                tenetur sunt
+                                accusantium
+                                tempore quas corporis velit! Omnis.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-1">
+                <div class="gameReviewWrapper2">
+                    <div class="upvotes2">
+                        <i class="fa fa-thumbs-up" [ngClass]="{downvoted: hasDownvoted}"></i>
+                    </div>
+                    <div class="downvotes2">
+                        <i class="fa fa-thumbs-down" [ngClass]="{downvoted: hasDownvoted}"></i>
+                    </div>
+                    <div class="wishlist">
+                        <i class="fa fa-gift"></i>
+                    </div>
+                    <div class="collection">
+                        <i class="fa fa-list-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="gameWrapper">
+        <div class="row no-gutters">
+            <div class="col-11">
+                <div class="gameContent">
+                    <h5 class="mb-3">This is a long title to a game, this one would be even longer.</h5>
+                    <div class="row">
+                        <div class="col-5 centerImg">
+                            <img class="img-fluid"
+                                src="http://prodimage.images-bn.com/pimages/0714043012196_p0_v1_s1200x630.jpg" alt="">
+                            <div>
+                                <i class="fa fa-edit"></i>
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus fuga est facilis
+                                tenetur sunt
+                                accusantium
+                                tempore quas corporis velit! Omnis.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-1">
+                <div class="gameReviewWrapper2">
+                    <div class="upvotes2">
+                        <i class="fa fa-thumbs-up" [ngClass]="{downvoted: hasDownvoted}"></i>
+                    </div>
+                    <div class="downvotes2">
+                        <i class="fa fa-thumbs-down" [ngClass]="{downvoted: hasDownvoted}"></i>
+                    </div>
+                    <div class="wishlist">
+                        <i class="fa fa-gift"></i>
+                    </div>
+                    <div class="collection">
+                        <i class="fa fa-list-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="gameWrapper">
+        <div class="row no-gutters">
+            <div class="col-11">
+                <div class="gameContent">
+                    <h5 class="mb-3">This is a long title to a game, this one would be even longer.</h5>
+                    <div class="row">
+                        <div class="col-5 centerImg">
+                            <img class="img-fluid"
+                                src="http://prodimage.images-bn.com/pimages/0714043012196_p0_v1_s1200x630.jpg" alt="">
+                            <div>
+                                <i class="fa fa-edit"></i>
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus fuga est facilis
+                                tenetur sunt
+                                accusantium
+                                tempore quas corporis velit! Omnis.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-1">
+                <div class="gameReviewWrapper2">
+                    <div class="upvotes2">
+                        <i class="fa fa-thumbs-up" [ngClass]="{downvoted: hasDownvoted}"></i>
+                    </div>
+                    <div class="downvotes2">
+                        <i class="fa fa-thumbs-down" [ngClass]="{downvoted: hasDownvoted}"></i>
+                    </div>
+                    <div class="wishlist">
+                        <i class="fa fa-gift"></i>
+                    </div>
+                    <div class="collection">
+                        <i class="fa fa-list-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

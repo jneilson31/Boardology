@@ -1,5 +1,135 @@
 @import 'src/styles/main';
 
-.categories {
-    margin-bottom: 1rem;
+.downvotes {
+  display: flex;
+  height: 100%;
+  padding: 0.50rem;
+  align-items: center;
+}
+
+.gameWrapper {
+  margin-bottom: 1rem;
+}
+
+.gameContent {
+    background-clip: border-box;
+    background-color: #fff;
+    border-top-left-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+    border: 1px solid $color-dark-gray;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 1rem;
+    position: relative;
+    word-wrap: break-word;
+  p {
+    font-size: 12px;
+    margin-bottom: 0;
+  }
+}
+
+// i {
+//   margin-right: .5rem;
+// }
+
+.gameReviewWrapper {
+  align-items: center;
+  background: #00b09b;  /* fallback for old browsers */
+  background-image: -webkit-linear-gradient(to right bottom, rgba(#00b09b, 0.9), rgba(#96c93d, 0.9));/* Chrome 10-25, Safari 5.1-6 */
+  background-image: linear-gradient(to right bottom, rgba(#00b09b, 0.9), rgba(#96c93d, 0.9)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  border-bottom-left-radius: .25rem;
+  border-bottom-right-radius: .25rem;
+  border: 1px solid $color-dark-gray;
+  color: $color-white;
+  display: flex;
+  justify-content: space-between;
+  margin-top: -1px;
+  padding: .25rem;
+  i {
+    text-align: right;
+  }
+}
+
+.gameReviewWrapper2 {
+  border: 1px solid $color-dark-gray;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+  justify-content: space-between;
+  margin-left: -1px;
+}
+
+.scrollMenu {
+  background-color: #333;
+  margin-bottom: 1rem;
+  overflow: auto;
+  padding: .75rem;
+  white-space: nowrap;
+}
+
+.upvotes {
+  display: flex;
+  height: 100%;
+  padding: 0.50rem;
+  align-items: center;
+}
+
+.votingWrapper {
+  display: flex;
+  
+}
+
+.upvotes2, .downvotes2, .collection, .wishlist {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.downvotes2 {
+  border-bottom: 1px solid $color-dark-gray;
+  border-top: 1px solid $color-dark-gray;
+  background: #FF416C;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #FF4B2B, #FF416C);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #FF4B2B, #FF416C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.wishlist {
+  background: #FFE000;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #799F0C, #FFE000);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #799F0C, #FFE000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.upvotes2 {
+  background: #11998e;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.collection {
+  background: #0575E6;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #021B79, #0575E6);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #021B79, #0575E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.centerImg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  div {
+    margin-top: auto;
+    align-self: flex-start;
+  }
+  img {
+    margin-top: auto;
+  }
 }
