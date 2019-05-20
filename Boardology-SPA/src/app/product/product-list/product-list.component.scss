@@ -15,7 +15,7 @@
     background-clip: border-box;
     background-color: #fff;
     border-top-left-radius: .25rem;
-    border-top-right-radius: .25rem;
+    border-bottom-left-radius: .25rem;
     border: 1px solid $color-dark-gray;
     display: flex;
     flex-direction: column;
@@ -29,9 +29,9 @@
   }
 }
 
-i {
-  margin-right: .5rem;
-}
+// i {
+//   margin-right: .5rem;
+// }
 
 .gameReviewWrapper {
   align-items: center;
@@ -49,6 +49,18 @@ i {
   i {
     text-align: right;
   }
+}
+
+.gameReviewWrapper2 {
+  border: 1px solid $color-dark-gray;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+  justify-content: space-between;
+  margin-left: -1px;
 }
 
 .scrollMenu {
@@ -69,4 +81,55 @@ i {
 .votingWrapper {
   display: flex;
   
+}
+
+.upvotes2, .downvotes2, .collection, .wishlist {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.downvotes2 {
+  border-bottom: 1px solid $color-dark-gray;
+  border-top: 1px solid $color-dark-gray;
+  background: #FF416C;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #FF4B2B, #FF416C);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #FF4B2B, #FF416C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.wishlist {
+  background: #FFE000;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #799F0C, #FFE000);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #799F0C, #FFE000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.upvotes2 {
+  background: #11998e;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.collection {
+  background: #0575E6;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #021B79, #0575E6);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #021B79, #0575E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.centerImg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  div {
+    margin-top: auto;
+    align-self: flex-start;
+  }
+  img {
+    margin-top: auto;
+  }
 }
