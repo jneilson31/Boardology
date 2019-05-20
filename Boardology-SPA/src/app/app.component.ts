@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './_services/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { ProductService } from './_services/product.service';
 import { Product } from './_models/product.model';
 import { Subject } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
@@ -21,10 +20,8 @@ export class AppComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private productService: ProductService,
     public router: Router
   ) {
-   
    }
 
   ngOnInit() {
