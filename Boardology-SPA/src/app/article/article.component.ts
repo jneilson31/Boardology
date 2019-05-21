@@ -28,7 +28,7 @@ export class ArticleComponent implements OnInit {
 
 
   getArticle(id: number): any {
-    return this.http.get<Article>(`${this.baseUrl}articles/${id}`)
+      this.http.get<Article>(`${this.baseUrl}articles/${id}`)
       .subscribe(article => {
         this.article = article;
         console.log(this.article);
