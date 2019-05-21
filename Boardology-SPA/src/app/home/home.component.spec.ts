@@ -40,7 +40,7 @@ describe('HomeComponent', () => {
 
   describe('ngOnInit', () => {
 
-    it('should fetch products using the product service and set products to the return value', fakeAsync(() => {
+    it('should fetch products using the product service and set products to the return value', () => {
       // Arrange
       const products: Product[] = [
         {id: 1, name: 'product', description: 'test', upvotes: 1, downvotes: 3, numReviews: 4, numPlayers: '2-4',
@@ -50,13 +50,13 @@ describe('HomeComponent', () => {
         timeToPlay: '28', ageSuggestion: '1-3', yearCreated: 2019, photoUrl: 'testUrl', category: ['adventure', 'children']
         }
       ];
-      productServiceMock.getProducts().and.returnValue(of(products));
-      flush();
+      productServiceMock.getProducts.and.returnValue(of(products));
+      // flush();
       // Act
       component.ngOnInit();
       // Assert
       expect(productServiceMock.getProducts).toHaveBeenCalled();
       expect(component.products).toBe(products);
-    }));
+    });
   });
 });

@@ -5,34 +5,35 @@ import { ArticleComponent } from './article.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Article } from '../_models/article-model';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 describe('ArticleComponent', () => {
   let component: ArticleComponent;
   let fixture: ComponentFixture<ArticleComponent>;
   let activatedRouteMock;
   let app;
-  let httpMock: HttpTestingController;
+  let httpClientSpy;
 
   beforeEach(() => {
 
     activatedRouteMock = {
       route: { paramMap: { get: () => '3'}}
     };
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
 
 
 
     TestBed.configureTestingModule({
       declarations: [ ArticleComponent ],
-      imports: [RouterTestingModule, HttpClientTestingModule],
+      imports: [RouterTestingModule],
       providers: [
-        {provide: ActivatedRoute, useValue: activatedRouteMock}
+        {provide: ActivatedRoute, useValue: activatedRouteMock},
+        { provide: HttpClient, useValue: httpClientSpy }
       ],
       schemas: [ NO_ERRORS_SCHEMA ],
     });
 
-    httpMock = TestBed.get(HttpTestingController);
 
     fixture = TestBed.createComponent(ArticleComponent);
 
@@ -49,13 +50,12 @@ describe('ArticleComponent', () => {
       const articleResponse: Article = {id: 1, title: 'title', content: 'test',
       created: new Date(), photoUrl: 'photoUrl',
       dateCreated: new Date(), author: 'author', comments: 1};
-
+      httpClientSpy.get.and.returnValue(of(articleResponse));
 
       // Act
       component.getArticle(1);
 
       // Assert
-      const request = httpMock.expectOne(`${component.baseUrl}articles/1`).flush(articleResponse);
       expect(component.article).toEqual(articleResponse);
 
     }));
