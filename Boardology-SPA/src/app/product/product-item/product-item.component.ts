@@ -107,7 +107,7 @@ export class ProductItemComponent implements OnInit {
     }
 
   toggleFlip() {
-    console.log("clicked");
+    console.log('clicked');
     this.cardFlip = (this.cardFlip === 'sideA') ? 'sideB' : 'sideA';
   }
 

@@ -21,7 +21,7 @@ export class ProductListComponent implements OnInit {
   downvotes: Downvote[];
   max = 20;
   baseUrl = environment.apiUrl;
-  categoryLoad: boolean = false;
+  categoryLoad = false;
   categories: string[] = [
     'All',
     'Adventure',
