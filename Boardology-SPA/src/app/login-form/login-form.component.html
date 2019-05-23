@@ -6,7 +6,7 @@
         <input class="form-control"
           [ngClass]="{'is-invalid': loginForm.get('email').errors && loginForm.get('email').touched}" type="text"
           name="email" placeholder="Email" formControlName="email" />
-        <div class="invalid-feedback" *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').touched">
+        <div class="invalid-tooltip" *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').touched">
           Email
           is required (6-14 characters)
         </div>
@@ -15,7 +15,7 @@
         <input class="form-control"
           [ngClass]="{'is-invalid': loginForm.get('password').errors && loginForm.get('password').touched}" type="password"
           name="password" placeholder="Password" formControlName="password" />
-        <div class="invalid-feedback"
+        <div class="invalid-tooltip"
           *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">Password
           is required (6-14 characters)
         </div>

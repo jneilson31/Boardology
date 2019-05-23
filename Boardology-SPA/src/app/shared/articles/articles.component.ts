@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Article } from 'src/app/_models/article-model';
 import { environment } from 'src/environments/environment';
+// import * as moment from 'moment';
+import moment from 'moment';
 
 @Component({
   selector: 'app-articles',
@@ -22,11 +24,20 @@ export class ArticlesComponent implements OnInit {
     this.http.get<Article[]>(`${this.baseUrl}articles`)
     .subscribe(articles => {
       this.articles = articles;
+      console.log('articles', articles.length);
     });
   }
 
   getArticleName(name: string) {
     return name.replace(/\s+/g, '-').toLowerCase();
+  }
+
+  isNewArticle(date: Date): boolean {
+    return moment(Date.now()).diff(moment(date), 'days') < 30;
+  }
+
+  isArticleTrending(comments: number): boolean {
+    return comments >= 40;
   }
 
 }

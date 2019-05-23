@@ -1,8 +1,12 @@
 <h2>Recent Articles</h2>
 <div class="list-group">
   <div *ngFor="let article of articles" [routerLink]="['/article/', article.id, getArticleName(article.title)]" routerLinkActive="router-link-active"  class="article-container">
-    <div class="w-100">
+    <div class="w-100 content">
       <h5 class="article-title">{{article.title}}</h5>
+      <div class="badge-container">
+          <span *ngIf="isNewArticle(article?.dateCreated)" class="badge badge-new">New</span>
+          <span *ngIf="isArticleTrending(article?.comments)" class="badge badge-danger ">Hot</span>
+      </div>
     </div>
     <div class="article-info grayed-text">
       <div>{{article?.author}}</div>

@@ -15,6 +15,10 @@
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
+.form-group {
+    position: relative;
+}
+
 .loginLink {
     background-color: rgba($color: $color-white, $alpha: 0.2);
     border-top: 1px solid rgba($color: $color-white, $alpha: 0.4);

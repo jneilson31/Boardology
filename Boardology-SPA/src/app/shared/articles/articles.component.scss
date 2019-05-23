@@ -1,10 +1,12 @@
 @import 'src/styles/main';
 
+
 .article-container {
     padding: .75rem;
     border-top: 1px solid $color-dark-gray;
     border-bottom: 1px solid $color-dark-gray;
     margin-bottom: -1px;
+    position: relative;
 }
 
 .article-container:last-of-type {
@@ -19,6 +21,26 @@
     margin-bottom: .5rem;
 }
 
+.badge-container {
+    position: absolute;
+    right: 0;
+    top: -3px;
+}
+.content {
+    display:flex;
+    justify-content: space-between;
+}
+
+.badge {
+    align-self: flex-start;
+    border-radius: 0;
+}
+
+.badge-new {
+    align-self: flex-start;
+    background-color: $color-board-aqua;
+    color: $color-white;
+}
 .article-info {
     display: flex;
     justify-content: space-between;
@@ -27,6 +49,7 @@
         margin-bottom: 0;
     }
 }
+
 
 .grayed-text {
     color: $color-grayed-out;
