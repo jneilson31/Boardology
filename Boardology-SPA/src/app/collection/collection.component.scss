@@ -8,13 +8,6 @@ img {
     padding: .25rem;
 }
 
-.delete {
-    font-size:12px;
-    color:red;
-    text-decoration: underline;
-    float:right;
-}
-
 .share-column, .collection-total {
     text-align: center;
     line-height: 40px;
@@ -22,5 +15,10 @@ img {
 
 th {
     font-weight: $font-weight-normal;
+}
+
+.remove {
+    color: $color-board-red;
+    font-size: 14px;
 }
 

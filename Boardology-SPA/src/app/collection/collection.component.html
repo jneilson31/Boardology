@@ -19,9 +19,10 @@
   <tbody>
     <tr *ngFor="let product of productCollection; let i = index">
       <th class="collection-total" scope="row">{{ i + 1 }}</th>
-      <td><img src="{{ product.photoUrl }}" alt=""></td>
-      <td [routerLink]="['/games/', product.id]">{{ product.name }}</td>
-      <td class="share-column"><i class="fa fa-share-square"></i></td>
+      <td class="align-middle"><img src="{{ product.photoUrl }}" alt=""></td>
+      <td class="align-middle" [routerLink]="['/games/', product.id]">{{ product.name }}</td>
+      <td class="share-column align-middle"><i class="fa fa-share-square"></i></td>
+      <td class="share-column align-middle remove" (click)="removeFromCollection(product.id)">Remove</td>
     </tr>
   </tbody>
 </table>
