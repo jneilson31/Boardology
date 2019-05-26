@@ -24,9 +24,12 @@ button {
 .form-group {
     position: relative;
 }
-input::placeholder {
-    color: $color-white;
-}
+
+//The code below was making the email and password not show up. Not sure why it was here so I'm commenting it out
+
+// input::placeholder {
+//     color: $color-white;
+// }
 
 .gradientPageWrapper {
     background: #00b09b;
