@@ -9,9 +9,16 @@
       </div>
     </div>
     <div class="article-info grayed-text">
-      <div>{{article?.author}}</div>
-      <p><i class="fa fa-comment mr-1"></i>{{article.comments}}</p>
-      <p>{{article?.dateCreated | date: 'MMM d, y'}}</p>
+      <div class="row">
+        <div class="col-9">
+          <div class="row">
+            <div class="authorName col-12">{{article?.author}}</div>
+            <div class="col-12">{{article?.dateCreated | date: 'MMM d, y'}}</div>
+          </div>
+          
+        </div>
+        <p class="col-3 text-right"><i class="fa fa-comment mr-1"></i>{{article.comments}}</p>
+      </div>
     </div>
   </div>
 </div>

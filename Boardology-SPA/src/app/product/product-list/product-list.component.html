@@ -5,48 +5,45 @@
 <div *ngIf="[max] < products?.length -1" class="text-center" (click)="viewMore()">View more</div>
 <div *ngIf="[max] >= products?.length -1" class="text-center" (click)="scrollToTop()">Back to top</div> -->
 
-<!-- <div class="container">
-    <div class="categories">
-        <h1>Games</h1>
-        <app-category *ngFor="let category of categories" [category]="category" [products]="products"></app-category>
-    </div>
-</div> -->
-
 <div class="scrollMenu">
     <app-category *ngFor="let category of categories" [category]="category" [products]="products"></app-category>
 </div>
 <div class="container">
-    <h1>Games in Adventure</h1>
-    <div class="gameWrapper" *ngFor="let product of products | slice:0:[max]">
-        <div class="row no-gutters">
-            <div class="col-11">
-                <div class="gameContent">
-                    <h5 class="mb-3">{{ product.name }}</h5>
-                    <div class="row">
-                        <div class="col-5 centerImg">
-                            <img class="img-fluid"
-                                src="{{ product.photoUrl }}" alt="">
-                        </div>
-                        <div class="col-7">
-                            <p class="mb-2">{{ product.description| slice:0:[descMax] }}...</p>
-                            <div>
-                                <i class="fa fa-edit"></i>
-                            </div>
-                        </div>
+    <h1>All Games</h1>
+</div>
+<div class="tableHeader">
+    <div class="container">
+        <div class="row">
+            <div class="col-1">#</div>
+            <div class="col-7">Name of Game</div>
+            <div class="col-4">Game Action</div>
+        </div>
+    </div>
+</div>
+<div class="gameList" *ngFor="let product of products | slice:0:[max]; let rowIndex = index">
+    <div class="row">
+        <div class="col-1 gameNumber">{{ rowIndex+1 }}</div>
+        <div class="col-7 gameName">{{ product.name }}</div>
+        <div class="col-4 gameActions">
+            <div class="row no-gutters">
+                <div class="col-6">
+                    <div class="upvotes">
+                        <i class="fa fa-thumbs-up" [ngClass]="{downvoted: hasDownvoted}"></i>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="downvotes">
+                        <i class="fa fa-thumbs-down" [ngClass]="{downvoted: hasDownvoted}"></i>
                     </div>
                 </div>
             </div>
-            <div class="col-1">
-                <div class="gameReviewWrapper2">
-                    <div class="upvotes2">
-                        <i class="fa fa-thumbs-up" [ngClass]="{downvoted: hasDownvoted}"></i>
-                    </div>
-                    <div class="downvotes2">
-                        <i class="fa fa-thumbs-down" [ngClass]="{downvoted: hasDownvoted}"></i>
-                    </div>
+            <div class="row no-gutters">
+                <div class="col-6">
                     <div class="wishlist">
                         <i class="fa fa-gift"></i>
                     </div>
+                </div>
+                <div class="col-6">
                     <div class="collection">
                         <i class="fa fa-list-alt"></i>
                     </div>
@@ -55,3 +52,5 @@
         </div>
     </div>
 </div>
+<div *ngIf="[max] < products?.length -1" class="viewMore" (click)="viewMore()">View more</div>
+<div *ngIf="[max] >= products?.length -1" class="text-center" (click)="scrollToTop()">Back to top</div>

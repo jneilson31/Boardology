@@ -19,7 +19,7 @@ export class ProductListComponent implements OnInit {
   products: Product[];
   upvotes: Upvote[];
   downvotes: Downvote[];
-  descMax: number = 100;
+  descMax: number = 35;
   max = 20;
   baseUrl = environment.apiUrl;
   categoryLoad = false;
@@ -46,7 +46,6 @@ export class ProductListComponent implements OnInit {
     'Word',
     // 'Zombies',
   ];
-
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private authService: AuthService ) { }
 

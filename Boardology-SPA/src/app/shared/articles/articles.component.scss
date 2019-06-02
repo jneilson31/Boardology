@@ -1,6 +1,5 @@
 @import 'src/styles/main';
 
-
 .article-container {
     padding: .75rem;
     border-top: 1px solid $color-dark-gray;
@@ -21,14 +20,8 @@
     margin-bottom: .5rem;
 }
 
-.badge-container {
-    position: absolute;
-    right: 0;
-    top: -3px;
-}
-.content {
-    display:flex;
-    justify-content: space-between;
+.authorName {
+    font-size: $global-font-size;
 }
 
 .badge {
@@ -36,20 +29,22 @@
     border-radius: 0;
 }
 
+.badge-container {
+    position: absolute;
+    right: 0;
+    top: -3px;
+}
+
 .badge-new {
     align-self: flex-start;
     background-color: $color-board-aqua;
     color: $color-white;
 }
-.article-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    p {
-        margin-bottom: 0;
-    }
-}
 
+.content {
+    display:flex;
+    justify-content: space-between;
+}
 
 .grayed-text {
     color: $color-grayed-out;
