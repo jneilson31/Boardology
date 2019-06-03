@@ -25,7 +25,7 @@ export class WishlistComponent implements OnInit {
     if (!this.authService.loggedIn()) {
       return;
     }
-     this.http.get<WishlistProduct[]>(`${this.baseUrl}games/${this.authService.decodedToken.nameid}/wishlist`)
+     this.http.get<WishlistProduct[]>(`${this.baseUrl}wishlist/${this.authService.decodedToken.nameid}/wishlist`)
       .subscribe(wishlist => {
         this.productWishlist = wishlist;
       });
@@ -33,7 +33,7 @@ export class WishlistComponent implements OnInit {
 
   removeFromWishlist(productId: number): void {
     this.alertify.confirm('Are you sure you want remove this game from your wishlist?', 'Yes', undefined, () => {
-      this.http.delete(`${this.baseUrl}games/${this.authService.decodedToken.nameid}/${productId}/wishlist`)
+      this.http.delete(`${this.baseUrl}wishlist/${this.authService.decodedToken.nameid}/${productId}/wishlist`)
         .subscribe(results => {
           const productToRemove = this.productWishlist.findIndex(x => x.id === productId);
           this.productWishlist.splice(productToRemove, 1);
