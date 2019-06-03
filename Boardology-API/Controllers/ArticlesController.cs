@@ -16,19 +16,22 @@ namespace Boardology.API.Controllers
     public class ArticlesController : ControllerBase
     {
 
-        private readonly IBoardologyRepository _repo;
+        private readonly IBoardologyRepository _boardologyRepo;
+	    private readonly IArticlesRepository _articlesRepo;
         private readonly IMapper _mapper;
 
-        public ArticlesController(IBoardologyRepository repo, IMapper mapper)
+        public ArticlesController(IBoardologyRepository boardologyRepo, IArticlesRepository articlesRepo, IMapper mapper)
         {
-            _repo = repo;
-        }
+	        _boardologyRepo = boardologyRepo;
+	        _articlesRepo = articlesRepo;
+			_mapper = mapper;
+		}
 
 
         [HttpGet]
         public async Task<IActionResult> GetArticles()
         {
-            var articles = await _repo.GetArticles();
+            var articles = await _articlesRepo.GetArticles();
 
             if (articles == null)
             {
@@ -41,7 +44,7 @@ namespace Boardology.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetArticle(int id)
         {
-            var article = await _repo.GetArticle(id);
+            var article = await _articlesRepo.GetArticle(id);
 
             if (article == null)
             {
@@ -67,7 +70,7 @@ namespace Boardology.API.Controllers
             }
             
 
-            if (await _repo.GetArticle(articleId) == null)
+            if (await _articlesRepo.GetArticle(articleId) == null)
             {
                 return NotFound();
             }
@@ -80,11 +83,11 @@ namespace Boardology.API.Controllers
                 Content = comment.Content
             };
 
-            _repo.Add(comment);
+            _boardologyRepo.Add(comment);
 
-            await _repo.IncreaseArticleComments(articleId);
+            await _articlesRepo.IncreaseArticleComments(articleId);
 
-            if (await _repo.SaveAll())
+            if (await _boardologyRepo.SaveAll())
             {
                 return Ok();
             }

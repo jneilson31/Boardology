@@ -117,7 +117,7 @@ export class ProductDetailComponent implements OnInit {
 
     this.http
       .post(
-        `${this.baseUrl}games/${this.authService.decodedToken.nameid}/${
+        `${this.baseUrl}wishlist/${this.authService.decodedToken.nameid}/${
         this.product.id
         }/wishlist`,
         {}
@@ -139,7 +139,7 @@ export class ProductDetailComponent implements OnInit {
 
     this.http
       .post(
-        `${this.baseUrl}games/${this.authService.decodedToken.nameid}/${
+        `${this.baseUrl}collection/${this.authService.decodedToken.nameid}/${
         this.product.id
         }/collection`,
         {}

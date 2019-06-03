@@ -27,45 +27,12 @@ namespace Boardology.API.Data
         {
             _context.Remove(entity);
         }
+	    public async Task<bool> SaveAll()
+	    {
+		    return await _context.SaveChangesAsync() > 0;
+	    }
 
-        public async Task<Upvote> GetUpvote(int userId, int gameId)
-        {
-            return await _context.Upvotes.FirstOrDefaultAsync(u => u.UpVoterId == userId && u.GameId == gameId);
-        }
-
-        public async Task<Downvote> GetDownvote(int userId, int gameId)
-        {
-            return await _context.Downvotes.FirstOrDefaultAsync(u => u.DownVoterId == userId && u.GameId == gameId);
-        }
-
-        public async Task<IList> GetDownvotesForUser(int userId)
-        {
-
-            var downvoteList = await
-                (from downvotes in _context.Downvotes
-                 where downvotes.DownVoterId == userId
-                 select new
-                 {
-                     downvotes.GameId
-                 }).ToListAsync();
-
-            return downvoteList;
-        }
-
-        public async Task<IList> GetUpvotesForUser(int userId)
-        {
-            var upvoterList = await
-                (from upvotes in _context.Upvotes
-                 where upvotes.UpVoterId == userId
-                 select new
-                 {
-                     upvotes.GameId
-                 }).ToListAsync();
-
-            return upvoterList;
-        }
-
-        public async Task<Game> GetGame(int id)
+		public async Task<Game> GetGame(int id)
         {
             var game = await _context.Games.FirstOrDefaultAsync(u => u.Id == id);
             return game;
@@ -78,51 +45,6 @@ namespace Boardology.API.Data
 
         }
 
- 
-        public async Task<bool> SaveAll()
-        {
-            return await _context.SaveChangesAsync() > 0;
-        }
-
-        public async Task<Game> IncreaseUpvotes(int gameId)
-        {
-            var game = await _context.Games.SingleOrDefaultAsync(u => u.Id == gameId);
-            if (game != null)
-            {
-                game.Upvotes = game.Upvotes + 1;
-            }
-            return game;
-        }
-
-        public async Task<Game> IncreaseDownvotes(int gameId)
-        {
-            var game = await _context.Games.SingleOrDefaultAsync(u => u.Id == gameId);
-            if (game != null)
-            {
-                game.Downvotes = game.Downvotes + 1;
-            }
-            return game;
-        }
-
-        public async Task<Game> DecreaseUpvotes(int gameId)
-        {
-            var game = await _context.Games.SingleOrDefaultAsync(u => u.Id == gameId);
-            if (game != null)
-            {
-                game.Upvotes = game.Upvotes - 1;
-            }
-            return game;
-        }
-
-        public async Task<Game> DecreaseDownvotes(int gameId)
-        {
-            var game = await _context.Games.SingleOrDefaultAsync(u => u.Id == gameId);
-            if (game != null)
-            {
-                game.Downvotes = game.Downvotes - 1;
-            }
-            return game;
-        }
 
         public async Task<Comment> GetComment(int commentId)
         {
@@ -154,6 +76,7 @@ namespace Boardology.API.Data
 
         }
 
+		// This method is only to be used if we want to get search results from the back end. Depends on how many products we have
         public async Task<IList<Game>> GetSearchResults(string searchString)
         {
             List<Game> games = new List<Game>();
@@ -164,90 +87,9 @@ namespace Boardology.API.Data
                                    where g.Name.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0
                                    select g).ToListAsync();
             }
-                
-
-            //if (!String.IsNullOrEmpty(searchString))
-            //{
-            //    games = games.FindAll(s => s.Name.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0);
-               
-            //}
-
             return games;
         }
 
-        public async Task<IList> GetCollection(int userId)
-        {
-
-            var collectionList = await
-                (from collections in _context.Collections
-                 join games in _context.Games
-                 on collections.GameId equals games.Id
-                 where collections.UserId == userId
-                 select new
-                 {
-                     games.Id,
-                     games.Name,
-                     games.PhotoUrl
-                 }).ToListAsync();
-
-
-            return collectionList;
-        }
-
-        public async Task<Collection> GetCollectionItem(int userId, int gameId)
-        {
-            var value = await _context.Collections.FirstOrDefaultAsync(u => u.UserId == userId && u.GameId == gameId);
-            return value;
-        }
-
-
-        public async Task<IList> GetWishlist(int userId)
-        {
-
-            var wishlist = await
-                (from wishlists in _context.Wishlists
-                    join games in _context.Games
-                        on wishlists.GameId equals games.Id
-                    where wishlists.UserId == userId
-                    select new
-                    {
-                        games.Id,
-                        games.Name,
-                        games.PhotoUrl
-                    }).ToListAsync();
-
-
-            return wishlist;
-        }
-
-        public async Task<Wishlist> GetWishlistItem(int userId, int gameId)
-        {
-            var value = await _context.Wishlists.FirstOrDefaultAsync(u => u.UserId == userId && u.GameId == gameId);
-            return value;
-        }
-
-        public async Task<List<Article>> GetArticles()
-        {
-            var articles = await _context.Articles.OrderByDescending(d => d.DateCreated).ToListAsync();
-            return articles;
-        }
-
-        public async Task<Article> GetArticle(int id)
-        {
-            var article = await _context.Articles.FirstOrDefaultAsync(u => u.Id == id);
-            return article;
-        }
-
-        public async Task<Article> IncreaseArticleComments(int articleId)
-        {
-            var article = await _context.Articles.FirstOrDefaultAsync(u => u.Id == articleId);
-            if (article != null)
-            {
-                article.Comments = article.Comments + 1;
-            }
-            return article;
-            
-        }
 
     }
 }

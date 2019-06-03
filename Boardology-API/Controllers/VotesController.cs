@@ -15,13 +15,14 @@ namespace Boardology.API.Controllers
     [ApiController]
     public class VotesController : ControllerBase
     {
-
-        private readonly IBoardologyRepository _repo;
+	    private readonly IBoardologyRepository _boardologyRepo;
+        private readonly IVotesRepository _votesRepo;
         private readonly IMapper _mapper;
 
-        public VotesController(IBoardologyRepository repo, IMapper mapper)
+        public VotesController(IVotesRepository votesRepo, IBoardologyRepository boardologyRepo, IMapper mapper)
         {
-            _repo = repo;
+            _boardologyRepo = boardologyRepo;
+	        _votesRepo = votesRepo;
             _mapper = mapper;
         }
 
@@ -34,20 +35,20 @@ namespace Boardology.API.Controllers
                 return Unauthorized();
             }
             
-            if (await _repo.GetGame(gameId) == null)
+            if (await _boardologyRepo.GetGame(gameId) == null)
             {
                 return NotFound();
             }
 
-            var upvote = await _repo.GetUpvote(userId, gameId);
-            var downvote = await _repo.GetDownvote(userId, gameId);
+            var upvote = await _votesRepo.GetUpvote(userId, gameId);
+            var downvote = await _votesRepo.GetDownvote(userId, gameId);
 
             if (upvote != null)
             {
                 
-                await _repo.DecreaseUpvotes(gameId);
-                _repo.Delete(upvote);
-                if (await _repo.SaveAll())
+                await _votesRepo.DecreaseUpvotes(gameId);
+                _boardologyRepo.Delete(upvote);
+                if (await _boardologyRepo.SaveAll())
                 {
                     return Ok();
                 }
@@ -62,18 +63,18 @@ namespace Boardology.API.Controllers
                 GameId = gameId
             };
 
-            _repo.Add(upvote);
+            _boardologyRepo.Add(upvote);
 
-            await _repo.IncreaseUpvotes(gameId);
+            await _votesRepo.IncreaseUpvotes(gameId);
 
             if (downvote != null)
             {
-                await _repo.DecreaseDownvotes(gameId);
-                _repo.Delete(downvote);
+                await _votesRepo.DecreaseDownvotes(gameId);
+                _boardologyRepo.Delete(downvote);
             }
 
 
-            if (await _repo.SaveAll())
+            if (await _boardologyRepo.SaveAll())
             {
                 return Ok();
             }
@@ -90,19 +91,19 @@ namespace Boardology.API.Controllers
                 return Unauthorized();
             }
 
-            if (await _repo.GetGame(gameId) == null)
+            if (await _boardologyRepo.GetGame(gameId) == null)
             {
                 return NotFound();
             }
 
-            var upvote = await _repo.GetUpvote(userId, gameId);
-            var downvote = await _repo.GetDownvote(userId, gameId);
+            var upvote = await _votesRepo.GetUpvote(userId, gameId);
+            var downvote = await _votesRepo.GetDownvote(userId, gameId);
 
             if (downvote != null)
             {
-                await _repo.DecreaseDownvotes(gameId);
-                _repo.Delete(downvote);
-                if (await _repo.SaveAll())
+                await _votesRepo.DecreaseDownvotes(gameId);
+                _boardologyRepo.Delete(downvote);
+                if (await _boardologyRepo.SaveAll())
                 {
                     return Ok();
                 }
@@ -115,17 +116,17 @@ namespace Boardology.API.Controllers
                 GameId = gameId
             };
 
-            _repo.Add(downvote);
+            _boardologyRepo.Add(downvote);
 
-            await _repo.IncreaseDownvotes(gameId);
+            await _votesRepo.IncreaseDownvotes(gameId);
 
             if (upvote != null)
             {
-                await _repo.DecreaseUpvotes(gameId);
-                _repo.Delete(upvote);
+                await _votesRepo.DecreaseUpvotes(gameId);
+                _boardologyRepo.Delete(upvote);
             }
 
-            if (await _repo.SaveAll())
+            if (await _boardologyRepo.SaveAll())
             {
                 return Ok();
             }
@@ -141,7 +142,7 @@ namespace Boardology.API.Controllers
             {
                 return Unauthorized();
             }
-            var downvotes = await _repo.GetDownvotesForUser(userId);
+            var downvotes = await _votesRepo.GetDownvotesForUser(userId);
 
             return Ok(downvotes);
         }
@@ -154,7 +155,7 @@ namespace Boardology.API.Controllers
             {
                 return Unauthorized();
             }
-            var upvotes = await _repo.GetUpvotesForUser(userId);
+            var upvotes = await _votesRepo.GetUpvotesForUser(userId);
 
             return Ok(upvotes);
         }

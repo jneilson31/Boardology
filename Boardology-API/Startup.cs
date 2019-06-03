@@ -74,15 +74,18 @@ namespace Boardology.API
             services.AddCors();
             services.AddAutoMapper();
             services.AddTransient<SeedGames>();
-            services.AddTransient<SeedUsers>();
             services.AddTransient<IEmailSender, EmailSender>();
             services.Configure<AuthMessageSenderOptions>(Configuration);
             services.AddScoped<IBoardologyRepository, BoardologyRepository>();
-            
-        }
+	        services.AddScoped<IArticlesRepository, ArticlesRepository>();
+	        services.AddScoped<ICollectionRepository, CollectionRepository>();
+	        services.AddScoped<IWishlistRepository, WishlistRepository>();
+	        services.AddScoped<IVotesRepository, VotesRepository>();
+
+		}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, SeedGames seedGames, SeedUsers seedUsers)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, SeedGames seedGames)
         {
             if (env.IsDevelopment())
             {
