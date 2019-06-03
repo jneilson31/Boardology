@@ -22,7 +22,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // this.getArticle(this.route.snapshot.params.articleId);
 
-    const subscription = this.route.params
+     this.subscription = this.route.params
       .subscribe((params: Params) => {
         this.getArticle(params.articleId);
       });
