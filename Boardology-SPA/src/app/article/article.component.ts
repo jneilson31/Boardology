@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, ActivatedRouteSnapshot, Params, ParamMap } from '@angular/router';
 import { Article } from '../_models/article-model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 @Component({
@@ -11,19 +11,25 @@ import { switchMap } from 'rxjs/operators';
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.scss']
 })
-export class ArticleComponent implements OnInit {
+export class ArticleComponent implements OnInit, OnDestroy {
   baseUrl = environment.apiUrl;
   article: Article;
+
+  subscription: Subscription;
 
   constructor(private route: ActivatedRoute, private http: HttpClient) { }
 
   ngOnInit() {
     // this.getArticle(this.route.snapshot.params.articleId);
 
-    this.route.params
+    const subscription = this.route.params
       .subscribe((params: Params) => {
         this.getArticle(params.articleId);
       });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 
