@@ -27,6 +27,7 @@
   border-bottom: 1px solid gray;
   margin-top: -1px;
   padding-left: 15px;
+  cursor: pointer;
 }
 
 .gameList:nth-of-type(odd){
@@ -35,6 +36,16 @@
 
 .gameActions, .gameName, .gameNumber {
   align-self: center;
+}
+
+.gameName {
+  font-size: 18px;
+  font-weight: 700;
+  p {
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
 }
 
 .scrollMenu {

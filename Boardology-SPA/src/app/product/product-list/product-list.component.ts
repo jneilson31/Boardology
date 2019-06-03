@@ -19,7 +19,7 @@ export class ProductListComponent implements OnInit {
   products: Product[];
   upvotes: Upvote[];
   downvotes: Downvote[];
-  descMax: number = 35;
+  descMax: number = 50;
   max = 20;
   baseUrl = environment.apiUrl;
   categoryLoad = false;
