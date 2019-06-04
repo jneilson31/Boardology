@@ -41,7 +41,7 @@ namespace Boardology.API.Controllers
             return Ok(articles);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}/article")]
         public async Task<IActionResult> GetArticle(int id)
         {
             var article = await _articlesRepo.GetArticle(id);
@@ -52,6 +52,22 @@ namespace Boardology.API.Controllers
             }
 
             return Ok(article);
+        }
+        
+        [HttpGet("{articleId}/comments")]
+        public async Task<IActionResult> GetArticleComments(int articleId)
+        {
+
+
+            if (await _articlesRepo.GetArticle(articleId) == null)
+            {
+                return NotFound();
+            }
+
+            var comments = await _articlesRepo.GetArticleComments(articleId);
+
+            return Ok(comments);
+
         }
 
         [Authorize]
@@ -93,6 +109,39 @@ namespace Boardology.API.Controllers
             }
 
             return BadRequest("Failed to add comment");
+        }
+
+        [Authorize]
+        [HttpDelete("user/{userId}/comment/{commentId}/delete")]
+        public async Task<IActionResult> DeleteComment(int userId, int commentId)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+
+            var comment = await _articlesRepo.GetArticleComment(commentId);
+
+            if (comment == null)
+            {
+                return NotFound();
+            }
+
+            if (comment.UserId != userId)
+            {
+                return Unauthorized();
+            }
+
+            _boardologyRepo.Delete(comment);
+
+
+            if (await _boardologyRepo.SaveAll())
+            {
+                return Ok();
+            }
+
+            return BadRequest("Failed to delete comment");
+
         }
 
 

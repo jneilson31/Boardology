@@ -153,4 +153,8 @@ export class ProductDetailComponent implements OnInit {
         }
       );
   }
+
+  getUserId(): number {
+    return this.authService.decodedToken.nameid;
+  }
 }

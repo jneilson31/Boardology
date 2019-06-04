@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ArticleComponent } from './article.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Article } from '../_models/article-model';
+import { Article } from '../_models/article.model';
 import { of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 

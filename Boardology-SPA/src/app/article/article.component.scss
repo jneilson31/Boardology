@@ -1,3 +1,5 @@
+@import 'src/styles/main';
+
 .title {
     margin-top: 15px;
 }
@@ -8,4 +10,68 @@
 
 .image {
     margin-bottom: 15px;
+}
+
+.leave-review {
+    font-size: 12px;
+    text-decoration: underline;
+}
+
+.delete {
+    font-size:12px;
+    color:red;
+    text-decoration: underline;
+}
+
+// This CSS below is copied from the Article Component. If we want to use the same design, we can reuse the component. If not, we can change it up and change styling
+
+.article-container {
+    padding: .75rem;
+    border-top: 1px solid $color-dark-gray;
+    border-bottom: 1px solid $color-dark-gray;
+    margin-bottom: -1px;
+    position: relative;
+}
+
+.article-container:last-of-type {
+    margin-bottom: 2rem;
+}
+
+.article-container:nth-of-type(odd){
+    background-color: rgba(150, 201, 61, .2);;
+}
+
+.article-desc, .article-title {
+    margin-bottom: .5rem;
+}
+
+.authorName {
+    font-size: $global-font-size;
+}
+
+.badge {
+    align-self: flex-start;
+    border-radius: 0;
+}
+
+.badge-container {
+    position: absolute;
+    right: 0;
+    top: -3px;
+}
+
+.badge-new {
+    align-self: flex-start;
+    background-color: $color-board-aqua;
+    color: $color-white;
+}
+
+.content {
+    display:flex;
+    justify-content: space-between;
+}
+
+.grayed-text {
+    color: $color-grayed-out;
+    font-size: 12px;
 }

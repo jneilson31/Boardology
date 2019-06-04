@@ -1,3 +1,5 @@
+import { ArticleComment } from './article-comment.model';
+
 export interface Article {
      id: number;
      title: string;
