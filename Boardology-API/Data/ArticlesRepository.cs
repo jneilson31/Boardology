@@ -41,6 +41,34 @@ namespace Boardology.API.Data
 
 		}
 
+        public async Task<IList> GetArticleComments(int articleId)
+        {
 
-	}
+            var commentList = await
+                (from articleComments in _context.ArticleComments
+                 join users in _context.Users
+                 on articleComments.UserId equals users.Id
+                 where articleComments.ArticleId == articleId
+                 orderby articleComments.Created descending
+                 select new
+                 {
+                     articleComments.Id,
+                     articleComments.ArticleId,
+                     articleComments.Content,
+                     articleComments.Created,
+                     articleComments.UserId,
+                     users.UserName
+                 }).Take(5).ToListAsync();
+
+
+            return commentList;
+
+        }
+
+        public async Task<ArticleComment> GetArticleComment(int articleCommentId)
+        {
+            var comment = await _context.ArticleComments.FirstOrDefaultAsync(u => u.Id == articleCommentId);
+            return comment;
+        }
+    }
 }

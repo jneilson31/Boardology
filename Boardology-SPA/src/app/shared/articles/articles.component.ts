@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Article } from 'src/app/_models/article-model';
+import { Article } from 'src/app/_models/article.model';
 import { environment } from 'src/environments/environment';
 import moment from 'moment';
 

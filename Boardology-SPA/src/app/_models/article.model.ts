@@ -1,3 +1,5 @@
+import { ArticleComment } from './article-comment.model';
+
 export interface Article {
      id: number;
      title: string;
@@ -6,5 +8,5 @@ export interface Article {
      photoUrl: string;
      dateCreated: Date;
      author: string;
-     comments: number;
+     numberOfComments: number;
 }
