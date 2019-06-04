@@ -28,7 +28,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute,
      private http: HttpClient,
-     private authService: AuthService,
+     public authService: AuthService,
      private alertify: AlertifyService,
      private articleService: ArticleService) { }
 

@@ -4,5 +4,5 @@ export interface ArticleComment {
     content: string;
     created: Date;
     userId: number;
-    username: string;
+    userName: string;
 }

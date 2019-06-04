@@ -4,5 +4,5 @@ export interface Comment {
      content: string;
      created: Date;
      userId: number;
-     username: string;
+     userName: string;
 }
