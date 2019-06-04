@@ -15,20 +15,8 @@ namespace Boardology.API.Data
         Task<bool> SaveAll();
         Task<IEnumerable<Game>> GetGames();
         Task<Game> GetGame(int gameId);
-        Task<Upvote> GetUpvote(int userId, int gameId);
-        Task<Downvote> GetDownvote(int userId, int gameId);
-        Task<Game> IncreaseUpvotes(int gameId);
-        Task<Game> IncreaseDownvotes(int gameId);
         Task<Comment> GetComment(int commentId);
         Task<IList> GetComments(int gameId);
         Task<IList<Game>> GetSearchResults(string game);
-        Task<IList> GetCollection(int userId);
-        Task<Collection> GetCollectionItem(int userId, int gameId);
-        Task<IList> GetWishlist(int userId);
-        Task<Wishlist> GetWishlistItem(int userId, int gameId);
-        Task<IList> GetDownvotesForUser(int userId);
-        Task<IList> GetUpvotesForUser(int userId);
-        Task<Game> DecreaseUpvotes(int gameId);
-        Task<Game> DecreaseDownvotes(int gameId);
     }
 }

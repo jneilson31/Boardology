@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Product } from '../_models/product.model';
-import { ProductService } from '../_services/product.service';
 
 @Pipe({
   name: 'categorySort',
@@ -14,7 +13,11 @@ export class CategorySortPipe implements PipeTransform {
       products.forEach((product) => {
            product.category = product.category.toString().split(',');
       });
-      return products.filter(product => product.category.includes(category.toLowerCase()));
+      const filteredProducts = products.filter(product => product.category.includes(category.toLowerCase()));
+      const sortedProducts = filteredProducts.sort((a, b) => {
+        return a.upvotes - b.upvotes;
+      });
+      return sortedProducts.reverse();
     }
   }
 

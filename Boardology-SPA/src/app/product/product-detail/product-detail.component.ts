@@ -1,17 +1,17 @@
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { HttpClient } from "@angular/common/http";
-import { Product } from "../../_models/product.model";
-import { Comment } from "../../_models/comment.model";
-import { FormControl } from "@angular/forms";
-import { environment } from "../../../environments/environment";
-import { AuthService } from "../../_services/auth.service";
-import { AlertifyService } from "../../_services/alertify.service";
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Product } from '../../_models/product.model';
+import { Comment } from '../../_models/comment.model';
+import { FormControl } from '@angular/forms';
+import { environment } from '../../../environments/environment';
+import { AuthService } from '../../_services/auth.service';
+import { AlertifyService } from '../../_services/alertify.service';
 
 @Component({
-  selector: "app-product-detail",
-  templateUrl: "./product-detail.component.html",
-  styleUrls: ["./product-detail.component.scss"]
+  selector: 'app-product-detail',
+  templateUrl: './product-detail.component.html',
+  styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit {
   productId: number;
@@ -20,19 +20,20 @@ export class ProductDetailComponent implements OnInit {
   review: FormControl = new FormControl();
   shouldShow = false;
   baseUrl = environment.apiUrl;
-  @ViewChild("textArea") textArea: ElementRef;
+  @ViewChild('textArea') textArea: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
     public authService: AuthService,
-    private alertify: AlertifyService
+    private alertify: AlertifyService,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.product = data["product"];
-      this.comments = data["comments"];
+      this.product = data['product'];
+      this.comments = data['comments'];
     });
   }
 
@@ -47,8 +48,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   toggleComment(): void {
-    if (!this.authService.loggedIn()) {
-      this.alertify.error("You need to be logged in to do that", 2);
+    if (!this.authService.checkLogin()) {
       return;
     }
     this.shouldShow = !this.shouldShow;
@@ -82,13 +82,13 @@ export class ProductDetailComponent implements OnInit {
           }
         );
     } else {
-      console.log("error");
+      console.log('error');
     }
   }
 
   deleteComment(commentId: number) {
     this.alertify.confirm(
-      "Are you sure you want to delete your comment?",
+      'Are you sure you want to delete your comment?',
       undefined,
       undefined,
       () => {
@@ -111,20 +111,20 @@ export class ProductDetailComponent implements OnInit {
   }
 
   addToWishlist() {
-    if (!this.authService.loggedIn()) {
-      this.alertify.error("You need to be logged in to do that", 2);
+    if (!this.authService.checkLogin()) {
       return;
     }
+
     this.http
       .post(
-        `${this.baseUrl}games/${this.authService.decodedToken.nameid}/${
+        `${this.baseUrl}wishlist/${this.authService.decodedToken.nameid}/${
         this.product.id
         }/wishlist`,
         {}
       )
       .subscribe(
         response => {
-          this.alertify.success("Game added to your Wishlist!");
+          this.alertify.success('Game added to your Wishlist!');
         },
         error => {
           this.alertify.error(error.error);
@@ -133,24 +133,31 @@ export class ProductDetailComponent implements OnInit {
   }
 
   addToCollection() {
-    if (!this.authService.loggedIn()) {
-      this.alertify.error("You need to be logged in to do that", 2);
+    if (!this.authService.checkLogin()) {
       return;
     }
+
     this.http
       .post(
-        `${this.baseUrl}games/${this.authService.decodedToken.nameid}/${
+        `${this.baseUrl}collection/${this.authService.decodedToken.nameid}/${
         this.product.id
         }/collection`,
         {}
       )
       .subscribe(
         response => {
-          this.alertify.success("Game added to your Collection!");
+          this.alertify.success('Game added to your Collection!');
         },
         error => {
           this.alertify.error(error.error);
         }
       );
+  }
+
+  getUserId(): number {
+    if (this.authService.decodedToken.nameid) {
+      return this.authService.decodedToken.nameid;
+    }
+    return -1;
   }
 }

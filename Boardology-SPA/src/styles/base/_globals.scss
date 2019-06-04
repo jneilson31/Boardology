@@ -1,0 +1,31 @@
+a,
+a:hover,
+a:focus {
+	cursor: pointer;
+	color: inherit;
+}
+
+a {
+	&:hover {
+		// color: $color-link-hover;
+	}
+}
+
+body,
+html {
+	font-family: $global-font-family;
+	max-width: 100%;
+	height: 100%;
+}
+
+body {
+	// font-size: $global-font-size;
+	line-height: normal;
+	// font-family: $font-proxima-nova;
+	// color: $color-text;
+}
+
+
+
+
+

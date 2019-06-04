@@ -8,19 +8,44 @@ import { Downvote } from '../../_models/downvote.model';
 import { AuthService } from '../../_services/auth.service';
 import { forkJoin } from 'rxjs';
 
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss']
-})
+  styleUrls: ['./product-list.component.scss'],
+  })
 
 export class ProductListComponent implements OnInit {
   products: Product[];
   upvotes: Upvote[];
   downvotes: Downvote[];
+  descMax: number = 50;
   max = 20;
   baseUrl = environment.apiUrl;
-
+  categoryLoad = false;
+  categories: string[] = [
+    'All',
+    'Adventure',
+    'Action',
+    'Board',
+    'Card',
+    'Childrens',
+    'Dice',
+    // 'Educational',
+    // 'Expansion',
+    'Exploration',
+    'Humor',
+    'Memory',
+    // 'Miniatures',
+    // 'Movies & Television',
+    'Murder',
+    'Mystery',
+    // 'Party',
+    'Sports',
+    // 'Wargame',
+    'Word',
+    // 'Zombies',
+  ];
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private authService: AuthService ) { }
 
@@ -51,5 +76,4 @@ export class ProductListComponent implements OnInit {
   scrollToTop(): void {
     window.scroll(0, 0);
   }
-
 }

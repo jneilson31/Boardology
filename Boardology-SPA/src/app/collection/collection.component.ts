@@ -25,7 +25,7 @@ export class CollectionComponent implements OnInit {
     if (!this.authService.loggedIn()) {
       return;
     }
-      this.http.get<CollectionProduct[]>(`${this.baseUrl}games/${this.authService.decodedToken.nameid}/collection`)
+      this.http.get<CollectionProduct[]>(`${this.baseUrl}collection/${this.authService.decodedToken.nameid}/collection`)
         .subscribe(results => {
           this.productCollection = results;
         });
@@ -33,7 +33,7 @@ export class CollectionComponent implements OnInit {
 
   removeFromCollection(productId: number): void {
     this.alertify.confirm('Are you sure you want remove this game from your collection?', 'Yes', undefined, () => {
-      this.http.delete(`${this.baseUrl}games/${this.authService.decodedToken.nameid}/${productId}/collection`)
+      this.http.delete(`${this.baseUrl}collection/${this.authService.decodedToken.nameid}/${productId}/collection`)
         .subscribe(results => {
           const productToRemove = this.productCollection.findIndex(x => x.id === productId);
           this.productCollection.splice(productToRemove, 1);

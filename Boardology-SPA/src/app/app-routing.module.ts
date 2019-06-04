@@ -12,6 +12,10 @@ import { ProductDetailResolver } from './_resolvers/product-detail-resolver';
 import { ProductDetailCommentsResolver } from './_resolvers/product-detail-comments-resolver';
 import { CollectionComponent } from './collection/collection.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { CollectionGuard } from './_guards/collection.guard';
+import { WishlistGuard } from './_guards/wishlist.guard';
+import { ArticleComponent } from './article/article.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -20,16 +24,17 @@ const appRoutes: Routes = [
         runGuardsAndResolvers: 'always',
         children: [
             { path: 'games', component: ProductListComponent},
-            { path: 'games/:gameId', component: ProductDetailComponent, resolve: {product: ProductDetailResolver,
+            { path: 'games/:gameId/:name', component: ProductDetailComponent, resolve: {product: ProductDetailResolver,
                 comments: ProductDetailCommentsResolver} },
             { path: 'reviews', component: ReviewsComponent },
             { path: 'about-us', component: AboutComponent },
             { path: 'contact-us', component: ContactComponent },
             { path: 'register', component: RegisterComponent },
             { path: 'login', component: LoginFormComponent },
-            { path: 'collection', component: CollectionComponent },
-            { path: 'wishlist', component: WishlistComponent },
-
+            { path: 'collection', component: CollectionComponent, canActivate: [CollectionGuard] },
+            { path: 'wishlist', component: WishlistComponent, canActivate: [WishlistGuard] },
+            { path: 'password-reset', component: ResetPasswordComponent},
+            { path: 'article/:articleId/:name', component: ArticleComponent }
         ]
     }
 ];

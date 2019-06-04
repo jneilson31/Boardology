@@ -1,33 +1,9 @@
-@import "src/styles";
+@import 'src/styles/main';
 
-.btn-link {
+.categories {
+    display: inline-block;
     color: $color-white;
+    padding: .75rem 1rem;
+    text-align: center;
     text-decoration: none;
 }
-
-.card-body {
-    color: $color-dark-gray;
-}
-
-.card-header {
-    background-color: $color-dark-gray;
-    padding: .75rem .75rem;
-    margin-bottom: 0;
-}
-
-.category-title {
-    font-size: 1rem;
-    padding: .75rem 0.75rem;
-}
-
-.view-all-link {
-    text-align: center;
-    
-}
-
-.down-arrow {
-    float: right;
-    margin-top: 4px;
-    font-size: 18px;
-}
-

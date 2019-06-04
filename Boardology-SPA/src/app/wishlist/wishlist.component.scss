@@ -1,19 +1,22 @@
 img {
     width: 40px;
 }
+@import 'src/styles/main';
 
 .list-group-item {
     padding: .25rem;
 }
 
-.delete {
-    font-size:12px;
-    color:red;
-    text-decoration: underline;
-    float:right;
-}
-
 .share-column, .collection-total {
     text-align: center;
     line-height: 40px;
+}
+
+th {
+    font-weight: $font-weight-normal;
+}
+
+.remove {
+    color: $color-board-red;
+    font-size: 14px;
 }

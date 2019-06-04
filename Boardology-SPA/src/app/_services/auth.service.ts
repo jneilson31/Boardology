@@ -5,6 +5,9 @@ import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { UserForRegister } from '../_models/user-for-register';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +17,9 @@ export class AuthService {
   jwtHelper = new JwtHelperService();
   decodedToken: any;
   currentUser: UserForRegister;
+  redirectUrl: string;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
 
   login(model: any) {
@@ -28,6 +32,34 @@ export class AuthService {
           this.decodedToken = this.jwtHelper.decodeToken(user.token);
           this.currentUser = user.user;
         }
+
+        if (this.redirectUrl) {
+          this.router.navigate([this.redirectUrl]);
+          this.redirectUrl = null;
+        } else {
+          this.router.navigate(['/']);
+        }
+      })
+    );
+  }
+
+  loginWithAutologinToken(model: any) {
+    return this.http.post(this.baseUrl + 'autologin', model).pipe(
+      map((response: any) => {
+        const user = response;
+        if (user) {
+          localStorage.setItem('token', user.token);
+          localStorage.setItem('user', JSON.stringify(user.user));
+          this.decodedToken = this.jwtHelper.decodeToken(user.token);
+          this.currentUser = user.user;
+        }
+
+        if (this.redirectUrl) {
+          this.router.navigate([this.redirectUrl]);
+          this.redirectUrl = null;
+        } else {
+          this.router.navigate(['/']);
+        }
       })
     );
   }
@@ -36,9 +68,23 @@ export class AuthService {
     return this.http.post(this.baseUrl + 'register', user);
   }
 
+  resetPassword(emailAddress: any) {
+    return this.http.post(this.baseUrl + 'reset-password', emailAddress);
+  }
+
   loggedIn(): boolean {
     const token = localStorage.getItem('token');
     return !this.jwtHelper.isTokenExpired(token);
+  }
+
+  checkLogin(): boolean {
+
+    if (this.loggedIn()) {
+      return true;
+    }
+      this.redirectUrl = this.router.url;
+      this.router.navigate(['login']);
+      return false;
   }
 
   logout() {

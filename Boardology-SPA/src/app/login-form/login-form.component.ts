@@ -47,11 +47,7 @@ export class LoginFormComponent implements OnInit {
         this.alertify.error(error.error, 3);
         this.authenticationErrorText = error.error;
         this.authenticationError = true;
-      },
-      () => {
-        this.router.navigate(['/']);
-      }
-    );
+      });
   } else {
       this.loginForm.get('email').markAsTouched();
       this.loginForm.get('password').markAsTouched();

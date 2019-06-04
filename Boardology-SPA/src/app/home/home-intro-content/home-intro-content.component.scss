@@ -1,7 +1,11 @@
-@import "src/styles";
+@import 'src/styles/main';
 
 .home-icons {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.row:nth-of-type(even) {
+    flex-direction: row-reverse;
 }
