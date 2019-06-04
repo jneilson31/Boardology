@@ -2,8 +2,42 @@
 
 .categories {
     display: inline-block;
-    color: $color-white;
+    color: green;
     padding: .75rem 1rem;
     text-align: center;
     text-decoration: none;
+}
+
+.card {
+    background-color: $color-dark-gray;
+    color: $color-white;
+    display: flex;
+}
+
+.card-body {
+    background-color: $color-white;
+    border-radius: 1px solid $color-dark-gray;
+}
+
+.card-header {
+    width: 100%;
+}
+
+.category-title {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.25rem;
+}
+
+ul {
+    color: $color-dark-gray;
+    li {
+        text-decoration: none;
+    }
+    
+}
+
+.view-all-link {
+    color: $color-dark-gray;
+    text-align: right;
 }
