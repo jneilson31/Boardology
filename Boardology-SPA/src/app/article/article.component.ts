@@ -9,6 +9,7 @@ import { AuthService } from '../_services/auth.service';
 import { FormControl } from '@angular/forms';
 import { ArticleComment } from '../_models/article-comment.model';
 import { AlertifyService } from '../_services/alertify.service';
+import { ArticleService } from '../_services/article.service';
 
 @Component({
   selector: 'app-article',
@@ -23,19 +24,21 @@ export class ArticleComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   commentField: FormControl = new FormControl();
   comments: ArticleComment[] = [];
+  otherArticles: Article[] = [];
 
   constructor(private route: ActivatedRoute,
      private http: HttpClient,
      private authService: AuthService,
-     private alertify: AlertifyService) { }
+     private alertify: AlertifyService,
+     private articleService: ArticleService) { }
 
   public ngOnInit() {
-    // this.getArticle(this.route.snapshot.params.articleId);
 
      this.subscription = this.route.params
       .subscribe((params: Params) => {
         this.getArticle(params.articleId);
         this.getComments(params.articleId);
+        this.getOtherArticles(params.articleId);
       });
   }
 
@@ -45,7 +48,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
 
   public getArticle(id: number): any {
-      this.http.get<Article>(`${this.baseUrl}articles/${id}/article`)
+      this.articleService.getArticle(id)
       .subscribe(article => {
         this.article = article;
       });
@@ -119,15 +122,35 @@ export class ArticleComponent implements OnInit, OnDestroy {
     return this.authService.decodedToken.nameid;
   }
 
+  public getArticleName(name: string): string {
+    return this.articleService.getArticleName(name);
+  }
+
+  public isNewArticle(date: Date): boolean {
+    return this.articleService.isNewArticle(date);
+  }
+
+  public isArticleTrending(comments: number): boolean {
+    return this.articleService.isArticleTrending(comments);
+  }
+
+  changeArticle(id: number): void {
+    this.route.params['articleId'] = id;
+  }
+
 
   private getComments(articleId: number): void {
-    this.http
-      .get<ArticleComment[]>(
-        `${this.baseUrl}articles/${articleId}/comments`
-      )
+    this.articleService.getComments(articleId)
       .subscribe(comments => {
         this.comments = comments;
       });
+  }
+
+  private getOtherArticles(articleId: string): void {
+    this.articleService.getArticles()
+    .subscribe(articles => {
+      this.otherArticles = articles.filter(article => article.id !== +articleId);
+    });
   }
 
 }

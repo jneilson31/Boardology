@@ -8,5 +8,5 @@ export interface Article {
      photoUrl: string;
      dateCreated: Date;
      author: string;
-     numberOfComments: number;
+     comments: number;
 }

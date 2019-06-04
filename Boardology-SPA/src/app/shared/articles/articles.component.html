@@ -5,7 +5,7 @@
       <h5 class="article-title">{{article.title}}</h5>
       <div class="badge-container">
           <span *ngIf="isNewArticle(article?.dateCreated)" class="badge badge-new">New</span>
-          <span *ngIf="isArticleTrending(article?.numberOfComments)" class="badge badge-danger ">Hot</span>
+          <span *ngIf="isArticleTrending(article?.comments)" class="badge badge-danger ">Hot</span>
       </div>
     </div>
     <div class="article-info grayed-text">
@@ -15,9 +15,9 @@
             <div class="authorName col-12">{{article?.author}}</div>
             <div class="col-12">{{article?.dateCreated | date: 'MMM d, y'}}</div>
           </div>
-          
+        
         </div>
-        <p class="col-3 text-right"><i class="fa fa-comment mr-1"></i>{{article.numberOfComments}}</p>
+        <p class="col-3 text-right"><i class="fa fa-comment mr-1"></i>{{article.comments}}</p>
       </div>
     </div>
   </div>

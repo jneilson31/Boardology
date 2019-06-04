@@ -49,7 +49,7 @@ describe('ArticleComponent', () => {
       // Arrange
       const articleResponse: Article = {id: 1, title: 'title', content: 'test',
       created: new Date(), photoUrl: 'photoUrl',
-      dateCreated: new Date(), author: 'author', numberOfComments: 1};
+      dateCreated: new Date(), author: 'author', comments: 1};
       httpClientSpy.get.and.returnValue(of(articleResponse));
 
       // Act

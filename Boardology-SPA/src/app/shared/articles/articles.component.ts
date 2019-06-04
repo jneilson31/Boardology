@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Article } from 'src/app/_models/article.model';
 import { environment } from 'src/environments/environment';
 import moment from 'moment';
+import { ArticleService } from 'src/app/_services/article.service';
 
 @Component({
   selector: 'app-articles',
@@ -13,7 +14,7 @@ export class ArticlesComponent implements OnInit {
   baseUrl = environment.apiUrl;
   articles: Article[];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private articleService: ArticleService) { }
 
   ngOnInit() {
     this.getArticles();
@@ -23,20 +24,19 @@ export class ArticlesComponent implements OnInit {
     this.http.get<Article[]>(`${this.baseUrl}articles`)
     .subscribe(articles => {
       this.articles = articles;
-      console.log('articles', articles.length);
     });
   }
 
   getArticleName(name: string) {
-    return name.replace(/\s+/g, '-').toLowerCase();
+    return this.articleService.getArticleName(name);
   }
 
   isNewArticle(date: Date): boolean {
-    return moment(Date.now()).diff(moment(date), 'days') < 30;
+    return this.articleService.isNewArticle(date);
   }
 
   isArticleTrending(comments: number): boolean {
-    return comments >= 40;
+    return this.articleService.isArticleTrending(comments);
   }
 
 }
