@@ -7,6 +7,7 @@ import { FormControl } from '@angular/forms';
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../../_services/auth.service';
 import { AlertifyService } from '../../_services/alertify.service';
+import { SeoService } from 'src/app/_services/seo.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -27,7 +28,8 @@ export class ProductDetailComponent implements OnInit {
     private http: HttpClient,
     public authService: AuthService,
     private alertify: AlertifyService,
-    private router: Router
+    private router: Router,
+    private seoService: SeoService
   ) { }
 
   ngOnInit() {
@@ -35,9 +37,10 @@ export class ProductDetailComponent implements OnInit {
       this.product = data['product'];
       this.comments = data['comments'];
     });
+    this.setSeoData();
   }
 
-  getComments(): void {
+  public getComments(): void {
     this.http
       .get<Comment[]>(
         `${this.baseUrl}comments/game/${this.product.id}/comments`
@@ -47,7 +50,7 @@ export class ProductDetailComponent implements OnInit {
       });
   }
 
-  toggleComment(): void {
+  public toggleComment(): void {
     if (!this.authService.checkLogin()) {
       return;
     }
@@ -60,7 +63,7 @@ export class ProductDetailComponent implements OnInit {
     }
   }
 
-  submitReview(): void {
+  public submitReview(): void {
     if (this.review.value) {
       this.http
         .post(
@@ -86,7 +89,7 @@ export class ProductDetailComponent implements OnInit {
     }
   }
 
-  deleteComment(commentId: number) {
+  public deleteComment(commentId: number) {
     this.alertify.confirm(
       'Are you sure you want to delete your comment?',
       undefined,
@@ -110,7 +113,7 @@ export class ProductDetailComponent implements OnInit {
     );
   }
 
-  addToWishlist() {
+  public addToWishlist() {
     if (!this.authService.checkLogin()) {
       return;
     }
@@ -132,7 +135,7 @@ export class ProductDetailComponent implements OnInit {
       );
   }
 
-  addToCollection() {
+  public addToCollection() {
     if (!this.authService.checkLogin()) {
       return;
     }
@@ -154,10 +157,7 @@ export class ProductDetailComponent implements OnInit {
       );
   }
 
-  getUserId(): number {
-    if (this.authService.decodedToken.nameid) {
-      return this.authService.decodedToken.nameid;
-    }
-    return -1;
+  private setSeoData(): void {
+    this.seoService.setTitle(`${this.product.name} | Boardology`);
   }
 }

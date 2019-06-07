@@ -10,6 +10,7 @@ import { FormControl } from '@angular/forms';
 import { ArticleComment } from '../_models/article-comment.model';
 import { AlertifyService } from '../_services/alertify.service';
 import { ArticleService } from '../_services/article.service';
+import { SeoService } from '../_services/seo.service';
 
 @Component({
   selector: 'app-article',
@@ -25,15 +26,16 @@ export class ArticleComponent implements OnInit, OnDestroy {
   commentField: FormControl = new FormControl();
   comments: ArticleComment[] = [];
   otherArticles: Article[] = [];
+  title: string;
 
   constructor(private route: ActivatedRoute,
      private http: HttpClient,
      public authService: AuthService,
      private alertify: AlertifyService,
-     private articleService: ArticleService) { }
+     private articleService: ArticleService,
+     private seoService: SeoService) { }
 
   public ngOnInit() {
-
      this.subscription = this.route.params
       .subscribe((params: Params) => {
         this.getArticle(params.articleId);
@@ -51,6 +53,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
       this.articleService.getArticle(id)
       .subscribe(article => {
         this.article = article;
+        this.setSeoData();
       });
   }
 
@@ -151,6 +154,10 @@ export class ArticleComponent implements OnInit, OnDestroy {
     .subscribe(articles => {
       this.otherArticles = articles.filter(article => article.id !== +articleId);
     });
+  }
+
+  private setSeoData(): void {
+    this.seoService.setTitle(`${this.article.title} | Boardology`);
   }
 
 }

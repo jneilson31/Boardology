@@ -13,7 +13,6 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'Boardology';
   jwtHelper = new JwtHelperService();
   products: Product[];
   subject = new Subject<Product[]>();
