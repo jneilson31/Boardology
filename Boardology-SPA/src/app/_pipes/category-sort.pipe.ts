@@ -8,6 +8,9 @@ import { Product } from '../_models/product.model';
 export class CategorySortPipe implements PipeTransform {
 
   transform(products: Product[], category: string): any {
+    if (!category || category.toLowerCase() === 'all') {
+      return products;
+    }
 
     if (products) {
       products.forEach((product) => {

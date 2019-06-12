@@ -13,6 +13,7 @@ export class ProductService {
   products: Product[];
   comments: Comment[];
   subject = new Subject<Product[]>();
+  currentCategory: string;
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
@@ -29,4 +30,6 @@ export class ProductService {
       `${this.baseUrl}comments/game/${gameId}/comments`
     );
   }
+
+
 }
