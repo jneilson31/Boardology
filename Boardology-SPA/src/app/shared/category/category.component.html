@@ -22,5 +22,5 @@
   </div>
 </div> -->
 
-<div class="categories" href="">{{ category }}</div>
+<div class="categories" [ngClass]="{'active': category === getCurrentCategory()}" href="">{{ category }}</div>
 

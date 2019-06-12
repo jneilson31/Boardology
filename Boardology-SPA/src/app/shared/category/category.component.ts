@@ -26,7 +26,7 @@ export class CategoryComponent implements OnInit {
   @Input() products: Product[];
   arrowDirection = 'up';
 
-  constructor() {}
+  constructor(private productService: ProductService) {}
 
   ngOnInit() {
   }
@@ -37,5 +37,12 @@ export class CategoryComponent implements OnInit {
 
   getProductName(name: string) {
     return name.replace(/\s+/g, '-').toLowerCase();
+  }
+
+  getCurrentCategory() {
+    if (!this.productService.currentCategory) {
+      return "All";
+    }
+    return this.productService.currentCategory;
   }
 }

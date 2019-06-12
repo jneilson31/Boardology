@@ -3,11 +3,11 @@
 .categories {
     display: inline-block;
     color: $color-white;
-    padding: .75rem 1rem;
+    padding: .75rem 1rem .50rem;
     text-align: center;
     text-decoration: none;
 }
 
 .active {
-    text-decoration: underline;
+    border-bottom: 3px solid $color-board-aqua;
 }
