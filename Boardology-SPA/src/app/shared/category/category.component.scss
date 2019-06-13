@@ -2,12 +2,45 @@
 
 .categories {
     display: inline-block;
-    color: $color-white;
+    color: green;
     padding: .75rem 1rem;
     text-align: center;
     text-decoration: none;
 }
 
+.card {
+    background-color: $color-dark-gray;
+    border: 1px solid $color-white;
+    color: $color-white;
+    display: flex;
+}
+
+.card-body {
+    background-color: $color-white;
+}
+
+.card-header {
+    width: 100%;
+}
+
+.category-title {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.50rem;
+}
+
+ul {
+    color: $color-dark-gray;
+    li {
+        text-decoration: none;
+    }
+    
+}
+
+.view-all-link {
+    color: $color-dark-gray;
+    text-align: right;
+}
 .active {
     text-decoration: underline;
 }

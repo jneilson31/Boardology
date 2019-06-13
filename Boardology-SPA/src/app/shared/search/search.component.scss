@@ -6,19 +6,27 @@
 }
 .card-header {
     background-color: $color-dark-gray;
-    padding: 1.25rem;
+    padding: 0.75rem;
 }
 
 .game-text {
-    font-size: 24px;
-    font-weight: 600;
-    line-height:50px;
+    font-size: $global-font-size;
+    align-items: center;
+    display: flex;
+
 }
 
-img {
-    width: 60px;
+.game-image {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    img {
+        max-height: 40px;
+    }
+    
 }
 
 .list-group-item {
     padding: .25rem;
+    max-height: 50px;
 }

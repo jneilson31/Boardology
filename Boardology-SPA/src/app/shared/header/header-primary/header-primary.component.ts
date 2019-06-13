@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/_services/auth.service';
 })
 export class HeaderPrimaryComponent implements OnInit {
   menuStatus = false;
+  hasClicked = false;
 
   constructor(private authService: AuthService) { }
 
@@ -15,7 +16,7 @@ export class HeaderPrimaryComponent implements OnInit {
   }
 
   onClickMenu() {
-    this.menuStatus = !this.menuStatus;
+    // this.menuStatus = !this.menuStatus;
   }
 
   isLoggedIn() {
@@ -26,6 +27,11 @@ export class HeaderPrimaryComponent implements OnInit {
    this.authService.logout();
    this.menuStatus = !this.menuStatus;
 
+  }
+
+  toggleSidebar() {
+    this.menuStatus = !this.menuStatus;
+    this.hasClicked = true;
   }
 
 }

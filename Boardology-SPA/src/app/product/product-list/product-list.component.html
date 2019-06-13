@@ -1,12 +1,17 @@
 <!-- <p id="filterText" class="pt-2 px-3 text-right">Filter</p> -->
-<!-- <app-search [originalProducts]="products"></app-search>
-<app-product-item *ngFor="let product of products | slice:0:[max]" [product]="product" [upvotes]="upvotes"
-    [downvotes]="downvotes"></app-product-item>
-<div *ngIf="[max] < products?.length -1" class="text-center" (click)="viewMore()">View more</div>
+<!-- <app-search [originalProducts]="products"></app-search> -->
+<!-- <app-product-item *ngFor="let product of products | slice:0:[max]" [product]="product" [upvotes]="upvotes"
+    [downvotes]="downvotes"></app-product-item> -->
+<!-- <div *ngIf="[max] < products?.length -1" class="text-center" (click)="viewMore()">View more</div>
 <div *ngIf="[max] >= products?.length -1" class="text-center" (click)="scrollToTop()">Back to top</div> -->
 
-<div class="scrollMenu">
-    <app-category *ngFor="let category of categories" (click)="setCurrentCategory(category)" [category]="category" [products]="products"></app-category>
+<div class="container">
+    <h1>Browse Games</h1>
+</div>
+<app-category *ngFor="let category of categories" [category]="category" [products]="products"></app-category>
+
+<!-- <div class="scrollMenu">
+    <app-category *ngFor="let category of categories" [category]="category" [products]="products"></app-category>
 </div>
 <div class="container">
     <h1>{{ getCurrentCategory() }}  Games</h1>
@@ -33,7 +38,7 @@
                 <i class="fa fa-thumbs-down" [ngClass]="{downvoted: hasDownvoted}"></i>
             </div>
         </div>
-        <!-- <div class="row no-gutters">
+        <div class="row no-gutters">
                 <div class="col-6">
                     <div class="wishlist">
                         <i class="fa fa-gift"></i>
@@ -44,8 +49,8 @@
                         <i class="fa fa-list-alt"></i>
                     </div>
                 </div>
-            </div> -->
+            </div>
     </div>
 </div>
 <div *ngIf="[max] < products?.length -1" class="viewMore" (click)="viewMore()">View more</div>
-<div *ngIf="[max] >= products?.length -1" class="text-center" (click)="scrollToTop()">Back to top</div>
+<div *ngIf="[max] >= products?.length -1" class="text-center" (click)="scrollToTop()">Back to top</div> -->
