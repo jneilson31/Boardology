@@ -8,6 +8,7 @@ import { Downvote } from '../../_models/downvote.model';
 import { AuthService } from '../../_services/auth.service';
 import { forkJoin } from 'rxjs';
 import { SeoService } from 'src/app/_services/seo.service';
+import { ProductService } from 'src/app/_services/product.service';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class ProductListComponent implements OnInit {
   max = 20;
   baseUrl = environment.apiUrl;
   categoryLoad = false;
+  currentCategory: string = "";
   categories: string[] = [
     'All',
     'Adventure',
@@ -51,7 +53,8 @@ export class ProductListComponent implements OnInit {
   constructor(private http: HttpClient,
      private route: ActivatedRoute,
      private authService: AuthService,
-     private seoService: SeoService ) { }
+     private seoService: SeoService,
+     private productService: ProductService ) { }
 
   ngOnInit() {
     this.getProductList();
@@ -88,4 +91,12 @@ export class ProductListComponent implements OnInit {
   private setSeoData(): void {
     
   }
+
+  getCurrentCategory(): string {
+    return this.productService.currentCategory || "All";
+  }
+  setCurrentCategory(category: string): void {
+    this.productService.currentCategory = category;
+    console.log(category + " clicked");
+    }
 }

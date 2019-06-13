@@ -14,7 +14,7 @@
     <app-category *ngFor="let category of categories" [category]="category" [products]="products"></app-category>
 </div>
 <div class="container">
-    <h1>All Games</h1>
+    <h1>{{ getCurrentCategory() }}  Games</h1>
 </div>
 <div class="tableHeader">
     <div class="container">
@@ -24,7 +24,7 @@
         </div>
     </div>
 </div>
-<div class="gameList" *ngFor="let product of products | slice:0:[max]; let rowIndex = index" [routerLink]="['/games/', product.id, product.name]">
+<div class="gameList" *ngFor="let product of products | categorySort: getCurrentCategory() | slice:0:[max]; let rowIndex = index" [routerLink]="['/games/', product.id, product.name]">
     <div class="row">
         <div class="col-1 gameNumber">{{ rowIndex+1 }}</div>
         <div class="col-9 gameName">{{ product.name }}
