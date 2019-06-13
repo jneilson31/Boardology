@@ -97,6 +97,5 @@ export class ProductListComponent implements OnInit {
   }
   setCurrentCategory(category: string): void {
     this.productService.currentCategory = category;
-    console.log(category + " clicked");
     }
 }

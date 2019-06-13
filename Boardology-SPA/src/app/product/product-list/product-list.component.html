@@ -6,10 +6,11 @@
 <div *ngIf="[max] >= products?.length -1" class="text-center" (click)="scrollToTop()">Back to top</div> -->
 
 <div class="scrollMenu">
-    <app-category *ngFor="let category of categories" (click)="setCurrentCategory(category)" [category]="category" [products]="products"></app-category>
+    <app-category *ngFor="let category of categories" (click)="setCurrentCategory(category)" [category]="category"
+        [products]="products"></app-category>
 </div>
 <div class="container">
-    <h1>{{ getCurrentCategory() }}  Games</h1>
+    <h1>{{ getCurrentCategory() }} Games</h1>
 </div>
 <div class="tableHeader">
     <div class="container">
@@ -19,7 +20,9 @@
         </div>
     </div>
 </div>
-<div class="gameList" *ngFor="let product of products | categorySort: getCurrentCategory() | slice:0:[max]; let rowIndex = index" [routerLink]="['/games/', product.id, product.name]">
+<div class="gameList"
+    *ngFor="let product of products | categorySort: getCurrentCategory() | slice:0:[max]; let rowIndex = index"
+    [routerLink]="['/games/', product.id, product.name]">
     <div class="row">
         <div class="col-1 gameNumber">{{ rowIndex+1 }}</div>
         <div class="col-9 gameName">{{ product.name }}
@@ -33,18 +36,6 @@
                 <i class="fa fa-thumbs-down" [ngClass]="{downvoted: hasDownvoted}"></i>
             </div>
         </div>
-        <!-- <div class="row no-gutters">
-                <div class="col-6">
-                    <div class="wishlist">
-                        <i class="fa fa-gift"></i>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="collection">
-                        <i class="fa fa-list-alt"></i>
-                    </div>
-                </div>
-            </div> -->
     </div>
 </div>
 <div *ngIf="[max] < products?.length -1" class="viewMore" (click)="viewMore()">View more</div>
