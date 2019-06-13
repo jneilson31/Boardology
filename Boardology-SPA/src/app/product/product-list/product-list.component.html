@@ -4,11 +4,11 @@
     [downvotes]="downvotes"></app-product-item> -->
 <!-- <div *ngIf="[max] < products?.length -1" class="text-center" (click)="viewMore()">View more</div>
 <div *ngIf="[max] >= products?.length -1" class="text-center" (click)="scrollToTop()">Back to top</div> -->
-
 <div class="scrollMenu">
     <app-category *ngFor="let category of categories" (click)="setCurrentCategory(category)" [category]="category"
         [products]="products"></app-category>
 </div>
+<app-recent-activity-scroll-menu></app-recent-activity-scroll-menu>
 <div class="container">
     <h1>{{ getCurrentCategory() }} Games</h1>
 </div>
