@@ -16,7 +16,7 @@ export class HeaderPrimaryComponent implements OnInit {
   }
 
   onClickMenu() {
-    // this.menuStatus = !this.menuStatus;
+    this.menuStatus = !this.menuStatus;
   }
 
   isLoggedIn() {
@@ -33,5 +33,4 @@ export class HeaderPrimaryComponent implements OnInit {
     this.menuStatus = !this.menuStatus;
     this.hasClicked = true;
   }
-
 }
