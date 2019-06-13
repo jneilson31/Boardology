@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/_services/auth.service';
   templateUrl: './header-primary.component.html',
   styleUrls: ['./header-primary.component.scss']
 })
+
 export class HeaderPrimaryComponent implements OnInit {
   menuStatus = false;
   hasClicked = false;
@@ -24,8 +25,8 @@ export class HeaderPrimaryComponent implements OnInit {
   }
 
   onLogout() {
-   this.authService.logout();
-   this.menuStatus = !this.menuStatus;
+    this.authService.logout();
+    this.menuStatus = !this.menuStatus;
 
   }
 
