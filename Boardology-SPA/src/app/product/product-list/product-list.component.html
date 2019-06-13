@@ -8,7 +8,6 @@
     <app-category *ngFor="let category of categories" (click)="setCurrentCategory(category)" [category]="category"
         [products]="products"></app-category>
 </div>
-<app-recent-activity-scroll-menu></app-recent-activity-scroll-menu>
 <div class="container">
     <h1>{{ getCurrentCategory() }} Games</h1>
 </div>
