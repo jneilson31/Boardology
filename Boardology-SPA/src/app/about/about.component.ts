@@ -1,23 +1,17 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { trigger, state, style, animate, transition } from '@angular/animations';
-import { Product } from '../_models/product.model';
+import { trigger, state, style, animate, transition, useAnimation } from '@angular/animations';
+import { slideInLeft, slideOutLeft } from 'ng-animate';
+
 
 @Component({
     selector: 'app-about',
     templateUrl: './about.component.html',
     styleUrls: ['./about.component.scss'],
     animations: [
-        trigger('flipState', [
-            state('sideB', style({
-                transform: 'rotateY(180deg)'
-            })),
-            state('sideA', style({
-                transform: 'rotateY(0)'
-            })),
-            transition('sideB => sideA', animate('500ms ease-out')),
-            transition('sideA => sideB', animate('500ms ease-in'))
-        ])
-    ]
+        trigger('slideInLeft', [transition('* => *', useAnimation(slideInLeft, {
+            params: {timing: 1}
+        }))])
+    ],
 })
 
 export class AboutComponent implements OnInit {
@@ -25,5 +19,9 @@ export class AboutComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
+    }
+
+    onClick() {
+        
     }
 }

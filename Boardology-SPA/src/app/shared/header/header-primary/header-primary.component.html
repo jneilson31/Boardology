@@ -1,10 +1,10 @@
 <nav class="navbar nav-primary navbar-expand-lg navbar-dark sticky-test">
   <a class="navbar-brand" routerLink="/" routerLinkActive="router-link-active">Boardology</a>
-  <button class="navbar-toggler" type="button" (click)="toggleSidebar()">
+  <button class="navbar-toggler" type="button" (click)="changeDrawerState()">
     <span class="navbar-toggler-icon"></span>
   </button>
 </nav>
-<nav class="navbar nav-primary navbar-expand-lg navbar-dark drawer" [ngClass]="{'openDrawer': menuStatus && hasClicked, 'closeDrawer': !menuStatus && hasClicked}">
+<nav class="navbar nav-primary navbar-expand-lg navbar-dark drawer" [@toggleDrawer]=currentDrawerState>
   <div class="collapse navbar-collapse show nav-content" id="navbarSupportedContent" >
     <div class="login d-flex justify-content-start">
       <button *ngIf="!isLoggedIn()" class="btn btn-primary btn-sm mr-2 w-50" (click)="onClickMenu()" routerLink="/login">Login</button>
