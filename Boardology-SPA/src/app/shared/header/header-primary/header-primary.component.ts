@@ -30,6 +30,7 @@ import { slideInLeft, slideOutLeft } from 'ng-animate';
     ])
   ],
 })
+
 export class HeaderPrimaryComponent implements OnInit {
   menuStatus = false;
   hasClicked = false;
