@@ -25,7 +25,8 @@ export class ProductListComponent implements OnInit {
   max = 20;
   baseUrl = environment.apiUrl;
   categoryLoad = false;
-  currentCategory: string = "";
+  currentCategory = '';
+  sortBy = 'Most Popular';
   categories: string[] = [
     'All',
     'Adventure',
@@ -77,6 +78,7 @@ export class ProductListComponent implements OnInit {
       forkJoin([productList, upvoteList, downvoteList])
         .subscribe(data => {
           this.products = data[0];
+          this.sortByMethod('Most Popular');
           this.upvotes = data[1];
           this.downvotes = data[2];
         });
@@ -84,12 +86,40 @@ export class ProductListComponent implements OnInit {
       this.http.get<Product[]>(`${this.baseUrl}games`)
         .subscribe(products => {
           this.products = products;
+          this.sortByMethod('Most Popular');
         });
     }
+
   }
 
   private setSeoData(): void {
-    
+
+  }
+
+  sortByMethod(method: string) {
+    if (method === 'A-Z') {
+      this.sortBy = method;
+      this.products = this.products.sort((a, b) => {
+        if (a.name.toLowerCase() > b.name.toLowerCase()) {
+          return 1;
+        }
+        if (a.name.toLowerCase() < b.name.toLowerCase()) {
+          return -1;
+        }
+        return 0;
+      });
+    } else {
+      this.sortBy = method;
+      this.products = this.products.sort((a, b) => {
+        if (a.upvotes < b.upvotes) {
+          return 1;
+        }
+        if (a.upvotes > b.upvotes) {
+          return -1;
+        }
+        return 0;
+      });
+    }
   }
 
   getCurrentCategory(): string {

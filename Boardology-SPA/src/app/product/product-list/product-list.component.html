@@ -9,13 +9,21 @@
         [products]="products"></app-category>
 </div>
 <div class="container">
-    <h1>{{ getCurrentCategory() }} Games</h1>
+        <h1>{{ getCurrentCategory() }} Games</h1>
 </div>
 <div class="tableHeader">
     <div class="container">
         <div class="row">
             <div class="col-1">#</div>
-            <div class="col-7">Name of Game</div>
+            <div class="col-5">Name of Game</div>
+            <div class="col-6 dropdown text-right" data-display="static" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="mr-2">{{sortBy}}</span>
+                    <i class="fa fa-sort"></i>
+                    <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="" (click)="sortByMethod('Most Popular')">Most Popular</a>
+                        <a class="dropdown-item" href="" (click)="sortByMethod('A-Z')">A-Z</a>
+                    </div>
+            </div>
         </div>
     </div>
 </div>
@@ -38,4 +46,4 @@
     </div>
 </div>
 <div *ngIf="[max] < products?.length -1" class="viewMore" (click)="viewMore()">View more</div>
-<div *ngIf="[max] >= products?.length -1" class="text-center" (click)="scrollToTop()">Back to top</div> -->
+<div *ngIf="[max] >= products?.length -1" class="text-center" (click)="scrollToTop()">Back to top</div>
