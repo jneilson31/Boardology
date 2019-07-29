@@ -96,6 +96,7 @@ export function tokenGetter() {
       ProductDetailResolver,
       ProductDetailCommentsResolver,
       CacheInterceptorProvider,
+      CategorySortPipe
    ],
    bootstrap: [
       AppComponent

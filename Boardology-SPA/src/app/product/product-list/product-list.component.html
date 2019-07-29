@@ -28,7 +28,7 @@
     </div>
 </div>
 <div class="gameList"
-    *ngFor="let product of products | categorySort: getCurrentCategory() | slice:0:[max]; let rowIndex = index"
+    *ngFor="let product of products | slice:0:[max]; let rowIndex = index"
     [routerLink]="['/games/', product.id, product.name]">
     <div class="row">
         <div class="col-1 gameNumber">{{ rowIndex+1 }}</div>
@@ -46,4 +46,4 @@
     </div>
 </div>
 <div *ngIf="[max] < products?.length -1" class="viewMore" (click)="viewMore()">View more</div>
-<div *ngIf="[max] >= products?.length -1" class="text-center" (click)="scrollToTop()">Back to top</div>
+<div *ngIf="[max] >= products?.length -1 && products?.length" class="text-center" (click)="scrollToTop()">Back to top</div>

@@ -9,6 +9,7 @@ import { AuthService } from '../../_services/auth.service';
 import { forkJoin } from 'rxjs';
 import { SeoService } from 'src/app/_services/seo.service';
 import { ProductService } from 'src/app/_services/product.service';
+import { CategorySortPipe } from 'src/app/_pipes/category-sort.pipe';
 
 
 @Component({
@@ -19,6 +20,7 @@ import { ProductService } from 'src/app/_services/product.service';
 
 export class ProductListComponent implements OnInit {
   products: Product[];
+  allProducts: Product[];
   upvotes: Upvote[];
   downvotes: Downvote[];
   descMax = 50;
@@ -55,7 +57,8 @@ export class ProductListComponent implements OnInit {
      private route: ActivatedRoute,
      private authService: AuthService,
      private seoService: SeoService,
-     private productService: ProductService ) { }
+     private productService: ProductService,
+     private categorySortPipe: CategorySortPipe ) { }
 
   ngOnInit() {
     this.getProductList();
@@ -77,6 +80,7 @@ export class ProductListComponent implements OnInit {
       const downvoteList = this.http.get<Downvote[]>(`${this.baseUrl}votes/${this.authService.decodedToken.nameid}/downvotes`);
       forkJoin([productList, upvoteList, downvoteList])
         .subscribe(data => {
+          this.allProducts = data[0];
           this.products = data[0];
           this.sortByMethod('Most Popular');
           this.upvotes = data[1];
@@ -86,6 +90,7 @@ export class ProductListComponent implements OnInit {
       this.http.get<Product[]>(`${this.baseUrl}games`)
         .subscribe(products => {
           this.products = products;
+          this.allProducts = products;
           this.sortByMethod('Most Popular');
         });
     }
@@ -123,9 +128,11 @@ export class ProductListComponent implements OnInit {
   }
 
   getCurrentCategory(): string {
-    return this.productService.currentCategory || "All";
+    return this.productService.currentCategory || 'All';
   }
   setCurrentCategory(category: string): void {
     this.productService.currentCategory = category;
+    this.products = this.categorySortPipe.transform(this.allProducts, category);
+    this.sortByMethod(this.sortBy);
     }
 }
