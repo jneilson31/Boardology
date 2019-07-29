@@ -6,10 +6,12 @@
 <div *ngIf="[max] >= products?.length -1" class="text-center" (click)="scrollToTop()">Back to top</div> -->
 <div class="scrollMenu">
     <app-category *ngFor="let category of categories" (click)="setCurrentCategory(category)" [category]="category"
-        [products]="products"></app-category>
+        [products]="products">
+    </app-category>
 </div>
 <div class="container">
-        <h1>{{ getCurrentCategory() }} Games</h1>
+    <app-search [originalProducts]="products" class="mt-5"></app-search>
+    <h1 class="mt-2">{{ getCurrentCategory() }} Games</h1>
 </div>
 <div class="tableHeader">
     <div class="container">

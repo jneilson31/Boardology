@@ -1,6 +1,6 @@
 
 <div class="card">
-  <div class="card-header">
+  <!-- <div class="card-header"> -->
       <div class="input-group">
           <input type="search" class="form-control" placeholder="Search for game..." aria-label="Search"
             aria-describedby="basic-addon2" [formControl]="queryField">
@@ -8,12 +8,12 @@
             <span class="input-group-text btn-primary" id="basic-addon2"><i class="fa fa-search"></i></span>
           </div>
         </div>
-      </div>
+    <!-- </div> -->
       <!-- <div *ngFor="let game of games">
       </div> -->
       <p *ngIf="queryField?.value && !hasSearchResults && isDoneSearching" class="text-center pt-3">No results found</p>
       <ul *ngIf="products?.length > 0" class="list-group">
-        <li *ngFor="let product of products" class="list-group-item" [routerLink]="['/games/', product.id]">
+        <li *ngFor="let product of products" class="list-group-item" [routerLink]="['/games/', product.id, product.name]">
           <div class="row no-gutters">
             <div class="col-3">
               <span class="game-image"><img src="{{ product.photoUrl }}" alt="{{ product.name }}">
