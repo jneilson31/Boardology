@@ -38,6 +38,7 @@ export class ContactComponent implements OnInit {
       this.http.post(this.baseUrl + 'contact-us', this.contactUsEmail)
       .subscribe(next => {
         this.alertify.success('Sent contact us email');
+        this.contactUsForm.reset();
       }, error => {
         this.alertify.error('Could not send contact us email');
       });
