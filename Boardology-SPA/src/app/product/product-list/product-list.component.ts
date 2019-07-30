@@ -11,12 +11,17 @@ import { SeoService } from 'src/app/_services/seo.service';
 import { ProductService } from 'src/app/_services/product.service';
 import { CategorySortPipe } from 'src/app/_pipes/category-sort.pipe';
 
+export enum Sort {
+  MostPopular = 'Most Popular',
+  Alphabetical = 'A-Z'
+}
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss'],
   })
+
 
 export class ProductListComponent implements OnInit {
   products: Product[];
@@ -73,6 +78,11 @@ export class ProductListComponent implements OnInit {
     window.scroll(0, 0);
   }
 
+  // Get method so we can use the enum in the html file
+  public get Sort() {
+    return Sort;
+  }
+
   private getProductList() {
     if (this.authService.loggedIn()) {
       const productList = this.http.get<Product[]>(`${this.baseUrl}games`);
@@ -82,7 +92,7 @@ export class ProductListComponent implements OnInit {
         .subscribe(data => {
           this.allProducts = data[0];
           this.products = data[0];
-          this.sortByMethod('Most Popular');
+          this.sortByMethod(Sort.MostPopular);
           this.upvotes = data[1];
           this.downvotes = data[2];
         });
@@ -91,7 +101,7 @@ export class ProductListComponent implements OnInit {
         .subscribe(products => {
           this.products = products;
           this.allProducts = products;
-          this.sortByMethod('Most Popular');
+          this.sortByMethod(Sort.MostPopular);
         });
     }
 
@@ -102,7 +112,7 @@ export class ProductListComponent implements OnInit {
   }
 
   sortByMethod(method: string) {
-    if (method === 'A-Z') {
+    if (method === Sort.Alphabetical) {
       this.sortBy = method;
       this.products = this.products.sort((a, b) => {
         if (a.name.toLowerCase() > b.name.toLowerCase()) {

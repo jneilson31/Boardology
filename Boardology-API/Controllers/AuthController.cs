@@ -145,7 +145,15 @@ namespace Boardology.API.Controllers
 
             var callbackUrl = $"http://localhost:4200/?token={token}&id={user.Id}";
             
-            await _emailSender.SendEmailAsync(email.Email, "Reset Password", $"<p>Hi there {user.UserName},</p><p>Click below to reset your password</p><a href='{callbackUrl}'>Click here</a><hr><p><i>Boardology</i></p>");
+            await _emailSender.SendEmailAsync(email.Email, "Password Reset Request", $"<p>Hi there {user.UserName},</p><p>Click below to reset your password</p><a href='{callbackUrl}'>Click here</a><hr><p><i>Boardology</i></p>");
+
+            return Ok();
+        }
+
+        [HttpPost("contact-us")]
+        public async Task<IActionResult> SendContactUsEmail(ContactUsEmail email)
+        {
+            await _emailSender.SendEmailAsync(email.Email, email.Subject, $"<p>{email.Message}</p>");
 
             return Ok();
         }

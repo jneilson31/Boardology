@@ -9,4 +9,11 @@ namespace Boardology.API.Dtos
     {
         public string Email { get; set; }
     }
+
+    public class ContactUsEmail
+    {
+        public string Email { get; set; }
+        public string Subject { get; set; }
+        public string Message { get; set; }
+    }
 }

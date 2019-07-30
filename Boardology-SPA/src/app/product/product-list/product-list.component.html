@@ -22,8 +22,8 @@
                     <span class="mr-2">{{sortBy}}</span>
                     <i class="fa fa-sort"></i>
                     <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="" (click)="sortByMethod('Most Popular')">Most Popular</a>
-                        <a class="dropdown-item" href="" (click)="sortByMethod('A-Z')">A-Z</a>
+                        <a [ngClass]="{'bold': sortBy === Sort.MostPopular}" class="dropdown-item" href="" (click)="sortByMethod(Sort.MostPopular)">Most Popular</a>
+                        <a [ngClass]="{'bold': sortBy === Sort.Alphabetical}" class="dropdown-item" href="" (click)="sortByMethod(Sort.Alphabetical)">A-Z</a>
                     </div>
             </div>
         </div>
