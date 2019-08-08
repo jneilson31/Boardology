@@ -13,7 +13,7 @@
 }
 
 .article-container:nth-of-type(odd){
-    background-color: rgba(150, 201, 61, .2);;
+    background-color: lighten($color-blue, 30);
 }
 
 .article-desc, .article-title {
@@ -37,7 +37,7 @@
 
 .badge-new {
     align-self: flex-start;
-    background-color: $color-board-aqua;
+    background-color: $color-blue;
     color: $color-white;
 }
 

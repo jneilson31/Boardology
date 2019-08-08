@@ -10,7 +10,7 @@ button {
     // background: #00b09b;  /* fallback for old browsers */
     // background: -webkit-linear-gradient(to left, #96c93d, #00b09b);  /* Chrome 10-25, Safari 5.1-6 */
     // background: linear-gradient(to left, #96c93d, #00b09b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background-color: $color-board-aqua;
+    background-color: $color-light-blue;
     border: none;
     color: $color-white;
     width: 100%;
@@ -18,9 +18,16 @@ button {
 
 .btn-outline-primary {
     background: transparent;
-    border: 1px solid $color-board-aqua;
-    color: $color-board-aqua;
+    border: 1px solid $color-light-blue;
+    color: $color-light-blue;
     width: 100%; 
+}
+
+.btn-secondary {
+    background-color: $color-blue;
+    border: none;
+    color: $color-white;
+    width: 100%;
 }
 
 .btn-white {

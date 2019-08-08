@@ -27,11 +27,12 @@
   border-bottom: 1px solid gray;
   margin-top: -1px;
   padding-left: 15px;
+  min-height: 75px;
   cursor: pointer;
 }
 
 .gameList:nth-of-type(odd){
-    background-color: rgba(150, 201, 61, .2);
+    background-color: lighten($color-blue, 30);
 }
 
 .gameActions, .gameName, .gameNumber {
