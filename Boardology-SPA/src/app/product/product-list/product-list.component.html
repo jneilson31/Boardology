@@ -1,51 +1,49 @@
-<!-- <p id="filterText" class="pt-2 px-3 text-right">Filter</p> -->
-<!-- <app-search [originalProducts]="products"></app-search> -->
-<!-- <app-product-item *ngFor="let product of products | slice:0:[max]" [product]="product" [upvotes]="upvotes"
-    [downvotes]="downvotes"></app-product-item> -->
-<!-- <div *ngIf="[max] < products?.length -1" class="text-center" (click)="viewMore()">View more</div>
-<div *ngIf="[max] >= products?.length -1" class="text-center" (click)="scrollToTop()">Back to top</div> -->
 <div class="scrollMenu">
-    <app-category *ngFor="let category of categories" (click)="setCurrentCategory(category)" [category]="category"
-        [products]="products">
-    </app-category>
+  <app-category *ngFor="let category of categories" (click)="setCurrentCategory(category)" [category]="category"
+    [products]="products">
+  </app-category>
 </div>
 <div class="container">
-    <app-search [originalProducts]="products" class="mt-5"></app-search>
-    <h1 class="mt-2">Browse for {{ getCurrentCategory() }} Games</h1>
+  <app-search [originalProducts]="products" class="mt-5"></app-search>
+  <h1 class="mt-2">Browse for {{ getCurrentCategory() }} Games</h1>
 </div>
 <div class="tableHeader">
-    <div class="container">
-        <div class="row">
-            <div class="col-1">#</div>
-            <div class="col-5">Name of Game</div>
-            <div class="col-6 dropdown text-right" data-display="static" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2">{{sortBy}}</span>
-                    <i class="fa fa-sort"></i>
-                    <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="dropdownMenuButton">
-                        <a [ngClass]="{'bold': sortBy === Sort.MostPopular}" class="dropdown-item" href="" (click)="sortByMethod(Sort.MostPopular)">Most Popular</a>
-                        <a [ngClass]="{'bold': sortBy === Sort.Alphabetical}" class="dropdown-item" href="" (click)="sortByMethod(Sort.Alphabetical)">A-Z</a>
-                    </div>
-            </div>
+  <div class="container">
+    <div class="row justify-content-end">
+      <div class="mr-3 dropdown" data-display="static" id="dropdownMenuButton" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        <span class="mr-2">{{sortBy}}</span>
+        <i class="fa fa-sort"></i>
+        <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="dropdownMenuButton">
+          <a [ngClass]="{'bold': sortBy === Sort.MostPopular}" class="dropdown-item" href=""
+            (click)="sortByMethod(Sort.MostPopular)">Most Popular</a>
+          <a [ngClass]="{'bold': sortBy === Sort.Alphabetical}" class="dropdown-item" href=""
+            (click)="sortByMethod(Sort.Alphabetical)">A-Z</a>
         </div>
+      </div>
     </div>
+  </div>
 </div>
-<div class="gameList"
-    *ngFor="let product of products | slice:0:[max]; let rowIndex = index"
-    [routerLink]="['/games/', product.id, product.name]">
-    <div class="row">
-        <div class="col-1 gameNumber">{{ rowIndex+1 }}</div>
-        <div class="col-9 gameName">{{ product.name }}
-            <p> {{product.description | slice:0:[descMax]}}</p>
-        </div>
-        <div class="col-2 gameActions">
-            <div class="upvotes">
-                <i class="fa fa-thumbs-up" [ngClass]="{downvoted: hasDownvoted}"></i>
-            </div>
-            <div class="downvotes">
-                <i class="fa fa-thumbs-down" [ngClass]="{downvoted: hasDownvoted}"></i>
-            </div>
-        </div>
+<div class="gameList row m-0 align-items-center" *ngFor="let product of products | slice:0:[max]; let rowIndex of index;">
+  <div class="col-2" [routerLink]="['/games/', product.id, product.name]">
+    <img class="img-fluid" src="{{ product.photoUrl }}" alt="">
+  </div>
+  <div class="col-7 gameName" [routerLink]="['/games/', product.id, product.name]">
+    {{ product.name }}
+    <p> {{product.description | slice:0:[descMax]}}</p>
+  </div>
+  <div class="col-3">
+    <div class="votingContainer d-flex justify-content-between">
+      <i class="fa fa-thumbs-up" (click)="clickedUpvote()" [ngClass]="{upvoted: hasUpvoted}"></i>
+      <i class="fa fa-thumbs-down" [ngClass]="{downvoted: hasDownvoted}"></i>
     </div>
+  </div>
 </div>
+
+
+
+
+
 <div *ngIf="[max] < products?.length -1" class="viewMore" (click)="viewMore()">View more</div>
-<div *ngIf="[max] >= products?.length -1 && products?.length" class="text-center" (click)="scrollToTop()">Back to top</div>
+<div *ngIf="[max] >= products?.length -1 && products?.length" class="text-center" (click)="scrollToTop()">Back to top
+</div>

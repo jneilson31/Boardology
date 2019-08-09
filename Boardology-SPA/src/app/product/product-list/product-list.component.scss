@@ -1,42 +1,15 @@
 @import 'src/styles/main';
 
-.collection {
-  background: #0575E6;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #021B79, #0575E6);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #021B79, #0575E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-
-.collection, .downvotes, .upvotes, .wishlist {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: $color-white;
-  padding: 8px;
-}
-
-.downvotes {
-  background: #FF416C;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #FF4B2B, #FF416C);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #FF4B2B, #FF416C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-
 .gameList {
   border-top: 1px solid gray;
   border-bottom: 1px solid gray;
   margin-top: -1px;
-  padding-left: 15px;
   min-height: 75px;
   cursor: pointer;
 }
 
 .gameList:nth-of-type(odd){
     background-color: lighten($color-blue, 30);
-}
-
-.gameActions, .gameName, .gameNumber {
-  align-self: center;
 }
 
 .gameName {
@@ -50,7 +23,7 @@
 }
 
 .bold {
-  font-weight: bold;
+  font-weight: $font-bold;
 }
 
 .scrollMenu {
@@ -67,20 +40,12 @@
   padding: 16px 0px;
 }
 
-.upvotes {
-  background: #11998e;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-
 .viewMore {
   padding: 16px;
   text-align: center;
 }
 
-.wishlist {
-  background: #FFE000;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #799F0C, #FFE000);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #799F0C, #FFE000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+.votingContainer {
+  padding: 8px;
+  color: $color-dark-gray;
 }
