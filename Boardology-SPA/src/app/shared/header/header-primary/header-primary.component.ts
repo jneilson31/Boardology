@@ -15,8 +15,8 @@ import { slideInLeft, slideOutLeft } from 'ng-animate';
       state('hide', style({
         transform: 'translateX(0%)'
       })),
-      transition('show => hide', useAnimation(slideOutLeft, { 
-        params: { 
+      transition('show => hide', useAnimation(slideOutLeft, {
+        params: {
           timing: .5,
           a: '100%',
           b: '0%',
@@ -32,17 +32,11 @@ import { slideInLeft, slideOutLeft } from 'ng-animate';
 })
 
 export class HeaderPrimaryComponent implements OnInit {
-  menuStatus = false;
-  hasClicked = false;
   currentDrawerState = 'hide';
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-  }
-
-  onClickMenu() {
-    this.menuStatus = !this.menuStatus;
   }
 
   isLoggedIn() {
@@ -51,16 +45,10 @@ export class HeaderPrimaryComponent implements OnInit {
 
   onLogout() {
     this.authService.logout();
-    this.menuStatus = !this.menuStatus;
-
+    this.toggleSidebar();
   }
 
   toggleSidebar() {
-    this.menuStatus = !this.menuStatus;
-    this.hasClicked = true;
-  }
-
-  changeDrawerState() {
     this.currentDrawerState = this.currentDrawerState === 'show' ? 'hide' : 'show';
   }
 }
