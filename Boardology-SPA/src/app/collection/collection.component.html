@@ -1,12 +1,6 @@
 <div class="gradientWrapper">
   <h2 class="text-center">My Collection</h2>
 </div>
-<div class="container">
-  <div *ngIf="!productCollection?.length">
-    <p>You don't have any items in your collection!</p>
-    <button class="btn btn-primary" [routerLink]="['/games']">View Games</button>
-  </div>
-</div>
 <div class="gameCollectionListHeader py-3">
   <div class="container">
     <div class="row">
@@ -20,13 +14,24 @@
 <div class="container">
   <div class="gameCollectionList py-3" *ngFor="let product of productCollection; let i = index">
     <div class="row">
-      <div  [routerLink]="['/games/', product.id, product.name]" class="col-1 d-flex align-items-center">{{ i + 1 }}</div>
-      <div  [routerLink]="['/games/', product.id, product.name]" class="col-2 d-flex align-items-center"><img src="{{ product.photoUrl }}" alt="{{ product.name }}"></div>
-      <div  [routerLink]="['/games/', product.id, product.name]" class="col-7 d-flex align-items-center">{{ product.name }}</div>
-      <div class="col-2 d-flex align-items-center justify-content-end" (click)="clickedShare()"><i class="fa fa-share-square"></i></div>
+      <div [routerLink]="['/games/', product.id, product.name]" class="col-1 d-flex align-items-center">{{ i + 1 }}
+      </div>
+      <div [routerLink]="['/games/', product.id, product.name]" class="col-2 d-flex align-items-center"><img
+          src="{{ product.photoUrl }}" alt="{{ product.name }}"></div>
+      <div [routerLink]="['/games/', product.id, product.name]" class="col-7 d-flex align-items-center">
+        {{ product.name }}</div>
+      <div class="col-2 d-flex align-items-center justify-content-end" (click)="clickedShare()"><i
+          class="fa fa-share-square"></i></div>
     </div>
   </div>
 </div>
-<div *ngIf="productCollection?.length" class="container">
+
+<div class="container">
+  <div *ngIf="!productCollection?.length">
+    <p class="text-center m-3">You don't have any items in your collection!</p>
+    <button class="btn btn-primary" [routerLink]="['/games']">View Games</button>
+  </div>
+  <div *ngIf="productCollection?.length">
     <button class="btn btn-primary" routerLink="/games">Add More Games</button>
   </div>
+</div>
