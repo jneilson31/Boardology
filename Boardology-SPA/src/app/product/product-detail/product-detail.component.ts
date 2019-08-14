@@ -84,8 +84,9 @@ export class ProductDetailComponent implements OnInit {
           }
         )
         .subscribe(
-          (comment: Comment) => {
+          () => {
             this.shouldShow = false;
+            this.product.numReviews++;
             this.getComments();
             this.review.reset();
           },
@@ -113,6 +114,7 @@ export class ProductDetailComponent implements OnInit {
           .subscribe(
             response => {
               this.getComments();
+              this.product.numReviews--;
             },
             error => {
               this.alertify.error(error.error);
