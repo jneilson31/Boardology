@@ -117,8 +117,8 @@ export class ProductListComponent implements OnInit {
   sortByMethod(method: string) {
     if (method === Sort.Alphabetical) {
       this.sortBy = method;
-      this.products$ = this.products$.
-      pipe(
+      this.products$ = this.products$
+      .pipe(
         map(products => {
           return products.sort((a, b) => {
             if (a.name.toLowerCase() > b.name.toLowerCase()) {
