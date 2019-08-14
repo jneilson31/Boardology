@@ -1,10 +1,10 @@
 <div class="scrollMenu">
   <app-category *ngFor="let category of categories" (click)="setCurrentCategory(category)" [category]="category"
-    [products]="products">
+    [products]="products$ | async">
   </app-category>
 </div>
 <div class="container">
-  <app-search [originalProducts]="products" class="mt-5"></app-search>
+  <app-search [originalProducts]="products$ | async" class="mt-5"></app-search>
   <h1 class="mt-2">Browse for {{ getCurrentCategory() }} Games</h1>
 </div>
 <div class="tableHeader">
@@ -24,7 +24,7 @@
     </div>
   </div>
 </div>
-<div class="gameList row mx-0 align-items-center" *ngFor="let product of products | slice:0:[max]; let rowIndex of index;">
+<div class="gameList row mx-0 align-items-center" *ngFor="let product of products$ | async | slice:0:[max]; let rowIndex of index;">
   <div class="col-2" [routerLink]="['/games/', product.id, product.name]">
     <img class="img-fluid" src="{{ product.photoUrl }}" alt="">
   </div>
@@ -34,7 +34,7 @@
   </div>
   <div class="col-3">
     <div class="votingContainer d-flex justify-content-between">
-      <i class="fa fa-thumbs-up" (click)="clickedUpvote()" [ngClass]="{upvoted: hasUpvoted}"></i>
+      <i class="fa fa-thumbs-up" [ngClass]="{upvoted: hasUpvoted}"></i>
       <i class="fa fa-thumbs-down" [ngClass]="{downvoted: hasDownvoted}"></i>
     </div>
   </div>
@@ -44,6 +44,6 @@
 
 
 
-<div *ngIf="[max] < products?.length -1" class="viewMore" (click)="viewMore()">View more</div>
-<div *ngIf="[max] >= products?.length -1 && products?.length" class="text-center" (click)="scrollToTop()">Back to top
+<div *ngIf="[max] < (products$ | async)?.length -1" class="viewMore" (click)="viewMore()">View more</div>
+<div *ngIf="[max] >= (products$ | async)?.length -1 && (products$ | async)?.length" class="text-center" (click)="scrollToTop()">Back to top
 </div>
