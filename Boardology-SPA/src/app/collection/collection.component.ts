@@ -31,6 +31,10 @@ export class CollectionComponent implements OnInit {
         });
   }
 
+  clickedShare() {
+    console.log('clicked share!');
+  }
+
   removeFromCollection(productId: number): void {
     this.alertify.confirm('Are you sure you want remove this game from your collection?', 'Yes', undefined, () => {
       this.http.delete(`${this.baseUrl}collection/${this.authService.decodedToken.nameid}/${productId}/collection`)
