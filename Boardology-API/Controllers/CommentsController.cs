@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Boardology.API.Data;
-using Boardology.API.Dtos;
 using Boardology.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,11 +18,13 @@ namespace Boardology.API.Controllers
 
         private readonly IBoardologyRepository _repo;
         private readonly IMapper _mapper;
+        private readonly ICommentsRepository _commentsRepo;
 
-        public CommentsController(IBoardologyRepository repo, IMapper mapper)
+        public CommentsController(IBoardologyRepository repo, IMapper mapper, ICommentsRepository commentsRepo)
         {
             _repo = repo;
             _mapper = mapper;
+            _commentsRepo = commentsRepo;
         }
 
         [HttpGet("game/{gameId}/comments")]
@@ -83,6 +84,7 @@ namespace Boardology.API.Controllers
             };
 
             _repo.Add(comment);
+            await _commentsRepo.IncreaseComments(gameId);
 
             if (await _repo.SaveAll())
             {
@@ -95,8 +97,8 @@ namespace Boardology.API.Controllers
 
 
         [Authorize]
-        [HttpDelete("user/{userId}/comment/{commentId}/delete")]
-        public async Task<IActionResult> DeleteComment(int userId, int commentId)
+        [HttpDelete("user/{userId}/game/{gameId}/comment/{commentId}/delete")]
+        public async Task<IActionResult> DeleteComment(int userId, int gameId, int commentId)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
             {
@@ -116,6 +118,7 @@ namespace Boardology.API.Controllers
             }
 
             _repo.Delete(comment);
+            await _commentsRepo.DecreaseComments(gameId);
 
 
             if (await _repo.SaveAll())

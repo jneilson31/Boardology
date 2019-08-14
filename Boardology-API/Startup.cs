@@ -81,8 +81,9 @@ namespace Boardology.API
 	        services.AddScoped<ICollectionRepository, CollectionRepository>();
 	        services.AddScoped<IWishlistRepository, WishlistRepository>();
 	        services.AddScoped<IVotesRepository, VotesRepository>();
+            services.AddScoped<ICommentsRepository, CommentsRepository>();
 
-		}
+        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, SeedGames seedGames)

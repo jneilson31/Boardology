@@ -50,6 +50,11 @@ export class ProductDetailComponent implements OnInit {
       });
   }
 
+  public checkIfIsUserComment(comment: Comment) {
+    // console.log(comment.userId === this.authService.decodedToken.nameid);
+    return comment.userId.toString() === this.authService.decodedToken.nameid;
+  }
+
   public toggleComment(): void {
     if (!this.authService.checkLogin()) {
       return;
@@ -99,7 +104,7 @@ export class ProductDetailComponent implements OnInit {
           .delete(
             `${this.baseUrl}comments/user/${
             this.authService.decodedToken.nameid
-            }/comment/${commentId}/delete`
+            }/game/${this.product.id}/comment/${commentId}/delete`
           )
           .subscribe(
             response => {
