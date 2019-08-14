@@ -8,6 +8,7 @@ import { environment } from '../../../environments/environment';
 import { AuthService } from '../../_services/auth.service';
 import { AlertifyService } from '../../_services/alertify.service';
 import { SeoService } from 'src/app/_services/seo.service';
+import { ProductService } from 'src/app/_services/product.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -15,7 +16,6 @@ import { SeoService } from 'src/app/_services/seo.service';
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit {
-  productId: number;
   product: Product;
   comments: Comment[] = [];
   review: FormControl = new FormControl();
@@ -29,7 +29,8 @@ export class ProductDetailComponent implements OnInit {
     public authService: AuthService,
     private alertify: AlertifyService,
     private router: Router,
-    private seoService: SeoService
+    private seoService: SeoService,
+    private productService: ProductService
   ) { }
 
   ngOnInit() {
@@ -50,9 +51,11 @@ export class ProductDetailComponent implements OnInit {
       });
   }
 
-  public checkIfIsUserComment(comment: Comment) {
-    // console.log(comment.userId === this.authService.decodedToken.nameid);
-    return comment.userId.toString() === this.authService.decodedToken.nameid;
+  public checkIfIsUserComment(comment: Comment): boolean {
+    if (this.authService.decodedToken) {
+      return comment.userId.toString() === this.authService.decodedToken.nameid;
+    }
+    return false;
   }
 
   public toggleComment(): void {
@@ -70,6 +73,7 @@ export class ProductDetailComponent implements OnInit {
 
   public submitReview(): void {
     if (this.review.value) {
+      this.productService.updateNumberOfComments(this.product);
       this.http
         .post(
           `${this.baseUrl}comments/${this.authService.decodedToken.nameid}/${

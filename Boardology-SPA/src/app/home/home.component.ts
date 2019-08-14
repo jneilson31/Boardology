@@ -37,8 +37,6 @@ export class HomeComponent implements OnInit {
     // 'Zombies',
   ];
 
-  products: Product[];
-  productSubscription: Subscription;
   token: string;
   id: string;
   model: any;
@@ -49,7 +47,6 @@ export class HomeComponent implements OnInit {
     private alertify: AlertifyService, private seoService: SeoService) {}
 
   ngOnInit() {
-    this.getProducts();
     this.checkForAutoLogin();
     this.setSeoData();
   }
@@ -69,13 +66,6 @@ export class HomeComponent implements OnInit {
           this.alertify.error('could not sign in with autlogin token');
         });
     }
-  }
-
-  private getProducts() {
-    this.productService.getProducts()
-      .subscribe(products => {
-        this.products = products;
-      });
   }
 
   private setSeoData(): void {
