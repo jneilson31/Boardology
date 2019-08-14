@@ -1,31 +1,41 @@
-<div class="container">
-  <h2>My Wishlist</h2>
-  <hr />
-  <div *ngIf="!productWishlist?.length">
-    <p>You don't have any items in your Wishlist!</p>
-    <button class="btn btn-primary" [routerLink]="['/games']">View Games</button>
-  </div>
-</div>
-<table *ngIf="productWishlist?.length" class="table table-striped table-dark table-hover">
-  <thead>
-    <tr>
-      <th scope="col" style="width: 8.33%">#</th>
-      <th scope="col" style="width: 20%">Image</th>
-      <th scope="col">Name</th>
-      <th scope="col" style="width: 8.33%">Share</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let product of productWishlist; let i = index">
-      <th class="collection-total" scope="row">{{ i + 1 }}</th>
-      <td class="align-middle"><img src="{{ product.photoUrl }}" alt=""></td>
-      <td class="align-middle" [routerLink]="['/games/', product.id]">{{ product.name }}</td>
-      <td class="align-middle" class="share-column"><i class="fa fa-share-square"></i></td>
-      <td class="align-middle" class="share-column align-middle remove" (click)="removeFromWishlist(product.id)">Remove</td>
-    </tr>
-  </tbody>
-</table>
-
 <div *ngIf="productWishlist?.length" class="container">
   <button class="btn btn-primary" [routerLink]="['/games']">Add More Games</button>
 </div>
+
+<div class="gradientWrapper">
+    <h2 class="text-center">My Wishlist</h2>
+    <i class="fab fab-gifts"></i>
+  </div>
+  <div class="gameCollectionListHeader py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-1">#</div>
+        <div class="col-2">Image</div>
+        <div class="col-7">Name</div>
+        <div class="col-2">Share</div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="gameCollectionList py-3" *ngFor="let product of productWishlist; let i = index">
+      <div class="row">
+        <div [routerLink]="['/games/', product.id, product.name]" class="col-1 d-flex align-items-center">{{ i + 1 }}
+        </div>
+        <div [routerLink]="['/games/', product.id, product.name]" class="col-2 d-flex align-items-center"><img
+            src="{{ product.photoUrl }}" alt="{{ product.name }}"></div>
+        <div [routerLink]="['/games/', product.id, product.name]" class="col-7 d-flex align-items-center">
+          {{ product.name }}</div>
+        <div class="col-2 d-flex align-items-center justify-content-end" (click)="clickedShare()"><i class="fa fa-share-square"></i></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div *ngIf="!productWishlist?.length">
+      <p class="text-center m-3">Birthday around the corner? No...? We don't care, add it to your wishlist anyways!</p>
+      <button class="btn btn-primary" [routerLink]="['/games']">View Games</button>
+    </div>
+    <div *ngIf="productWishlist?.length">
+      <button class="btn btn-primary" routerLink="/games">Add More Games</button>
+    </div>
+  </div>

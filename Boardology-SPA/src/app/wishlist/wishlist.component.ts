@@ -31,6 +31,10 @@ export class WishlistComponent implements OnInit {
       });
   }
 
+  clickedShare() {
+    console.log('clicked share!');
+  }
+
   removeFromWishlist(productId: number): void {
     this.alertify.confirm('Are you sure you want remove this game from your wishlist?', 'Yes', undefined, () => {
       this.http.delete(`${this.baseUrl}wishlist/${this.authService.decodedToken.nameid}/${productId}/wishlist`)
