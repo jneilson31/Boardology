@@ -155,7 +155,10 @@ export class ProductListComponent implements OnInit {
   }
   setCurrentCategory(category: string): void {
     this.productService.currentCategory = category;
-    this.products$ = this.categorySortPipe.transform(this.allProducts, category);
+    this.products$ = this.productService.products;
+    this.products$ = this.products$.pipe(
+      map(products =>  this.categorySortPipe.transform(products, category))
+    );
     this.sortByMethod(this.sortBy);
     }
 }
