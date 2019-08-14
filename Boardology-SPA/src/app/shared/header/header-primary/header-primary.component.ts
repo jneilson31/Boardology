@@ -52,8 +52,10 @@ export class HeaderPrimaryComponent implements OnInit {
     this.currentDrawerState = this.currentDrawerState === 'show' ? 'hide' : 'show';
     if (this.currentDrawerState === 'show') {
       this.renderer.setStyle(document.body, 'position', 'fixed');
+      this.renderer.setStyle(document.body, 'min-width', '100%');
     } else {
       this.renderer.removeStyle(document.body, 'position');
+      this.renderer.removeStyle(document.body, 'min-width');
     }
   }
 }
