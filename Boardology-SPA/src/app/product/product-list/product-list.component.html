@@ -24,7 +24,7 @@
     </div>
   </div>
 </div>
-<div class="gameList row m-0 align-items-center" *ngFor="let product of products | slice:0:[max]; let rowIndex of index;">
+<div class="gameList row mx-0 align-items-center" *ngFor="let product of products | slice:0:[max]; let rowIndex of index;">
   <div class="col-2" [routerLink]="['/games/', product.id, product.name]">
     <img class="img-fluid" src="{{ product.photoUrl }}" alt="">
   </div>
