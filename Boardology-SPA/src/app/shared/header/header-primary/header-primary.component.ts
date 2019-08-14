@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { AuthService } from 'src/app/_services/auth.service';
 import { trigger, transition, useAnimation, state, style, animate } from '@angular/animations';
 import { slideInLeft, slideOutLeft } from 'ng-animate';
@@ -34,7 +34,7 @@ import { slideInLeft, slideOutLeft } from 'ng-animate';
 export class HeaderPrimaryComponent implements OnInit {
   currentDrawerState = 'hide';
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private renderer: Renderer2) { }
 
   ngOnInit() {
   }
@@ -50,5 +50,10 @@ export class HeaderPrimaryComponent implements OnInit {
 
   toggleSidebar() {
     this.currentDrawerState = this.currentDrawerState === 'show' ? 'hide' : 'show';
+    if (this.currentDrawerState === 'show') {
+      this.renderer.setStyle(document.body, 'position', 'fixed');
+    } else {
+      this.renderer.removeStyle(document.body, 'position');
+    }
   }
 }
