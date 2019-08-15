@@ -40,6 +40,7 @@ import { ArticlesComponent } from './shared/articles/articles.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ArticleComponent } from './article/article.component';
 import { RecentActivityScrollMenuComponent } from './shared/recent-activity-scroll-menu/recent-activity-scroll-menu.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
@@ -71,7 +72,8 @@ export function tokenGetter() {
       ArticlesComponent,
       ResetPasswordComponent,
       ArticleComponent,
-      RecentActivityScrollMenuComponent
+      RecentActivityScrollMenuComponent,
+      ChangePasswordComponent
    ],
    imports: [
       BrowserModule,

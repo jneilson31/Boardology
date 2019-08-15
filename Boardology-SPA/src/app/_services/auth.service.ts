@@ -6,6 +6,7 @@ import { environment } from '../../environments/environment';
 import { UserForRegister } from '../_models/user-for-register';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
+import { ChangePassword } from '../_models/change-password.model';
 
 
 
@@ -54,14 +55,18 @@ export class AuthService {
           this.currentUser = user.user;
         }
 
-        if (this.redirectUrl) {
-          this.router.navigate([this.redirectUrl]);
-          this.redirectUrl = null;
-        } else {
-          this.router.navigate(['/']);
-        }
+        // if (this.redirectUrl) {
+        //   this.router.navigate([this.redirectUrl]);
+        //   this.redirectUrl = null;
+        // } else {
+        //   this.router.navigate(['/']);
+        // }
       })
     );
+  }
+
+  changePassword(changePassword: ChangePassword) {
+    return this.http.post(this.baseUrl + 'change-password', changePassword);
   }
 
   register(user: UserForRegister) {

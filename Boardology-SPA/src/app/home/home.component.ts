@@ -47,25 +47,7 @@ export class HomeComponent implements OnInit {
     private alertify: AlertifyService, private seoService: SeoService) {}
 
   ngOnInit() {
-    this.checkForAutoLogin();
     this.setSeoData();
-  }
-
-  private checkForAutoLogin() {
-    this.token = this.route.snapshot.queryParams['token'];
-    this.id = this.route.snapshot.queryParams['id'];
-    if (this.token && this.id) {
-      this.model = {
-        token: this.token,
-        id: this.id
-      };
-      this.authService.loginWithAutologinToken(this.model)
-        .subscribe(next => {
-          this.alertify.success('Logged in with autologin token!');
-        }, error => {
-          this.alertify.error('could not sign in with autlogin token');
-        });
-    }
   }
 
   private setSeoData(): void {

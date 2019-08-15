@@ -108,7 +108,7 @@ namespace Boardology.API.Controllers
                 return BadRequest("Could not find user");
             }
 
-            var newPassword = Guid.NewGuid().ToString();
+            var newPassword = "wing9fake";
             var token = userForAutoLoginDto.token.Replace(" ", "+");
             var passwordResult = await _userManager.ResetPasswordAsync(user, token, newPassword);
 
@@ -130,6 +130,35 @@ namespace Boardology.API.Controllers
 
         }
 
+        [HttpPost("change-password")]
+        public async Task<IActionResult> ChangePassword(ChangePasswordDto changePasswordDto)
+        {
+
+            var user = await _userManager.FindByIdAsync(changePasswordDto.id);
+            if (user == null)
+            {
+                return BadRequest("Could not find user");
+            }
+
+            var newPassword = changePasswordDto.newPassword;
+            var result = await _userManager.ChangePasswordAsync(user, "wing9fake", newPassword);
+
+
+
+            if (result.Succeeded)
+            {
+                return Ok(new
+                {
+                    token = GenerateJwtToken(user)
+                });
+            }
+
+            return Unauthorized("Something went wrong. Please try changing your password again.");
+
+
+
+        }
+
         [HttpPost("reset-password")]
         public async Task<IActionResult> SendPasswordResetLink(UserEmailAddress email)
         {
@@ -143,7 +172,7 @@ namespace Boardology.API.Controllers
            
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
 
-            var callbackUrl = $"http://localhost:4200/?token={token}&id={user.Id}";
+            var callbackUrl = $"http://localhost:4200/change-password/?token={token}&id={user.Id}";
             
             await _emailSender.SendEmailAsync(email.Email, "Password Reset Request", $"<p>Hi there {user.UserName},</p><p>Click below to reset your password</p><a href='{callbackUrl}'>Click here</a><hr><p><i>Boardology</i></p>");
 
