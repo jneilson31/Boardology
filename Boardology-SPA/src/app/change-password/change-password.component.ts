@@ -28,7 +28,7 @@ export class ChangePasswordComponent implements OnInit {
 
   ngOnInit() {
     this.checkForAutologin();
-      this.createChangePasswordForm();
+    this.createChangePasswordForm();
   }
 
     createChangePasswordForm() {

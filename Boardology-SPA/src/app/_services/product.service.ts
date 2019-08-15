@@ -63,15 +63,49 @@ export class ProductService {
   }
 
   updateNumberOfUpvotes(product: Product) {
-   // need to implement
+   // need to implement. What happens when they try to take back their upvote or downvote?
+    // Backend handles it, but how would the front end know?
+   this.http.post(`${this.baseUrl}votes/${this.authService.decodedToken.nameid}/${product.id}/upvote`, {})
+   .subscribe(next => {
+     console.log(next);
+   }, error => {
+     console.log(error);
+   });
+
+    const index = this.dataStore.products.findIndex(product1 => product1.id === product.id);
+    const upvotes = this.dataStore.products[index].upvotes + 1;
+
+    this.dataStore.products[index] = {
+      ...this.dataStore.products[index], upvotes
+    };
+
+    this._products.next(Object.assign({}, this.dataStore).products);
+
   }
 
   updateNumberOfDownvotes(product: Product) {
-    // need to implement
+    // need to implement. What happens when they try to take back their upvote or downvote?
+    // Backend handles it, but how would the front end know?
+
+    this.http.post(`${this.baseUrl}votes/${this.authService.decodedToken.nameid}/${product.id}/downvote`, {})
+      .subscribe(next => {
+        console.log(next);
+      }, error => {
+        console.log(error);
+      });
+
+    const index = this.dataStore.products.findIndex(product1 => product1.id === product.id);
+    const downvotes = this.dataStore.products[index].downvotes + 1;
+
+    this.dataStore.products[index] = {
+      ...this.dataStore.products[index], downvotes
+    };
+
+    this._products.next(Object.assign({}, this.dataStore).products);
   }
 
   getComments(gameId: number): Observable<Comment[]> {
-    // we will want to limit the number of comments we fetch unless 
+    // we will want to limit the number of comments we fetch unless
     // user clicks view more OR view all. We need to decide what we want to show
     return this.http.get<Comment[]>(
       `${this.baseUrl}comments/game/${gameId}/comments`
