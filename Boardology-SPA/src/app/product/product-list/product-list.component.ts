@@ -25,7 +25,7 @@ export enum Sort {
 
 
 export class ProductListComponent implements OnInit {
-  products$: Observable<Product[]> = this.productService.products;
+  products: Product[];
   allProducts: Product[];
   upvotes: Upvote[];
   downvotes: Downvote[];
@@ -67,6 +67,11 @@ export class ProductListComponent implements OnInit {
      private categorySortPipe: CategorySortPipe ) { }
 
   ngOnInit() {
+    this.productService.products
+    .subscribe(products => {
+      this.products = products;
+      this.allProducts = products;
+    });
     this.getProductList();
     this.sortByMethod(Sort.MostPopular);
     this.setSeoData();
@@ -117,36 +122,26 @@ export class ProductListComponent implements OnInit {
   sortByMethod(method: string) {
     if (method === Sort.Alphabetical) {
       this.sortBy = method;
-      this.products$ = this.products$
-      .pipe(
-        map(products => {
-          return products.sort((a, b) => {
-            if (a.name.toLowerCase() > b.name.toLowerCase()) {
-              return 1;
-            }
-            if (a.name.toLowerCase() < b.name.toLowerCase()) {
-              return -1;
-            }
-            return 0;
-          });
-        }),
-      );
+      this.products = this.products.sort((a, b) => {
+        if (a.name.toLowerCase() > b.name.toLowerCase()) {
+          return 1;
+        }
+        if (a.name.toLowerCase() < b.name.toLowerCase()) {
+          return -1;
+        }
+        return 0;
+    });
     } else {
       this.sortBy = method;
-      this.products$ = this.products$
-      .pipe(
-        map(products => {
-         return products.sort((a, b) => {
-            if (a.upvotes < b.upvotes) {
-              return 1;
-            }
-            if (a.upvotes > b.upvotes) {
-              return -1;
-            }
-            return 0;
-          });
-        }),
-      );
+      this.products = this.products.sort((a, b) => {
+        if (a.upvotes < b.upvotes) {
+          return 1;
+        }
+        if (a.upvotes > b.upvotes) {
+          return -1;
+        }
+        return 0;
+      });
     }
   }
 
@@ -155,10 +150,7 @@ export class ProductListComponent implements OnInit {
   }
   setCurrentCategory(category: string): void {
     this.productService.currentCategory = category;
-    this.products$ = this.productService.products;
-    this.products$ = this.products$.pipe(
-      map(products =>  this.categorySortPipe.transform(products, category))
-    );
+    this.products = this.categorySortPipe.transform(this.allProducts, category);
     this.sortByMethod(this.sortBy);
     }
 }
