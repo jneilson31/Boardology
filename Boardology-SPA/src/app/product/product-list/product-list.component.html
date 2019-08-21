@@ -28,16 +28,17 @@
   <div class="col-2" [routerLink]="['/games/', product.id, product.name]">
     <img class="img-fluid" src="{{ product.photoUrl }}" alt="">
   </div>
-  <div class="col-7 gameName" [routerLink]="['/games/', product.id, product.name]">
-    {{ product.name }}
+  <div class="col-7 try" [routerLink]="['/games/', product.id, product.name]">
+    <h6 class="gameName">{{ product.name }}</h6>
     <p> {{product.description | slice:0:[descMax]}}</p>
-  </div>
-  <div class="col-3">
     <div class="votingContainer d-flex justify-content-between">
       <i class="fa fa-thumbs-up" [ngClass]="{upvoted: hasUpvoted}"></i>
       <i class="fa fa-thumbs-down" [ngClass]="{downvoted: hasDownvoted}"></i>
+      <i class="fa fa-gift"></i>
+      <i class="fa fa-list-alt"></i>
     </div>
   </div>
+  <div class="col-3"><button class="btn btn-primary">Buy</button></div>
 </div>
 
 
