@@ -11,7 +11,9 @@
     <!-- </div> -->
       <!-- <div *ngFor="let game of games">
       </div> -->
-      <p *ngIf="queryField?.value && !hasSearchResults && isDoneSearching" class="text-center pt-3">No results found</p>
+      <div>
+        <p *ngIf="hasNoResults()" class="text-center pt-3">No results found.</p>
+      </div>
       <ul *ngIf="products?.length > 0" class="list-group">
         <li *ngFor="let product of products" class="list-group-item" [routerLink]="['/games/', product.id, product.name]">
           <div class="row no-gutters">

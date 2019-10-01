@@ -30,8 +30,6 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { CategoryComponent } from './shared/category/category.component';
 import { HomeIntroContentComponent } from './home/home-intro-content/home-intro-content.component';
 import { ProductService } from './_services/product.service';
-import { ProductDetailResolver } from './_resolvers/product-detail-resolver';
-import { ProductDetailCommentsResolver } from './_resolvers/product-detail-comments-resolver';
 import { CategoryGameComponent } from './shared/category/category-game/category-game.component';
 import { CollectionComponent } from './collection/collection.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
@@ -95,8 +93,6 @@ export function tokenGetter() {
    ],
    providers: [
       ProductService,
-      ProductDetailResolver,
-      ProductDetailCommentsResolver,
       CacheInterceptorProvider,
       CategorySortPipe
    ],

@@ -1,12 +1,12 @@
 <div class="container">
-  <h1 class="text-center my-3">{{product.name}}</h1>
+  <h1 class="text-center my-3">{{product?.name}}</h1>
   <div class="thumb">
-    <a [ngStyle]="{ 'background': 'url(' + product.photoUrl + ')' }">
-      <span>{{product.name}}</span>
+    <a [ngStyle]="{ 'background': 'url(' + product?.photoUrl + ')' }">
+      <span>{{product?.name}}</span>
     </a>
   </div>
   <div class="d-flex justify-content-center">
-    <!-- <img *ngIf="product" class="img-fluid product-image" src="{{product.photoUrl}}}" alt="{{product.name}}"> -->
+    <!-- <img *ngIf="product?" class="img-fluid product?-image" src="{{product?.photoUrl}}}" alt="{{product?.name}}"> -->
     <!--We don't need the ngif, it's to get rid of a console error. Once we have rouse resolvers we can remove that and the safe operators () -->
   </div>
   <h3 class="my-3">Product Details</h3>
@@ -20,9 +20,9 @@
     </thead>
     <tbody>
       <tr>
-        <td>{{product.numPlayers}}</td>
-        <td>{{product.ageSuggestion}}+</td>
-        <td>{{product.timeToPlay}} min</td>
+        <td>{{product?.numPlayers}}</td>
+        <td>{{product?.ageSuggestion}}+</td>
+        <td>{{product?.timeToPlay}} min</td>
       </tr>
     </tbody>
   </table>
@@ -33,7 +33,7 @@
 
   <hr>
   <h3>Description</h3>
-  <p>{{ product.description }}</p>
+  <p>{{ product?.description }}</p>
 
   <h3>Reviews<span class="leave-review pull-right mt-3" (click)="toggleComment()">Leave a review</span></h3>
 
@@ -53,4 +53,5 @@
       {{ comment.created | timeAgo }}
     </div>
   </div>
-</div>
+  <p class="text-center view-all-reviews d-flex justify-content-between align-items-center">See all {{product?.numReviews}} reviews<i class="fa fa-caret-right"></i></p>
+</div> 

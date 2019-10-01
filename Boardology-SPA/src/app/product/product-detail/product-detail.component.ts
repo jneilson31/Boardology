@@ -16,12 +16,15 @@ import { ProductService } from 'src/app/_services/product.service';
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit {
+  gameId: string;
   product: Product;
   comments: Comment[] = [];
   review: FormControl = new FormControl();
   shouldShow = false;
   baseUrl = environment.apiUrl;
   @ViewChild('textArea') textArea: ElementRef;
+  pageNumber = 1;
+  pageSize = 5;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,26 +33,31 @@ export class ProductDetailComponent implements OnInit {
     private alertify: AlertifyService,
     private router: Router,
     private seoService: SeoService,
-    private productService: ProductService
+    private productService: ProductService,
   ) { }
 
   ngOnInit() {
-    this.route.data.subscribe(data => {
-      this.product = data['product'];
-      this.comments = data['comments'];
+    this.gameId = this.route.snapshot.params['gameId'];
+    this.productService.getProduct(this.gameId)
+    .subscribe(product => {
+      this.product = product;
+      this.setSeoData();
     });
-    this.setSeoData();
-  }
-
-  public getComments(): void {
-    this.http
-      .get<Comment[]>(
-        `${this.baseUrl}comments/game/${this.product.id}/comments`
-      )
+      this.productService.getComments(this.gameId, this.pageNumber, this.pageSize)
       .subscribe(comments => {
-        this.comments = comments;
+        this.comments = comments.result;
       });
   }
+
+  // public getComments(): void {
+  //   this.http
+  //     .get<Comment[]>(
+  //       `${this.baseUrl}comments/game/${this.product.id}/comments`
+  //     )
+  //     .subscribe(comments => {
+  //       this.comments = comments;
+  //     });
+  // }
 
   public checkIfIsUserComment(comment: Comment): boolean {
     if (this.authService.decodedToken) {
@@ -87,7 +95,10 @@ export class ProductDetailComponent implements OnInit {
           () => {
             this.shouldShow = false;
             this.product.numReviews++;
-            this.getComments();
+            this.productService.getComments(this.gameId, this.pageNumber, this.pageSize)
+              .subscribe(comments => {
+                this.comments = comments.result;
+              });
             this.review.reset();
           },
           error => {
@@ -113,7 +124,7 @@ export class ProductDetailComponent implements OnInit {
           )
           .subscribe(
             response => {
-              this.getComments();
+              // this.getComments();
               this.product.numReviews--;
             },
             error => {
