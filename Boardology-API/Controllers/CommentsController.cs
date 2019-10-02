@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Boardology.API.Data;
+using Boardology.API.Helpers;
 using Boardology.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -28,7 +29,7 @@ namespace Boardology.API.Controllers
         }
 
         [HttpGet("game/{gameId}/comments")]
-        public async Task<IActionResult> GetComments(int gameId)
+        public async Task<IActionResult> GetComments(int gameId, [FromQuery]CommentParams commentParams)
         {
 
             if (await _repo.GetGame(gameId) == null)
@@ -36,7 +37,9 @@ namespace Boardology.API.Controllers
                 return NotFound();
             }
 
-            var comments = await _repo.GetComments(gameId);
+            var comments = await _repo.GetComments(gameId, commentParams);
+
+            Response.AddPagination(comments.CurrentPage, comments.PageSize, comments.TotalCount, comments.TotalPages);
 
             return Ok(comments);
 

@@ -1,4 +1,5 @@
 ﻿using Boardology.API.Dtos;
+using Boardology.API.Helpers;
 using Boardology.API.Models;
 using System;
 using System.Collections;
@@ -16,7 +17,7 @@ namespace Boardology.API.Data
         Task<IEnumerable<Game>> GetGames();
         Task<Game> GetGame(int gameId);
         Task<Comment> GetComment(int commentId);
-        Task<IList> GetComments(int gameId);
+        Task<PagedList<CommentDto>> GetComments(int gameId, CommentParams commentParams);
         Task<IList<Game>> GetSearchResults(string game);
     }
 }

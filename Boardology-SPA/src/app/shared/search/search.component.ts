@@ -48,6 +48,10 @@ export class SearchComponent implements OnInit {
       });
   }
 
+  public hasNoResults(): boolean {
+    return this.queryField.value && !this.hasSearchResults && this.isDoneSearching;
+  }
+
   private search(queryString: string): any {
     const fuse = new Fuse(this.originalProducts, this.options);
     const results = fuse.search(queryString);

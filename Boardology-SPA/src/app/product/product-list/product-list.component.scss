@@ -1,25 +1,28 @@
 @import 'src/styles/main';
 
 .gameList {
+  padding: .5rem;
   border-top: 1px solid gray;
   border-bottom: 1px solid gray;
   margin-top: -1px;
   min-height: 125px;
   cursor: pointer;
-}
-
-.gameList:nth-of-type(odd){
-    background-color: lighten($color-blue, 30);
-}
-
-.gameName {
-  font-size: 18px;
-  font-weight: 700;
   p {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
     margin-bottom: 8px;
   }
+}
+
+.gameList:nth-of-type(odd){
+    background-color: lighten($color-blue, 40);
+}
+
+.gameName {
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 8px;
+
 }
 
 .gradientWrapper {
@@ -35,6 +38,10 @@
 
 .bold {
   font-weight: $font-bold;
+}
+
+.try {
+  border-right: 1px solid $color-grayed-out;
 }
 
 .scrollMenu {

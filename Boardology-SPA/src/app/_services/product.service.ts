@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Product } from '../_models/product.model';
 import { Observable, forkJoin, Subject, BehaviorSubject } from 'rxjs';
 import { AuthService } from './auth.service';
+import { Comment } from '../_models/comment.model';
+import { PaginatedResult } from '../_models/Pagination';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -104,12 +107,28 @@ export class ProductService {
     this._products.next(Object.assign({}, this.dataStore).products);
   }
 
-  getComments(gameId: number): Observable<Comment[]> {
+  getComments(gameId: string, page?, itemsPerPage?): Observable<PaginatedResult<Comment[]>> {
+    const paginatedResult: PaginatedResult<Comment[]> = new PaginatedResult<Comment[]>();
+
+    let params = new HttpParams();
+
+    if (page != null && itemsPerPage != null) {
+      params = params.append('pageNumber', page);
+      params = params.append('pageSize', itemsPerPage);
+    }
     // we will want to limit the number of comments we fetch unless
     // user clicks view more OR view all. We need to decide what we want to show
     return this.http.get<Comment[]>(
-      `${this.baseUrl}comments/game/${gameId}/comments`
-    );
+      `${this.baseUrl}comments/game/${gameId}/comments`, { observe: 'response', params})
+      .pipe(
+        map(response => {
+          paginatedResult.result = response.body;
+          if (response.headers.get('Pagination') != null) {
+            paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+          }
+          return paginatedResult;
+        })
+      );
   }
 
 

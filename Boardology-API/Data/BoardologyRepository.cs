@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Boardology.API.Dtos;
+using Boardology.API.Helpers;
 using Boardology.API.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -52,27 +53,27 @@ namespace Boardology.API.Data
             return comment;
         }
 
-        public async Task<IList> GetComments(int gameId)
+        public async Task<PagedList<CommentDto>> GetComments(int gameId, CommentParams commentParams)
         {
 
-            var commentList = await
+            var commentList =
                 (from comments in _context.Comments
                  join users in _context.Users
                  on comments.UserId equals users.Id
                  where comments.GameId == gameId
                  orderby comments.Created descending
-                 select new
+                 select new CommentDto
                  {
-                     comments.Id,
-                     comments.GameId,
-                     comments.Content,
-                     comments.Created,
-                     comments.UserId,
-                     users.UserName
-                 }).Take(5).ToListAsync();
+                     Id = comments.Id,
+                     GameId = comments.GameId,
+                     Content = comments.Content,
+                     Created = comments.Created,
+                     UserId = comments.UserId,
+                     UserName = users.UserName
+                 });
                  
 
-            return commentList;
+            return await PagedList<CommentDto>.CreateAsync(commentList, commentParams.PageNumber, commentParams.PageSize);
 
         }
 

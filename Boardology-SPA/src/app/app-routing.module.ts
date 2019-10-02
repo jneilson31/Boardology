@@ -8,8 +8,6 @@ import { ContactComponent } from './contact/contact.component';
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginFormComponent } from './login-form/login-form.component';
-import { ProductDetailResolver } from './_resolvers/product-detail-resolver';
-import { ProductDetailCommentsResolver } from './_resolvers/product-detail-comments-resolver';
 import { CollectionComponent } from './collection/collection.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
@@ -25,8 +23,7 @@ const appRoutes: Routes = [
         runGuardsAndResolvers: 'always',
         children: [
             { path: 'games', component: ProductListComponent},
-            { path: 'games/:gameId/:name', component: ProductDetailComponent, resolve: {product: ProductDetailResolver,
-                comments: ProductDetailCommentsResolver} },
+            { path: 'games/:gameId/:name', component: ProductDetailComponent },
             { path: 'reviews', component: ReviewsComponent },
             { path: 'about-us', component: AboutComponent },
             { path: 'contact-us', component: ContactComponent },
