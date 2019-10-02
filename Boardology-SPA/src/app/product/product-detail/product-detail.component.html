@@ -27,8 +27,8 @@
     </tbody>
   </table>
   <div class="d-flex justify-content-between my-3">
-    <button class="btn btn-primary mr-2 w-50" (click)='addToWishlist()'>Add to Wishlist</button>
-    <button class="btn btn-primary w-50" (click)="addToCollection()">Add to Collection</button>
+    <button class="btn-lg btn-primary mr-2 w-50" (click)='addToWishlist()'>Add to Wishlist</button>
+    <button class="btn-lg btn-primary w-50" (click)="addToCollection()">Add to Collection</button>
   </div>
 
   <hr>
@@ -39,7 +39,7 @@
 
   <div class="form-group" *ngIf="shouldShow">
     <textarea class="form-control" placeholder="Leave a review..." [formControl]="review" #textArea> </textarea>
-    <button type="submit" class="btn btn-primary w-100 mt-2" (click)="submitReview()">Submit</button>
+    <button type="submit" class="btn-lg btn-primary w-100 mt-2" (click)="submitReview()">Submit</button>
   </div>
 
   <p class="text-center mt-3" *ngIf="comments.length === 0"><i>No reviews yet. Be the first to leave a review!</i></p>

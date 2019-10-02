@@ -29,9 +29,9 @@
 <div class="container">
   <div *ngIf="!productCollection?.length">
     <p class="text-center m-3">You don't have any items in your collection!</p>
-    <button class="btn btn-primary" [routerLink]="['/games']">View Games</button>
+    <button class="btn-lg btn-primary" [routerLink]="['/games']">View Games</button>
   </div>
   <div *ngIf="productCollection?.length">
-    <button class="btn btn-primary" routerLink="/games">Add More Games</button>
+    <button class="btn-lg btn-primary" routerLink="/games">Add More Games</button>
   </div>
 </div>

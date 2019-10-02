@@ -8,11 +8,11 @@
 <nav class="navbar nav-primary navbar-expand-lg navbar-dark drawer" [@toggleDrawer]=currentDrawerState>
   <div class="collapse navbar-collapse show nav-content" id="navbarSupportedContent">
     <div class="login d-flex justify-content-start">
-      <button *ngIf="!isLoggedIn()" class="btn btn-primary btn-sm mr-2 w-50" (click)="toggleSidebar()"
+      <button *ngIf="!isLoggedIn()" class="btn-lg btn-primary mr-2 w-50" (click)="toggleSidebar()"
         routerLink="/login">Login</button>
-      <button *ngIf="isLoggedIn()" (click)="onLogout()" class="btn btn-primary btn-sm w-100"
+      <button *ngIf="isLoggedIn()" (click)="onLogout()" class="btn-lg btn-primary w-100"
         routerLink="/">Logout</button>
-      <button *ngIf="!isLoggedIn()" class="btn btn-outline-primary btn-sm w-50" (click)="toggleSidebar()"
+      <button *ngIf="!isLoggedIn()" class="btn-lg btn-outline-primary w-50" (click)="toggleSidebar()"
         routerLink="/register">Register</button>
     </div>
     <ul class="navbar-nav mr-auto">

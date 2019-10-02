@@ -28,9 +28,9 @@
   <div class="container">
     <div *ngIf="!productWishlist?.length">
       <p class="text-center m-3">Birthday around the corner? No...? We don't care, add it to your wishlist anyways!</p>
-      <button class="btn btn-primary" [routerLink]="['/games']">View Games</button>
+      <button class="btn-lg btn-primary" [routerLink]="['/games']">View Games</button>
     </div>
     <div *ngIf="productWishlist?.length">
-      <button class="btn btn-primary" routerLink="/games">Add More Games</button>
+      <button class="btn-lg btn-primary" routerLink="/games">Add More Games</button>
     </div>
   </div>

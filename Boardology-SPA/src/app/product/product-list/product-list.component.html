@@ -1,4 +1,4 @@
-<div class="scrollMenu">
+<!-- <div class="scrollMenu">
   <app-category *ngFor="let category of categories" (click)="setCurrentCategory(category)" [category]="category"
     [products]="products">
   </app-category>
@@ -22,6 +22,12 @@
         </div>
       </div>
     </div>
+  </div>
+</div> -->
+<div class="gradientWrapper">
+  <div class="container">
+    <app-search [originalProducts]="allProducts" class="mt-5"></app-search>
+    <h1 class="mt-2">Browse for {{ getCurrentCategory() }} Games</h1>
   </div>
 </div>
 <div class="gameList row mx-0 align-items-center" *ngFor="let product of products | slice:0:[max]; let rowIndex of index;">
