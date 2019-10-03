@@ -4,6 +4,8 @@ section {
   padding: 60px 0px 20px;
   text-align: center;
   border-bottom: 1px solid $color-light-gray;
+  max-width: 800px;
+  margin: 0 auto;
 
   h2 {
     font-size: 52px;
@@ -16,6 +18,26 @@ section {
 
   .btn-lg {
     margin: 40px 0px;
+  }
+
+  .content-display {
+    @media($breakpoint-md) {
+      padding: 0px 60px;
+    }
+    @media($breakpoint-lg) {
+      padding: 0px 120px;
+    }
+  }
+
+  @media($breakpoint-md) {
+    display: flex;
+    align-items: center;
+  }
+}
+
+section:nth-of-type(even) {
+  @media($breakpoint-md) {
+    flex-direction: row-reverse;
   }
 }
 
