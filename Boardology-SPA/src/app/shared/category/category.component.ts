@@ -41,7 +41,7 @@ export class CategoryComponent implements OnInit {
 
   getCurrentCategory() {
     if (!this.productService.currentCategory) {
-      return "All";
+      return 'All';
     }
     return this.productService.currentCategory;
   }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpResponse } from '@angular/common/http';
+import { HttpResponse, HttpRequest } from '@angular/common/http';
 
 
 const maxAge = 600000;
@@ -24,7 +24,8 @@ export class HttpCacheService {
     });
   }
 
-  get(url: string): HttpResponse<any> | undefined {
+  get(req: HttpRequest<any>): HttpResponse<any> | undefined {
+    const url = req.urlWithParams;
     const cached = this.cache.get(url);
     if (!cached || cached.lastRead < Date.now() - maxAge ) {
       return undefined;

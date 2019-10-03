@@ -1,7 +1,7 @@
-<div class="container">
+<div #trenton class="container">
   <h1 class="text-center my-3">{{product?.name}}</h1>
   <div class="thumb">
-    <a [ngStyle]="{ 'background': 'url(' + product?.photoUrl + ')' }">
+    <a [ngStyle]="{ 'background': 'url(' + product?.photoUrl + ')' }" class="image">
       <span>{{product?.name}}</span>
     </a>
   </div>
@@ -53,5 +53,5 @@
       {{ comment.created | timeAgo }}
     </div>
   </div>
-  <p class="text-center view-all-reviews d-flex justify-content-between align-items-center">See all {{product?.numReviews}} reviews<i class="fa fa-caret-right"></i></p>
+  <p [routerLink]="['/reviews/', product.id, product.name]" class="text-center view-all-reviews d-flex justify-content-between align-items-center">See all {{product?.numReviews}} reviews<i class="fa fa-caret-right"></i></p>
 </div> 

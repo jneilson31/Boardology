@@ -25,6 +25,7 @@ export class ProductDetailComponent implements OnInit {
   @ViewChild('textArea') textArea: ElementRef;
   pageNumber = 1;
   pageSize = 5;
+  @ViewChild('trenton') trenton: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,6 +35,7 @@ export class ProductDetailComponent implements OnInit {
     private router: Router,
     private seoService: SeoService,
     private productService: ProductService,
+    private elementRef: ElementRef
   ) { }
 
   ngOnInit() {
@@ -43,11 +45,19 @@ export class ProductDetailComponent implements OnInit {
       this.product = product;
       this.setSeoData();
     });
-      this.productService.getComments(this.gameId, this.pageNumber, this.pageSize)
+      this.productService.getComments(+this.gameId, this.pageNumber, this.pageSize)
       .subscribe(comments => {
         this.comments = comments.result;
       });
   }
+
+//   ngAfterViewInit() {
+//     const script = this.renderer2.createElement('script');
+//     script.type = 'text/javascript';
+//     script.src = 'https://z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=bd4081d7-2918-4444-8f37-e92902ef0bb5';
+//     script.text = '';
+//   this.renderer2.appendChild(this.trenton.nativeElement, script);
+// }
 
   // public getComments(): void {
   //   this.http
@@ -95,7 +105,7 @@ export class ProductDetailComponent implements OnInit {
           () => {
             this.shouldShow = false;
             this.product.numReviews++;
-            this.productService.getComments(this.gameId, this.pageNumber, this.pageSize)
+            this.productService.getComments(+this.gameId, this.pageNumber, this.pageSize)
               .subscribe(comments => {
                 this.comments = comments.result;
               });
@@ -177,6 +187,11 @@ export class ProductDetailComponent implements OnInit {
           this.alertify.error(error.error);
         }
       );
+  }
+
+  public viewAllReviews(): void {
+    this.productService.currentProductId = this.product.id.toString();
+    this.router.navigate(['reviews', this.product.id, this.product.name]);
   }
 
   private setSeoData(): void {

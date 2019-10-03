@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Product } from '../_models/product.model';
-import { Observable, forkJoin, Subject, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, of } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Comment } from '../_models/comment.model';
 import { PaginatedResult } from '../_models/Pagination';
@@ -16,6 +16,7 @@ export class ProductService {
   baseUrl = environment.apiUrl;
   comments: Comment[];
   currentCategory: string;
+  currentProductId: string;
   private dataStore: {  // This is where we will store our data in memory
   products: Product[]
   };
@@ -31,6 +32,10 @@ export class ProductService {
   }
 
     getProduct(gameId: string): Observable<Product> {
+      const product = this.getCurrentProduct(+gameId);
+      if (product) {
+        return of(product);
+      }
        return this.http.get<Product>(`${this.baseUrl}games/${gameId}/game`);
   }
 
@@ -63,6 +68,11 @@ export class ProductService {
     };
 
     this._products.next(Object.assign({}, this.dataStore).products);
+  }
+
+  getCurrentProduct(gameId: number): Product {
+    const index = this.dataStore.products.findIndex(product1 => product1.id === gameId);
+    return this.dataStore.products[index];
   }
 
   updateNumberOfUpvotes(product: Product) {
@@ -107,7 +117,7 @@ export class ProductService {
     this._products.next(Object.assign({}, this.dataStore).products);
   }
 
-  getComments(gameId: string, page?, itemsPerPage?): Observable<PaginatedResult<Comment[]>> {
+  getComments(gameId: number, page?, itemsPerPage?): Observable<PaginatedResult<Comment[]>> {
     const paginatedResult: PaginatedResult<Comment[]> = new PaginatedResult<Comment[]>();
 
     let params = new HttpParams();
@@ -129,6 +139,10 @@ export class ProductService {
           return paginatedResult;
         })
       );
+  }
+
+  setCurrentProductId(productId: string): void {
+    this.currentProductId = productId;
   }
 
 

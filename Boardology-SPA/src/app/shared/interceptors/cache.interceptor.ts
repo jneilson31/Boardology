@@ -16,7 +16,7 @@ export class CacheInterceptor implements HttpInterceptor {
             return next.handle(req);
         }
 
-        const cachedResponse: HttpResponse<any> = this.cacheService.get(req.url);
+        const cachedResponse: HttpResponse<any> = this.cacheService.get(req);
 
         if (cachedResponse) {
             return of(cachedResponse);
