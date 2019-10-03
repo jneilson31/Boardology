@@ -1,9 +1,11 @@
 <nav class="navbar nav-primary navbar-expand-lg navbar-dark sticky-test">
-  <a class="navbar-brand" routerLink="/" routerLinkActive="router-link-active"
-    (click)="currentDrawerState === 'show' ? toggleSidebar() : currentDrawerState = 'hide'">Boardology</a>
-  <button class="navbar-toggler" type="button" (click)="toggleSidebar()">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <div class="container">
+    <a class="navbar-brand" routerLink="/" routerLinkActive="router-link-active"
+      (click)="currentDrawerState === 'show' ? toggleSidebar() : currentDrawerState = 'hide'">Boardology</a>
+    <button class="navbar-toggler" type="button" (click)="toggleSidebar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
 </nav>
 <nav class="navbar nav-primary navbar-expand-lg navbar-dark drawer" [@toggleDrawer]=currentDrawerState>
   <div class="collapse navbar-collapse show nav-content" id="navbarSupportedContent">

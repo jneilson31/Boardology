@@ -8,8 +8,6 @@
     <p [innerHTML]="article?.content"></p>
     <hr>
     <h3>Related Articles</h3>
-
-
         <div *ngFor="let otherArticle of otherArticles | slice:0:3" [routerLink]="['/article/', otherArticle.id, getArticleName(otherArticle.title)]"
             routerLinkActive="router-link-active" class="article-container">
             <div class="w-100 content">
@@ -32,10 +30,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
     <hr>
     <h3>Comments<span class="leave-review pull-right mt-3" (click)="toggleComment()">Leave a comment</span></h3>
 

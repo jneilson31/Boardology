@@ -1,13 +1,13 @@
 //   Media Queries   //
-$break-mobile: "min-width: 576px";
-$break-tablet: "min-width: 768px";
-$break-desktop: "min-width: 992px";
-$break-desktop-large: "min-width: 1200px";
+$breakpoint-sm: "min-width: 576px";
+$breakpoint-md: "min-width: 768px";
+$breakpoint-lg: "min-width: 992px";
+$breakpoint-xl: "min-width: 1200px";
 
-$break-mobile-max: "max-width: 575.98px";
-$break-tablet-max: "max-width: 767.98px";
-$break-desktop-max: "max-width: 991.98px";
-$break-desktop-large-max: "max-width: 1199.98px";
+$breakpoint-sm-down: "max-width: 575.98px";
+$breakpoint-md-down: "max-width: 767.98px";
+$breakpoint-lg-down: "max-width: 991.98px";
+$breakpoint-xl-down: "max-width: 1199.98px";
 
 //   Z-Index   //
 

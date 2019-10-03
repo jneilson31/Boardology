@@ -1,24 +1,70 @@
 @import 'src/styles/main';
 
 
-.content-wrapper{
- background-color: $color-white;
+.content-wrapper {
+  background-color: $color-white;
   box-shadow: 10px 10px 20px $color-grayed-out;
   border-radius: 6px;
   padding: 15px;
-  text-align: center;
+  text-align: left;
+  position: relative;
+  margin-bottom: 2rem;
+  min-height: 150px;
+  h2 {
+    margin-bottom: 20px;
+  }
+  @media($breakpoint-md) {
+      min-height: 165px
+    }
+
+  @media($breakpoint-lg) {
+    min-height: 190px;
+  }
+
+  @media($breakpoint-xl) {
+    min-height: 210px;
+  }
+
+
+  .box-logo-right {
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+    padding: 12px;
+    position: absolute;
+    background-color: $color-white;
+    box-shadow: 10px 10px 20px $color-grayed-out;
+    top: -15px;
+    right: 15px;
+    @media($breakpoint-sm) {
+      height: 95px;
+      width: 95px;
+      top: -25px;
+      right: -45px;
+    }
+    @media($breakpoint-md) {
+      height: 75px;
+      width: 75px;
+      top: -15px;
+      right: 15px;
+    }
+    @media($breakpoint-lg) {
+      top: -25px;
+      right: -20px;
+    }
+
+  }
+
+  .center-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .img-fluid {
+      max-width: 65%;
+    }
 }
 
-.img-fluid {
-    max-width: 75%;
-}
 
-.home-icons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.row:nth-of-type(even) {
-    flex-direction: row-reverse;
-}
