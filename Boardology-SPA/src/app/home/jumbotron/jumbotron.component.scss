@@ -2,18 +2,17 @@
 
 
 .jumbotron {
-    // background: #00d2ff;  /* fallback for old browsers */
-    // background: -webkit-linear-gradient(to left, #3a7bd5, #00d2ff);  /* Chrome 10-25, Safari 5.1-6 */
-    // background: linear-gradient(to left, #3a7bd5, #00d2ff, 0.50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background-image: url('../.././../assets/background.png');
     background-position: top;
     background-size: cover;
-    // clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 80%);
     color: $color-white;
-    margin-bottom: 1.0rem;
-    text-align: right;
+    margin-bottom: 40px;
+    padding: 60px 30px 120px;
+    text-align: left;
     p {
-        font-size: 16px;
+        font-size: 18px;
+        line-height: 30px;
+        margin-bottom: 40px;
     }
 
     h2 {
@@ -25,9 +24,8 @@
         font-size: 18px;
       }
       h2 {
-      font-size: 42px;
+        font-size: 42px;
+      }
     }
-    }
-
 }
 

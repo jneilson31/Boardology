@@ -20,7 +20,7 @@ button {
     background: transparent;
     border: 1px solid $color-light-blue;
     color: $color-light-blue;
-    width: 100%; 
+    width: 100%;
 }
 
 .btn-secondary {
@@ -36,4 +36,18 @@ button {
     color: $color-white;
     width: 100%;
     padding: 1.0rem;
+}
+
+.btn-main-white {
+  background: $color-white;
+  border: 1px solid $color-white;
+  color: $color-light-blue;
+  font-weight: $font-bold;
+  text-align: center;
+  width: 100%;
+}
+
+.btn-lg {
+  padding: 18px 32px;
+  font-size: 16px;
 }
