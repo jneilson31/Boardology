@@ -22,7 +22,7 @@ export class ReviewsComponent implements OnInit {
   pageSize = 5;
   gameId: string;
   baseUrl = environment.apiUrl;
-  product$: Observable<Product>;
+  product: Product;
 
   constructor(private route: ActivatedRoute,
     private productService: ProductService,
@@ -32,7 +32,10 @@ export class ReviewsComponent implements OnInit {
 
   ngOnInit() {
     this.gameId = this.route.snapshot.params['gameId'];
-    this.product$ = this.productService.getProduct(this.gameId);
+     this.productService.getProduct(this.gameId)
+     .subscribe(product => {
+       this.product = product;
+     });
     this.productService.getComments(+this.gameId, this.pageNumber, this.pageSize)
     .subscribe(pagination => {
       this.comments = pagination.result;

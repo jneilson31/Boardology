@@ -1,9 +1,9 @@
-<div *ngIf="product$ | async as product" class="container">
-    <h1 class="text-center my-3">{{product.name}}</h1>
+<div class="container">
+    <h1 class="text-center my-3">{{product?.name}}</h1>
     <img [src]="product.photoUrl" alt="">
     <h1 class="text-center">All Reviews</h1>
     <div class="d-flex justify-content-center">
-        <pagination [boundaryLinks]="true" [totalItems]="pagination?.totalItems" [itemsPerPage]="pagination?.itemsPerPage"
+        <pagination *ngIf="comments.length > 2" [boundaryLinks]="true" [totalItems]="pagination?.totalItems" [itemsPerPage]="pagination?.itemsPerPage"
             [(ngModel)]="pagination.currentPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
             nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
         </pagination>
