@@ -1,15 +1,13 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container ">
-    <h2 *ngIf="!isLoggedIn()">All&nbsp;board&nbsp;games. In&nbsp;one&nbsp;place. Your&nbsp;wishlist.
-      Your&nbsp;collection.
-    </h2>
-    <h2 *ngIf="isLoggedIn()">Hi, {{ userName | titlecase }}.</h2>
     <div class="row">
-      <div class="col-12 col-sm-8 col-md-7 col-lg-6">
+      <div class="col-12 col-md-8 col-lg-7 col-xl-6">
+        <h2 *ngIf="!isLoggedIn()">All&nbsp;board&nbsp;games. In&nbsp;one&nbsp;place. Your&nbsp;wishlist.
+          Your&nbsp;collection.
+        </h2>
+        <h2 *ngIf="isLoggedIn()">Hi, {{ userName | titlecase }}.</h2>
         <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas aliquid ipsam, repellendus
           incidunt nesciunt officiis cupiditate adipisci nisi itaque accusamus distinctio.</p>
-      </div>
-      <div class="col-sm-6">
         <div class="btn-lg btn-main-white" routerLink="/games">Browse for Games</div>
       </div>
     </div>
