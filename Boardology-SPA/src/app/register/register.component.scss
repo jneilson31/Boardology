@@ -38,8 +38,36 @@
     justify-content: center;
 }
 
-.whiteTitle {
+
+.word-content {
+  h1 {
     color: $color-white;
-    font-size: 36px;
+    font-size: 32px;
     margin-bottom: 2rem;
+  }
+
+  p {
+    color: $color-white;
+    font-size: $global-font-size;
+    margin-bottom: 2rem;
+  }
+
+  @media($breakpoint-sm) {
+    h1 {
+      font-size: 42px;
+    }
+
+    p {
+      font-size: 18px;
+    }
+  }
+
+  @media($breakpoint-lg) {
+    h1 {
+      font-size: 52px;
+    }
+    p {
+      font-size: 24px;
+    }
+  }
 }

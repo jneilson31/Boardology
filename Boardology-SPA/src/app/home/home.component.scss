@@ -1,5 +1,5 @@
 @import 'src/styles/main';
 
-section {
+section:not(:last-of-type) {
     margin-bottom: 40px;
 }
