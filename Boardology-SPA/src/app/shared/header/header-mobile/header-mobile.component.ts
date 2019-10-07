@@ -4,9 +4,9 @@ import { trigger, transition, useAnimation, state, style, animate } from '@angul
 import { slideInLeft, slideOutLeft } from 'ng-animate';
 
 @Component({
-  selector: 'app-header-primary',
-  templateUrl: './header-primary.component.html',
-  styleUrls: ['./header-primary.component.scss'],
+  selector: 'app-header-mobile',
+  templateUrl: './header-mobile.component.html',
+  styleUrls: ['./header-mobile.component.scss'],
   animations: [
     trigger('toggleDrawer', [
       state('show', style({
@@ -31,12 +31,16 @@ import { slideInLeft, slideOutLeft } from 'ng-animate';
   ],
 })
 
-export class HeaderPrimaryComponent implements OnInit {
-  currentDrawerState = 'hide';
+export class HeaderMobileComponent implements OnInit {
+  currentDrawerState:string = 'hide';
+  mobileView: boolean;
 
   constructor(private authService: AuthService, private renderer: Renderer2) { }
 
   ngOnInit() {
+    if (window.screen.width <= 991) {
+      this.mobileView = true;
+    }
   }
 
   isLoggedIn() {

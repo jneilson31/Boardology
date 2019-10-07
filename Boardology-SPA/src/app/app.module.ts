@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderPrimaryComponent } from './shared/header/header-primary/header-primary.component';
+import { HeaderMobileComponent } from './shared/header/header-mobile/header-mobile.component';
 import { JumbotronComponent } from './home/jumbotron/jumbotron.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SearchComponent } from './shared/search/search.component';
@@ -40,6 +40,7 @@ import { ArticleComponent } from './article/article.component';
 import { RecentActivityScrollMenuComponent } from './shared/recent-activity-scroll-menu/recent-activity-scroll-menu.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { PictureCarouselComponent } from './shared/picture-carousel/picture-carousel.component';
+import { HeaderDesktopComponent } from './shared/header/header-desktop/header-desktop.component';
 
 export function tokenGetter() {
     return localStorage.getItem('token');
@@ -48,7 +49,7 @@ export function tokenGetter() {
 @NgModule({
    declarations: [
       AppComponent,
-      HeaderPrimaryComponent,
+      HeaderMobileComponent,
       JumbotronComponent,
       FooterComponent,
       SearchComponent,
@@ -73,7 +74,8 @@ export function tokenGetter() {
       ArticleComponent,
       RecentActivityScrollMenuComponent,
       ChangePasswordComponent,
-      PictureCarouselComponent
+      PictureCarouselComponent,
+      HeaderDesktopComponent
    ],
    imports: [
       BrowserModule,

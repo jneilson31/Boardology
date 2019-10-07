@@ -8,16 +8,25 @@
 
 .navbar-brand {
     font-family: $font-primary;
-    font-size: 24px;
+    font-size: 28px;
 }
 
 .nav-primary {
     background-color: $color-dark-gray;
 }
 
+.navbar-nav {
+  a {
+    margin-right: 10px;
+  }
+}
+
 ul {
     i {
         width: 24px;
+        @media($breakpoint-lg) {
+          display: none;
+        }
     }
 }
 
@@ -41,3 +50,10 @@ ul {
 .nav-content {
     height: 100vh;
 }
+
+.show > .nav-link,
+    .active > .nav-link,
+    .nav-link.show,
+    .nav-link.active {
+      color: $color-light-blue;
+    }
