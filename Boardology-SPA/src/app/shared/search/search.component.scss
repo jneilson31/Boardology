@@ -3,6 +3,7 @@
 .card {
     border-left: none;
     border-right: none;
+    padding: 20px;
 }
 .card-header {
     background-color: $color-dark-gray;
@@ -23,7 +24,7 @@
     img {
         max-height: 40px;
     }
-    
+
 }
 
 .list-group-item {

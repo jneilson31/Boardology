@@ -1,34 +1,38 @@
-<!-- <div class="scrollMenu">
+<div class="scrollMenu">
   <app-category *ngFor="let category of categories" (click)="setCurrentCategory(category)" [category]="category"
     [products]="products">
   </app-category>
-</div>
-<div class="container">
-  <app-search [originalProducts]="allProducts" class="mt-5"></app-search>
-  <h1 class="mt-2">Browse for {{ getCurrentCategory() }} Games</h1>
 </div>
 <div class="tableHeader">
   <div class="container">
     <div class="row justify-content-end">
       <div class="mr-3 dropdown" data-display="static" id="dropdownMenuButton" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-        <span class="mr-2">{{sortBy}}</span>
-        <i class="fa fa-sort"></i>
-        <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="dropdownMenuButton">
-          <a [ngClass]="{'bold': sortBy === Sort.MostPopular}" class="dropdown-item" href=""
-            (click)="sortByMethod(Sort.MostPopular)">Most Popular</a>
-          <a [ngClass]="{'bold': sortBy === Sort.Alphabetical}" class="dropdown-item" href=""
-            (click)="sortByMethod(Sort.Alphabetical)">A-Z</a>
-        </div>
+      aria-haspopup="true" aria-expanded="false">
+      <span class="mr-2">{{sortBy}}</span>
+      <i class="fa fa-sort"></i>
+      <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="dropdownMenuButton">
+        <a [ngClass]="{'bold': sortBy === Sort.MostPopular}" class="dropdown-item" href=""
+        (click)="sortByMethod(Sort.MostPopular)">Most Popular</a>
+        <a [ngClass]="{'bold': sortBy === Sort.Alphabetical}" class="dropdown-item" href=""
+        (click)="sortByMethod(Sort.Alphabetical)">A-Z</a>
       </div>
     </div>
   </div>
-</div> -->
+</div>
+</div>
 <div class="gradientWrapper">
   <div class="container">
-    <app-search [originalProducts]="allProducts" class="mt-5"></app-search>
+    <!-- <app-search [originalProducts]="allProducts" class="mt-5"></app-search> -->
+    <!-- <h1 class="mt-2">Browse for {{ getCurrentCategory() }} Games</h1> -->
+  </div>
+  <div class="container">
+    <!-- <app-search [originalProducts]="allProducts" class="mt-5"></app-search> -->
     <h1 class="mt-2">Browse for {{ getCurrentCategory() }} Games</h1>
   </div>
+</div>
+<div class="container">
+  <app-search [originalProducts]="allProducts" class="mt-5"></app-search>
+  <!-- <h1 class="mt-2">Browse for {{ getCurrentCategory() }} Games</h1> -->
 </div>
 <div class="gameList row mx-0 align-items-center" *ngFor="let product of products | slice:0:[max]; let rowIndex of index;">
   <div class="col-2" [routerLink]="['/games/', product.id, product.name]">
