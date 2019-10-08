@@ -6,37 +6,9 @@
         <img class="image" src="{{article?.photoUrl}}" alt="photo">
     </div>
     <p [innerHTML]="article?.content"></p>
+    
     <hr>
-    <h3>Related Articles</h3>
 
-
-        <div *ngFor="let otherArticle of otherArticles | slice:0:3" [routerLink]="['/article/', otherArticle.id, getArticleName(otherArticle.title)]"
-            routerLinkActive="router-link-active" class="article-container">
-            <div class="w-100 content">
-                <h5 class="article-title">{{otherArticle?.title}}</h5>
-                <div class="badge-container">
-                    <span *ngIf="isNewArticle(otherArticle?.dateCreated)" class="badge badge-new">New</span>
-                    <span *ngIf="isArticleTrending(otherArticle?.comments)" class="badge badge-danger ">Hot</span>
-                </div>
-            </div>
-            <div class="article-info grayed-text">
-                <div class="row">
-                    <div class="col-9">
-                        <div class="row">
-                            <div class="authorName col-12">{{otherArticle?.author}}</div>
-                            <div class="col-12">{{otherArticle?.dateCreated | date: 'MMM d, y'}}</div>
-                        </div>
-
-                    </div>
-                    <p class="col-3 text-right"><i class="fa fa-comment mr-1"></i>{{otherArticle?.comments}}</p>
-                </div>
-            </div>
-        </div>
-
-
-
-
-    <hr>
     <h3>Comments<span class="leave-review pull-right mt-3" (click)="toggleComment()">Leave a comment</span></h3>
 
     <div class="form-group" *ngIf="shouldShow">
@@ -53,6 +25,36 @@
         </div>
         <div class="card-footer text-muted">
             {{ comment.created | timeAgo }}
+        </div>
+    </div>
+    <p [routerLink]="['/article/comments', article.id, article.title]"
+        class="text-center view-all-reviews d-flex justify-content-between align-items-center">See all
+        {{article?.comments}} comments<i class="fa fa-caret-right"></i>
+    </p>
+
+    <h3>Related Articles</h3>
+    
+    <div *ngFor="let otherArticle of otherArticles | slice:0:3"
+        [routerLink]="['/article/', otherArticle.id, getArticleName(otherArticle.title)]"
+        routerLinkActive="router-link-active" class="article-container">
+        <div class="w-100 content">
+            <h5 class="article-title">{{otherArticle?.title}}</h5>
+            <div class="badge-container">
+                <span *ngIf="isNewArticle(otherArticle?.dateCreated)" class="badge badge-new">New</span>
+                <span *ngIf="isArticleTrending(otherArticle?.comments)" class="badge badge-danger ">Hot</span>
+            </div>
+        </div>
+        <div class="article-info grayed-text">
+            <div class="row">
+                <div class="col-9">
+                    <div class="row">
+                        <div class="authorName col-12">{{otherArticle?.author}}</div>
+                        <div class="col-12">{{otherArticle?.dateCreated | date: 'MMM d, y'}}</div>
+                    </div>
+    
+                </div>
+                <p class="col-3 text-right"><i class="fa fa-comment mr-1"></i>{{otherArticle?.comments}}</p>
+            </div>
         </div>
     </div>
 </div>

@@ -27,6 +27,8 @@ export class ArticleComponent implements OnInit, OnDestroy {
   comments: ArticleComment[] = [];
   otherArticles: Article[] = [];
   title: string;
+  pageNumber = 1;
+  pageSize = 5;
 
   constructor(private route: ActivatedRoute,
      private http: HttpClient,
@@ -39,7 +41,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
      this.subscription = this.route.params
       .subscribe((params: Params) => {
         this.getArticle(params.articleId);
-        this.getComments(params.articleId);
+        this.getComments(params.articleId, this.pageNumber, this.pageSize);
         this.getOtherArticles(params.articleId);
       });
   }
@@ -84,7 +86,8 @@ export class ArticleComponent implements OnInit, OnDestroy {
         .subscribe(
           () => {
             this.shouldShow = false;
-            this.getComments(this.article.id);
+            this.article.comments++;
+            this.getComments(this.article.id, this.pageNumber, this.pageSize);
             this.commentField.reset();
           },
           error => {
@@ -107,11 +110,12 @@ export class ArticleComponent implements OnInit, OnDestroy {
           .delete(
             `${this.baseUrl}articles/user/${
             this.authService.decodedToken.nameid
-            }/comment/${commentId}/delete`
+            }/${this.article.id}/comment/${commentId}/delete`
           )
           .subscribe(
             response => {
               this.comments = this.comments.filter(u => u.id !== commentId);
+              this.article.comments--;
             },
             error => {
               this.alertify.error(error.error);
@@ -142,10 +146,10 @@ export class ArticleComponent implements OnInit, OnDestroy {
   }
 
 
-  private getComments(articleId: number): void {
-    this.articleService.getComments(articleId)
+  private getComments(articleId: number, page?, itemsPerPage?): void {
+    this.articleService.getComments(articleId, page, itemsPerPage)
       .subscribe(comments => {
-        this.comments = comments;
+        this.comments = comments.result;
       });
   }
 

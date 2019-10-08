@@ -15,6 +15,7 @@ import { CollectionGuard } from './_guards/collection.guard';
 import { WishlistGuard } from './_guards/wishlist.guard';
 import { ArticleComponent } from './article/article.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ArticleCommentsComponent } from './article-comments/article-comments.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -25,6 +26,7 @@ const appRoutes: Routes = [
             { path: 'games', component: ProductListComponent},
             { path: 'games/:gameId/:name', component: ProductDetailComponent },
             { path: 'reviews/:gameId/:name', component: ReviewsComponent },
+            { path: 'article/comments/:articleId/:name', component: ArticleCommentsComponent },
             { path: 'about-us', component: AboutComponent },
             { path: 'contact-us', component: ContactComponent },
             { path: 'register', component: RegisterComponent },

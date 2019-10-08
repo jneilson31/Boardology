@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Boardology.API.Dtos;
+using Boardology.API.Helpers;
 using Boardology.API.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -40,28 +42,38 @@ namespace Boardology.API.Data
 			return article;
 
 		}
+        public async Task<Article> DecreaseArticleComments(int articleId)
+        {
+            var article = await _context.Articles.FirstOrDefaultAsync(u => u.Id == articleId);
+            if (article != null)
+            {
+                article.Comments = article.Comments - 1;
+            }
+            return article;
 
-        public async Task<IList> GetArticleComments(int articleId)
+        }
+
+        public async Task<PagedList<ArticleCommentDto>> GetArticleComments(int articleId, CommentParams commentParams)
         {
 
-            var commentList = await
+            var commentList =
                 (from articleComments in _context.ArticleComments
                  join users in _context.Users
                  on articleComments.UserId equals users.Id
                  where articleComments.ArticleId == articleId
                  orderby articleComments.Created descending
-                 select new
+                 select new ArticleCommentDto
                  {
-                     articleComments.Id,
-                     articleComments.ArticleId,
-                     articleComments.Content,
-                     articleComments.Created,
-                     articleComments.UserId,
-                     users.UserName
-                 }).Take(5).ToListAsync();
+                     Id = articleComments.Id,
+                     ArticleId = articleComments.ArticleId,
+                     Content = articleComments.Content,
+                     Created = articleComments.Created,
+                     UserId = articleComments.UserId,
+                     UserName = users.UserName
+                 });
 
 
-            return commentList;
+            return await PagedList<ArticleCommentDto>.CreateAsync(commentList, commentParams.PageNumber, commentParams.PageSize);
 
         }
 

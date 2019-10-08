@@ -23,6 +23,7 @@ export class ReviewsComponent implements OnInit {
   gameId: string;
   baseUrl = environment.apiUrl;
   product: Product;
+  maxPaginationPages = 5;
 
   constructor(private route: ActivatedRoute,
     private productService: ProductService,
@@ -36,11 +37,7 @@ export class ReviewsComponent implements OnInit {
      .subscribe(product => {
        this.product = product;
      });
-    this.productService.getComments(+this.gameId, this.pageNumber, this.pageSize)
-    .subscribe(pagination => {
-      this.comments = pagination.result;
-      this.pagination = pagination.pagination;
-    });
+    this.getComments();
 
   }
 
@@ -49,6 +46,14 @@ export class ReviewsComponent implements OnInit {
       return comment.userId.toString() === this.authService.decodedToken.nameid;
     }
     return false;
+  }
+
+  public getComments(): void {
+    this.productService.getComments(+this.gameId, this.pageNumber, this.pageSize)
+      .subscribe(pagination => {
+        this.comments = pagination.result;
+        this.pagination = pagination.pagination;
+      });
   }
 
   public deleteComment(commentId: number) {
@@ -65,7 +70,7 @@ export class ReviewsComponent implements OnInit {
           )
           .subscribe(
             response => {
-              // this.getComments();
+              this.getComments();
               this.productService.updateNumberOfComments(this.product);
             },
             error => {

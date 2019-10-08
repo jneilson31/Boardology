@@ -75,3 +75,10 @@
     color: $color-grayed-out;
     font-size: 12px;
 }
+
+.view-all-reviews {
+    font-weight: $font-bold;
+    border-top: 1px solid $color-light-gray;
+    border-bottom: 1px solid $color-light-gray;;
+    padding: 10px;
+}

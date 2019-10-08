@@ -4,7 +4,7 @@
     <h1 class="text-center">All Reviews</h1>
     <div class="d-flex justify-content-center">
         <pagination *ngIf="comments.length > 2" [boundaryLinks]="true" [totalItems]="pagination?.totalItems" [itemsPerPage]="pagination?.itemsPerPage"
-            [(ngModel)]="pagination.currentPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
+            [(ngModel)]="pagination.currentPage" [maxSize]="maxPaginationPages" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
             nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
         </pagination>
     </div>
@@ -20,7 +20,7 @@
     </div>
     <div class="d-flex justify-content-center">
         <pagination [boundaryLinks]="true" [totalItems]="pagination?.totalItems" [itemsPerPage]="pagination?.itemsPerPage"
-            [(ngModel)]="pagination.currentPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;"
+            [(ngModel)]="pagination.currentPage" [maxSize]="maxPaginationPages" (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;"
             firstText="&laquo;" lastText="&raquo;">
         </pagination>
     </div>

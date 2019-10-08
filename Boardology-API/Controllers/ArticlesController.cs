@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Boardology.API.Data;
+using Boardology.API.Helpers;
 using Boardology.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -55,7 +56,7 @@ namespace Boardology.API.Controllers
         }
         
         [HttpGet("{articleId}/comments")]
-        public async Task<IActionResult> GetArticleComments(int articleId)
+        public async Task<IActionResult> GetArticleComments(int articleId, [FromQuery]CommentParams commentParams)
         {
 
 
@@ -64,7 +65,9 @@ namespace Boardology.API.Controllers
                 return NotFound();
             }
 
-            var comments = await _articlesRepo.GetArticleComments(articleId);
+            var comments = await _articlesRepo.GetArticleComments(articleId, commentParams);
+
+            Response.AddPagination(comments.CurrentPage, comments.PageSize, comments.TotalCount, comments.TotalPages);
 
             return Ok(comments);
 
@@ -112,8 +115,8 @@ namespace Boardology.API.Controllers
         }
 
         [Authorize]
-        [HttpDelete("user/{userId}/comment/{commentId}/delete")]
-        public async Task<IActionResult> DeleteComment(int userId, int commentId)
+        [HttpDelete("user/{userId}/{articleId}/comment/{commentId}/delete")]
+        public async Task<IActionResult> DeleteComment(int userId, int articleId, int commentId)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
             {
@@ -133,6 +136,7 @@ namespace Boardology.API.Controllers
             }
 
             _boardologyRepo.Delete(comment);
+            await _articlesRepo.DecreaseArticleComments(articleId);
 
 
             if (await _boardologyRepo.SaveAll())

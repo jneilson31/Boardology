@@ -14,6 +14,7 @@ namespace Boardology.API.Helpers
         {
             CreateMap<User, UserForRegisterDto>(); // if we want to return anything else in local storage on sign in
             CreateMap<Comment, CommentDto>();
+            CreateMap<ArticleComment, ArticleCommentDto>();
         }
     }
 }

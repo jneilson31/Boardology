@@ -45,10 +45,7 @@ export class ProductDetailComponent implements OnInit {
       this.product = product;
       this.setSeoData();
     });
-      this.productService.getComments(+this.gameId, this.pageNumber, this.pageSize)
-      .subscribe(comments => {
-        this.comments = comments.result;
-      });
+      this.getComments();
   }
 
 //   ngAfterViewInit() {
@@ -59,15 +56,12 @@ export class ProductDetailComponent implements OnInit {
 //   this.renderer2.appendChild(this.trenton.nativeElement, script);
 // }
 
-  // public getComments(): void {
-  //   this.http
-  //     .get<Comment[]>(
-  //       `${this.baseUrl}comments/game/${this.product.id}/comments`
-  //     )
-  //     .subscribe(comments => {
-  //       this.comments = comments;
-  //     });
-  // }
+  public getComments(): void {
+    this.productService.getComments(+this.gameId, this.pageNumber, this.pageSize)
+      .subscribe(comments => {
+        this.comments = comments.result;
+      });
+  }
 
   public checkIfIsUserComment(comment: Comment): boolean {
     if (this.authService.decodedToken) {
@@ -134,8 +128,9 @@ export class ProductDetailComponent implements OnInit {
           )
           .subscribe(
             response => {
-              // this.getComments();
+              this.getComments();
               this.product.numReviews--;
+              this.productService.updateNumberOfComments(this.product);
             },
             error => {
               this.alertify.error(error.error);
