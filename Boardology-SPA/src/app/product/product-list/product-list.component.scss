@@ -1,5 +1,19 @@
 @import 'src/styles/main';
 
+.desktop-category {
+  // padding: 0px 20px;
+  // margin-top: 20px;
+  .list-group {
+
+    .list-group-item {
+      border-radius: 0;
+      background-color: $color-white;
+      color: $color-dark-gray;
+      padding: 20px;
+    }
+  };
+}
+
 .gameList {
   padding: .5rem;
   border-top: 1px solid gray;
@@ -26,14 +40,15 @@
 }
 
 .gradientWrapper {
-  background: #00d2ff;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #3a7bd5, #00d2ff);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #3a7bd5, #00d2ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-image: url('../.././../assets/background.png');
+  background-position: center;
+  background-size: cover;
   color: $color-white;
   display: flex;
   flex-direction: column;
-  height: 20vh;
+  height: 15vh;
   justify-content: center;
+  text-align: center;
 }
 
 .bold {
@@ -53,9 +68,10 @@
 }
 
 .tableHeader {
-  background-color: $color-dark-gray;
-  color: $color-white;
+  background-color: $color-white;
+  color: $color-dark-gray;
   padding: 16px 0px;
+  border-bottom: 1px solid $color-dark-gray;
 }
 
 .viewMore {
