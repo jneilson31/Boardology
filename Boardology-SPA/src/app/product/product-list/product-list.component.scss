@@ -65,6 +65,14 @@
   overflow: auto;
   padding: .75rem;
   white-space: nowrap;
+  position: relative;
+  z-index: 50;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 .tableHeader {
@@ -72,6 +80,9 @@
   color: $color-dark-gray;
   padding: 16px 0px;
   border-bottom: 1px solid $color-dark-gray;
+  text-align: right;
+  position: relative;
+  z-index: 48;
 }
 
 .viewMore {

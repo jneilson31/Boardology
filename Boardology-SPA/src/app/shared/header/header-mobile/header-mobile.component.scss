@@ -13,7 +13,13 @@
 
 .nav-primary {
     background-color: $color-dark-gray;
+    color: $color-white;
+
 }
+
+.navbar-toggler-icon {
+      color: $color-white;
+    }
 
 .navbar-nav {
   a {

@@ -4,51 +4,28 @@
       <h1>{{ getCurrentCategory() }} Games</h1>
     </div>
   </div>
-  <div class="scrollMenu d-md-none">
+  <div id="sticky-scroll" class="scrollMenu">
     <app-category *ngFor="let category of categories" (click)="setCurrentCategory(category)" [category]="category"
-    [products]="products">
-  </app-category>
+      [products]="products">
+    </app-category>
   </div>
-  <div class="tableHeader">
-    <div class="row justify-content-end pr-4">
-      <div class="mr-3 dropdown" data-display="static" id="dropdownMenuButton" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-        <span class="mr-2">{{sortBy}}</span>
-        <i class="fa fa-sort"></i>
-        <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="dropdownMenuButton">
-          <a [ngClass]="{'bold': sortBy === Sort.MostPopular}" class="dropdown-item" href=""
-            (click)="sortByMethod(Sort.MostPopular)">Most Popular</a>
-          <a [ngClass]="{'bold': sortBy === Sort.Alphabetical}" class="dropdown-item" href=""
-            (click)="sortByMethod(Sort.Alphabetical)">A-Z</a>
-        </div>
+  <div id= "sticky-sort" class="tableHeader">
+    <div class="mr-3 dropdown" data-display="static" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+      aria-expanded="false">
+      <span class="mr-2">{{sortBy}}</span>
+      <i class="fa fa-sort"></i>
+      <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="dropdownMenuButton">
+        <a [ngClass]="{'bold': sortBy === Sort.MostPopular}" class="dropdown-item" href=""
+          (click)="sortByMethod(Sort.MostPopular)">Most Popular</a>
+        <a [ngClass]="{'bold': sortBy === Sort.Alphabetical}" class="dropdown-item" href=""
+          (click)="sortByMethod(Sort.Alphabetical)">A-Z</a>
       </div>
     </div>
   </div>
 </section>
 <section>
-  <!-- NEED TO MAKE ANOTHER CATEGORY COMPONENT TO BIND TO THIS FOR THE NGFOR-->
   <div class="row no-gutters">
-    <div class="desktop-category d-none d-md-flex col-md-4">
-      <!-- <app-category *ngFor="let category of categories" (click)="setCurrentCategory(category)" [category]="category"
-        [products]="products">
-      </app-category> -->
-      <ul class="list-group w-100">
-        <li class="list-group-item">All</li>
-        <li class="list-group-item">Adventure</li>
-        <li class="list-group-item">Action</li>
-        <li class="list-group-item">Board</li>
-        <li class="list-group-item">Card</li>
-        <li class="list-group-item">Childrens</li>
-        <li class="list-group-item">Dice</li>
-        <li class="list-group-item">Exploration</li>
-        <li class="list-group-item">Humor</li>
-        <li class="list-group-item">Murder</li>
-        <li class="list-group-item">Mystery</li>
-        <li class="list-group-item">Sports</li>
-        <li class="list-group-item">Word</li>
-      </ul>
-    </div>
-    <div class="col-12 col-md-8 mx-auto">
+    <div class="col-12 mx-auto">
       <div class="gameList row mx-auto align-items-center"
         *ngFor="let product of products | slice:0:[max]; let rowIndex of index;">
         <div class="col-2" [routerLink]="['/games/', product.id, product.name]">
@@ -70,10 +47,8 @@
   </div>
 </section>
 
-
-
-
-
 <div *ngIf="[max] < products?.length -1" class="viewMore" (click)="viewMore()">View more</div>
-<div *ngIf="[max] >= products?.length -1 && products?.length" class="text-center" (click)="scrollToTop()">Back to top
+<div *ngIf="[max] >= products?.length -1 && products?.length" class="text-center py-4" (click)="scrollToTop()">Back to top
 </div>
+
+<app-footer></app-footer>

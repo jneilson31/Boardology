@@ -53,13 +53,15 @@ export class HeaderMobileComponent implements OnInit {
   }
 
   toggleSidebar() {
-    this.currentDrawerState = this.currentDrawerState === 'show' ? 'hide' : 'show';
-    if (this.currentDrawerState === 'show') {
-      this.renderer.setStyle(document.body, 'position', 'fixed');
-      this.renderer.setStyle(document.body, 'min-width', '100%');
-    } else {
-      this.renderer.removeStyle(document.body, 'position');
-      this.renderer.removeStyle(document.body, 'min-width');
-    }
+    const element = document.getElementById('navbarSupportedContent');
+    // this.currentDrawerState = this.currentDrawerState === 'show' ? 'hide' : 'show';
+    // if (this.currentDrawerState === 'show') {
+    //   this.renderer.setStyle(document.body, 'position', 'fixed');
+    //   this.renderer.setStyle(document.body, 'min-width', '100%');
+    // } else {
+    //   this.renderer.removeStyle(document.body, 'position');
+    //   this.renderer.removeStyle(document.body, 'min-width');
+    // }
+    this.renderer.removeClass(element, 'show');
   }
 }

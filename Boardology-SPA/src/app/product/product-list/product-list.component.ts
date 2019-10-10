@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, Renderer2, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../../_models/product.model';
 import { environment } from '../../../environments/environment';
@@ -11,6 +11,7 @@ import { SeoService } from 'src/app/_services/seo.service';
 import { ProductService } from 'src/app/_services/product.service';
 import { CategorySortPipe } from 'src/app/_pipes/category-sort.pipe';
 import { map, tap, take } from 'rxjs/operators';
+import { elementEnd } from '@angular/core/src/render3';
 
 export enum Sort {
   MostPopular = 'Most Popular',
@@ -25,6 +26,7 @@ export enum Sort {
 
 
 export class ProductListComponent implements OnInit {
+  @ViewChild('gameList') element2: ElementRef;
   products: Product[];
   allProducts: Product[];
   upvotes: Upvote[];
@@ -64,6 +66,7 @@ export class ProductListComponent implements OnInit {
      private authService: AuthService,
      private seoService: SeoService,
      private productService: ProductService,
+     private renderer: Renderer2,
      private categorySortPipe: CategorySortPipe ) { }
 
   ngOnInit() {
@@ -83,6 +86,16 @@ export class ProductListComponent implements OnInit {
 
   public scrollToTop(): void {
     window.scroll(0, 0);
+  }
+
+  @HostListener('window:scroll', ['$event'])onWindowScroll(e) {
+    const element = document.getElementById('sticky-scroll');
+    if (window.pageYOffset > 196) {
+      element.classList.add('sticky');
+    } else {
+      element.classList.remove('sticky');
+
+    }
   }
 
   // Get method so we can use the enum in the html file
