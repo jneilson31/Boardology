@@ -24,7 +24,7 @@ const appRoutes: Routes = [
         children: [
             { path: 'games', component: ProductListComponent},
             { path: 'games/:gameId/:name', component: ProductDetailComponent },
-            { path: 'reviews', component: ReviewsComponent },
+            { path: 'reviews/:gameId/:name', component: ReviewsComponent },
             { path: 'about-us', component: AboutComponent },
             { path: 'contact-us', component: ContactComponent },
             { path: 'register', component: RegisterComponent },
