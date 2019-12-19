@@ -1,0 +1,17 @@
+@import 'src/styles/main';
+
+.secondary-nav {
+  text-align: center;
+  min-height: 40px;
+  align-items: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 10px 20px;
+}
+  .nav-title {
+    padding-bottom: 12px
+  }
+  .active {
+    border-bottom: 3px solid $color-blue;
+  }
+

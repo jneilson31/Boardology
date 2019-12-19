@@ -24,7 +24,7 @@
     </div>
   </div>
 </div> -->
-<div class="gradientWrapper">
+<!-- <div class="gradientWrapper">
   <div class="container">
     <app-search [originalProducts]="allProducts" class="mt-5"></app-search>
     <h1 class="mt-2">Browse for {{ getCurrentCategory() }} Games</h1>
@@ -53,4 +53,20 @@
 
 <div *ngIf="[max] < products?.length -1" class="viewMore" (click)="viewMore()">View more</div>
 <div *ngIf="[max] >= products?.length -1 && products?.length" class="text-center" (click)="scrollToTop()">Back to top
+</div> -->
+
+<div *ngFor="let product of products | slice:0:[homeMax]; let rowIndex of index;">
+  <div class="product-container shadow row no-gutters">
+    <div class="product-image col-3">
+      <img class="img-fluid" src="{{ product.photoUrl }}" alt="{{product.name}}">
+    </div>
+    <div class="product-details col-8">
+      <h6>{{product.name}} </h6>
+      <p>$29.99</p>
+    </div>
+    <div class="product-interaction"><i class="fa fa-ellipsis-v"></i></div>
+    <div class="product-statistics">
+      <i class="fa fa-heart" [ngClass]="{upvoted: hasUpvoted}"></i>
+    </div>
+  </div>
 </div>

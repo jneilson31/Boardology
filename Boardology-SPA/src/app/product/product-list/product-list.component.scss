@@ -1,69 +1,82 @@
 @import 'src/styles/main';
 
-.gameList {
-  padding: .5rem;
-  border-top: 1px solid gray;
-  border-bottom: 1px solid gray;
-  margin-top: -1px;
-  min-height: 125px;
-  cursor: pointer;
-  p {
-    font-size: 14px;
-    font-weight: 400;
-    margin-bottom: 8px;
-  }
-}
+// .gameList {
+//   padding: .5rem;
+//   border-top: 1px solid gray;
+//   border-bottom: 1px solid gray;
+//   margin-top: -1px;
+//   min-height: 125px;
+//   cursor: pointer;
+//   p {
+//     font-size: 14px;
+//     font-weight: 400;
+//     margin-bottom: 8px;
+//   }
+// }
 
-.gameList:nth-of-type(odd){
-    background-color: lighten($color-blue, 40);
-}
+// .gameList:nth-of-type(odd){
+//     background-color: lighten($color-blue, 40);
+// }
 
-.gameName {
-  font-size: 22px;
-  font-weight: 500;
-  margin-bottom: 8px;
+// .gameName {
+//   font-size: 22px;
+//   font-weight: 500;
+//   margin-bottom: 8px;
 
-}
+// }
 
-.gradientWrapper {
-  background: #00d2ff;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #3a7bd5, #00d2ff);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #3a7bd5, #00d2ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  color: $color-white;
+// .gradientWrapper {
+//   background: #00d2ff;  /* fallback for old browsers */
+//   background: -webkit-linear-gradient(to left, #3a7bd5, #00d2ff);  /* Chrome 10-25, Safari 5.1-6 */
+//   background: linear-gradient(to left, #3a7bd5, #00d2ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+//   color: $color-white;
+//   display: flex;
+//   flex-direction: column;
+//   height: 20vh;
+//   justify-content: center;
+// }
+
+// .bold {
+//   font-weight: $font-bold;
+// }
+
+// .try {
+//   border-right: 1px solid $color-grayed-out;
+// }
+
+// .scrollMenu {
+//   background-color: #333;
+//   margin-bottom: 1rem;
+//   overflow: auto;
+//   padding: .75rem;
+//   white-space: nowrap;
+// }
+
+// .tableHeader {
+//   background-color: $color-dark-gray;
+//   color: $color-white;
+//   padding: 16px 0px;
+// }
+
+// .viewMore {
+//   padding: 16px;
+//   text-align: center;
+// }
+
+// .votingContainer {
+//   padding: 8px;
+//   color: $color-dark-gray;
+// }
+
+.product-container {
+  background-color: $atlas-white;
   display: flex;
-  flex-direction: column;
-  height: 20vh;
-  justify-content: center;
-}
-
-.bold {
-  font-weight: $font-bold;
-}
-
-.try {
-  border-right: 1px solid $color-grayed-out;
-}
-
-.scrollMenu {
-  background-color: #333;
-  margin-bottom: 1rem;
-  overflow: auto;
-  padding: .75rem;
-  white-space: nowrap;
-}
-
-.tableHeader {
-  background-color: $color-dark-gray;
-  color: $color-white;
-  padding: 16px 0px;
-}
-
-.viewMore {
-  padding: 16px;
-  text-align: center;
-}
-
-.votingContainer {
-  padding: 8px;
-  color: $color-dark-gray;
+  align-items: center;
+  padding: 12px;
+  max-height: 120px;
+  margin-bottom: 12px;
+  border-radius: 15px;
+  .product-image {
+    margin-right: 12px;
+  }
 }

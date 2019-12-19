@@ -4,6 +4,7 @@
 button {
     font-family: $font-secondary;
     font-size: 14px;
+    // padding: 10px 12px;
 }
 
 .btn-primary {
@@ -20,7 +21,7 @@ button {
     background: transparent;
     border: 1px solid $color-light-blue;
     color: $color-light-blue;
-    width: 100%; 
+    width: 100%;
 }
 
 .btn-secondary {
@@ -31,9 +32,15 @@ button {
 }
 
 .btn-white {
-    background: transparent;
+    background-color: $atlas-white;
     border: 1px solid $color-white;
-    color: $color-white;
-    width: 100%;
-    padding: 1.0rem;
+    color: $atlas-dark-gray;
+    // padding: 10px 18px;
+    border-radius: 50px;
+}
+
+.btn-gradient {
+  @include atlas-background;
+  color: $atlas-white;
+  border-radius: 50px;
 }

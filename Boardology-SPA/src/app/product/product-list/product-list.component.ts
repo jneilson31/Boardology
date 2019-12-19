@@ -31,6 +31,7 @@ export class ProductListComponent implements OnInit {
   downvotes: Downvote[];
   descMax = 50;
   max = 20;
+  homeMax: number = 10;
   baseUrl = environment.apiUrl;
   categoryLoad = false;
   currentCategory = '';

@@ -1,5 +1,18 @@
 @import 'src/styles/main';
 
-.categories {
-    margin-bottom: 1rem;
+.row-header {
+  align-items: center;
+  margin-bottom: 24px;
+}
+.page-wrapper {
+  background-color: $atlas-light-gray;
+  padding: 20px 0px;
+}
+h2 {
+  margin-bottom: 0;
+}
+
+i {
+  margin-right: 8px;
+  opacity: 0.5;
 }

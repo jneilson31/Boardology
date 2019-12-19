@@ -1,5 +1,22 @@
+<app-header-secondary></app-header-secondary>
 <app-jumbotron></app-jumbotron>
-<div class="container col-sm-12 col-md-10 offset-md-1">
+<div class="page-wrapper">
+<div class="container">
+  <div class="row row-header">
+    <div class="col-6">
+      <h2>Featured</h2>
+    </div>
+    <div class="col-6 text-right">
+      <button class="btn btn-sm btn-gradient"><i class="fa fa-plus"></i>Filter</button>
+    </div>
+  </div>
+      <div class="row">
+        <div class="col-12">
+          <app-product-list></app-product-list>
+        </div>
+      </div>
+</div>
+<!-- <div class="container col-sm-12 col-md-10 offset-md-1">
   <app-home-intro-content></app-home-intro-content>
   <h2>Featured Games</h2>
   <div id="carouselExampleIndicators" class="carousel slide mb-4" data-ride="carousel">
@@ -29,5 +46,5 @@
     </a>
   </div>
   <app-articles></app-articles>
-</div>
+</div> -->
 
