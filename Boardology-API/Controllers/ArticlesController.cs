@@ -27,8 +27,10 @@ namespace Boardology.API.Controllers
 			_mapper = mapper;
 		}
 
-
-        [HttpGet]
+        /// <summary>
+        /// Deletes a specific TodoItem.
+        /// </summary>
+		[HttpGet]
         public async Task<IActionResult> GetArticles()
         {
             var articles = await _articlesRepo.GetArticles();

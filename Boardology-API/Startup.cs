@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -23,6 +25,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 namespace Boardology.API
 {
@@ -83,7 +86,19 @@ namespace Boardology.API
 	        services.AddScoped<IVotesRepository, VotesRepository>();
             services.AddScoped<ICommentsRepository, CommentsRepository>();
 
-        }
+            services.AddSwaggerGen(c =>
+            {
+	            c.SwaggerDoc("v1", new OpenApiInfo {Title = "Boardology API", Version = "v1"});
+				c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+				{
+					Description = "Jwt Authorization header for required calls",
+					Name = "Authorization"
+				});
+			});
+
+            
+
+		}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, SeedGames seedGames)
@@ -115,6 +130,11 @@ namespace Boardology.API
             //seedUsers.SeedBoardologyUsers();
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().SetPreflightMaxAge(new TimeSpan(0, 5, 0)));
             app.UseAuthentication();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+	            c.SwaggerEndpoint("/swagger/v1/swagger.json", "Boardology API v1");
+            });
             app.UseMvc();
         }
     }
