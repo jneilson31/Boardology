@@ -57,9 +57,17 @@ export class ProductItemComponent implements OnInit {
 
       this.http.post(`${this.baseUrl}votes/${this.authService.decodedToken.nameid}/${productId}/upvote`, {})
       .subscribe(response => {
-        if (this.hasUpvoted) {
+        if (!this.hasUpvoted && !this.hasDownvoted) {
+          this.product.upvotes++;
+          this.hasUpvoted = true;
+        } else if (this.hasUpvoted && !this.hasDownvoted) {
           this.product.upvotes--;
           this.hasUpvoted = false;
+        } else if (!this.hasUpvoted && this.hasDownvoted) {
+          this.product.upvotes++;
+          this.hasUpvoted = true;
+          this.product.downvotes--;
+          this.hasDownvoted = false;
         } else {
           this.product.upvotes++;
           this.hasUpvoted = true;
@@ -76,7 +84,15 @@ export class ProductItemComponent implements OnInit {
 
       this.http.post(`${this.baseUrl}votes/${this.authService.decodedToken.nameid}/${productId}/downvote`, {})
       .subscribe(response => {
-        if (this.hasDownvoted) {
+        if (!this.hasUpvoted && !this.hasDownvoted) {
+          this.product.downvotes++;
+          this.hasDownvoted = true;
+        } else if (this.hasUpvoted && !this.hasDownvoted) {
+          this.product.downvotes++;
+          this.hasDownvoted = true;
+          this.product.upvotes--;
+          this.hasUpvoted = false;
+        } else if (!this.hasUpvoted && this.hasDownvoted) {
           this.product.downvotes--;
           this.hasDownvoted = false;
         } else {
