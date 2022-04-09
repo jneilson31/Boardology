@@ -26,7 +26,7 @@
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "ng-animate": "^0.3.4",
     "ngx-bootstrap": "^5.1.2",
     "node-sass": "^4.14.1",
